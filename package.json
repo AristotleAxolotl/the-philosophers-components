@@ -1,0 +1,68 @@
+{
+  "name": "the-philosophers-components",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "format": "gulp format",
+    "lint": "gulp lint",
+    "lint:watch": "gulp lint_watch",
+    "dist": "gulp dist",
+    "dist:watch": "gulp dist_watch",
+    "test:server": "mocha test/server/**/*.test.js",
+    "test:server:watch": "mocha test/server/**/*.test.js --watch",
+    "test:ui": "gulp test",
+    "test:ui:watch": "gulp test_watch",
+    "test": "npm run test:ui && npm run test:server",
+    "update_components": "gulp update_components",
+    "update_server": "gulp update_server",
+    "update_all": "npm run update_components && npm run update_server",
+    "server": "concurrently \"npm:server:be\" \"npm:server:fe\"",
+    "server:be": "cross-env DEV=y node ./server/index.js",
+    "server:fe": "es-dev-server",
+    "server:prod": "npm run dist && node ./dist/server/index.js",
+    "start": "concurrently \"npm:server\" \"npm:dist:watch\" \"npm:lint:watch\" \"npm:test:watch\"",
+    "build": "gulp build",
+    "init": "npm install && npm run update_components && npm run update_server && npm run build"
+  },
+  "dependencies": {
+    "cookie-parser": "1.4.*",
+    "express": "4.17.*",
+    "lit-element": "2.2.*",
+    "lit-html": "1.1.*",
+    "node-fetch": "2.6.*",
+    "uuid": "3.3.*"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "8.1.*",
+    "@commitlint/config-conventional": "8.1.*",
+    "@open-wc/building-rollup": "0.9.*",
+    "@open-wc/eslint-config": "1.1.*",
+    "@open-wc/prettier-config": "0.1.*",
+    "@open-wc/testing": "2.3.*",
+    "@open-wc/testing-karma": "3.1.*",
+    "chai": "4.2.*",
+    "concurrently": "4.1.*",
+    "cross-env": "5.2.*",
+    "es-dev-server": "1.17.*",
+    "eslint-plugin-no-only-tests": "2.3.*",
+    "eslint-plugin-sonarjs": "0.4.*",
+    "gulp": "4.0.*",
+    "gulp-eslint": "6.0.*",
+    "husky": "3.0.*",
+    "koa-proxies": "0.8.*",
+    "lint-staged": "9.2.*",
+    "mocha": "6.2.*",
+    "rmfr": "2.0.*",
+    "rollup": "1.20.*",
+    "sinon": "7.4.*",
+    "sinon-chai": "3.3.*",
+    "webpack-merge": "4.2.*"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

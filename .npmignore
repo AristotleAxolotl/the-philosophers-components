@@ -1,0 +1,25 @@
+## editors
+/.idea
+/.vscode
+
+## external deps
+/vsm-ui-components
+/vsm-ui-server
+
+## system files
+.DS_Store
+
+# code coverage folders
+coverage/
+
+## npm
+node_modules
+npm-debug.log
+
+## temp folders
+/.tmp/
+/.vsm_components/
+
+## build output
+dist
+build-stats.json
