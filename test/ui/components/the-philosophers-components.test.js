@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import '../../../src/components/the-philosophers-components';
+import '../../../src/components/the-philosophers-components.js';
 import { expect, fixture } from '@open-wc/testing';
 
 describe('<the-philosophers-components>', () => {

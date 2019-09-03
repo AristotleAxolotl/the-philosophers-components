@@ -1,13 +1,18 @@
-import { html, LitElement } from 'lit-element';
-
-import '../../vsm-ui-components';
+import { html, css, LitElement } from 'lit-element';
+import './blog/blog-post.js';
 
 class ThePhilosophersComponents extends LitElement {
   render() {
     return html`
-      <vsm-header level="1">The Philosophers Components</vsm-header>
+    <blog-post></blog-post>
+    `;
+  }
+
+  static get styles() {
+    return css`
+
     `;
   }
 }
 
-window.customElements.define('the-philosophers-components', ThePhilosophersComponents);
+customElements.define('the-philosophers-components', ThePhilosophersComponents);
