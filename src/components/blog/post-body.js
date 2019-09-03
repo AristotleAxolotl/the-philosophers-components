@@ -12,10 +12,6 @@ export default class PostBody extends LitElement {
       isCreatePost: {
         type: Boolean,
       },
-      dateCreated: {
-        type: Date,
-        attribute: false,
-      },
     };
   }
 
@@ -102,7 +98,6 @@ export default class PostBody extends LitElement {
     super();
     this.isCreatePost = true;
     this.postBody = 'Enter post text here...';
-    this.dateCreated = new Date().toLocaleString();
   }
 }
 
