@@ -1,5 +1,14 @@
 import { html, css, LitElement } from 'lit-element';
 
+function _toDoubleIntFormat(int) {
+  let newInt;
+  // console.log(typeof int)
+  if (int < 10) {
+    newInt = `0${int}`;
+    return newInt;
+  }
+  return int;
+}
 // TODO: post has a body, comment section, upvote/downvote,
 export default class PhilosophersDate extends LitElement {
   static get properties() {
@@ -8,10 +17,82 @@ export default class PhilosophersDate extends LitElement {
         attribute: false,
         type: Date,
       },
+      isCreateDate: {
+        type: Boolean,
+      },
     };
   }
 
   render() {
+    return html`
+      ${this._displayTypeOfDate()}
+    `;
+  }
+
+  _displayTypeOfDate() {
+    if (this.isCreateDate) {
+      return html`
+        <div wrapper>
+          <div dateWrapper>
+            <input
+              date
+              day
+              type="number"
+              min="1"
+              max="99"
+              value="${_toDoubleIntFormat(this.dateCreated.getDate())}"
+            />
+            <label slash>/</label>
+            <input
+              date
+              month
+              type="number"
+              min="1"
+              max="99"
+              value="${_toDoubleIntFormat(this.dateCreated.getMonth())}"
+            />
+            <label slash>/</label>
+            <input
+              date
+              year
+              type="number"
+              min="1"
+              max="9999"
+              value="${Number(this.dateCreated.getFullYear())}"
+            />
+          </div>
+          <div timeWrapper>
+            <label>@</label>
+            <input
+              time
+              hour
+              type="number"
+              min="1"
+              max="99"
+              value="${_toDoubleIntFormat(this.dateCreated.getHours())}"
+            />
+            <label colon>:</label>
+            <input
+              time
+              minuet
+              type="number"
+              min="1"
+              max="99"
+              value="${_toDoubleIntFormat(this.dateCreated.getMinutes())}"
+            />
+            <label colon>:</label>
+            <input
+              time
+              second
+              type="number"
+              min="1"
+              max="99"
+              value="${_toDoubleIntFormat(this.dateCreated.getSeconds())}"
+            />
+          </div>
+        </div>
+      `;
+    }
     return html`
       <div wrapper>
         <div dateWrapper>
@@ -21,7 +102,8 @@ export default class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            value="${this._toDoubleIntFormat(this.dateCreated.getDate())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getDate())}"
+            readonly
           />
           <label slash>/</label>
           <input
@@ -30,7 +112,8 @@ export default class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            value="${this._toDoubleIntFormat(this.dateCreated.getMonth())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getMonth())}"
+            readonly
           />
           <label slash>/</label>
           <input
@@ -40,6 +123,7 @@ export default class PhilosophersDate extends LitElement {
             min="1"
             max="9999"
             value="${Number(this.dateCreated.getFullYear())}"
+            readonly
           />
         </div>
         <div timeWrapper>
@@ -50,7 +134,8 @@ export default class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            value="${this._toDoubleIntFormat(this.dateCreated.getHours())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getHours())}"
+            readonly
           />
           <label colon>:</label>
           <input
@@ -59,7 +144,8 @@ export default class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            value="${this._toDoubleIntFormat(this.dateCreated.getMinutes())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getMinutes())}"
+            readonly
           />
           <label colon>:</label>
           <input
@@ -68,22 +154,13 @@ export default class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            value="${this._toDoubleIntFormat(this.dateCreated.getSeconds())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getSeconds())}"
+            readonly
           />
         </div>
       </div>
     `;
   }
-
-  _toDoubleIntFormat = int => {
-    let newInt;
-    // console.log(typeof int)
-    if (int < 10) {
-      newInt = `0${  int}`;
-      return newInt;
-    }
-    return int;
-  };
 
   static get styles() {
     return css`

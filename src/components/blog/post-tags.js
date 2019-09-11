@@ -7,10 +7,41 @@ export default class Post extends LitElement {
         type: Array,
         reflect: true,
       },
+      isCreatePost: {
+        type: Boolean,
+      },
     };
   }
 
   render() {
+    return html`
+      ${this._displayType()}
+    `;
+  }
+
+  _displayType() {
+    if (this.isCreatePost) {
+      return html`
+        <div tags>
+          ${this._addedTags.map(
+            (text, index) =>
+              html`
+                <span tag id="tag-${index}" @click="${e => this._handleClick(e)}">${text}</span>
+              `,
+          )}
+          <input
+            inputTag
+            id="inputTag"
+            type="text"
+            placeholder="Add a tag..."
+            keys="enter"
+            on-keys-pressed="${() => {
+              this._handleEnter();
+            }}"
+          />
+        </div>
+      `;
+    }
     return html`
       <div tags>
         ${this._addedTags.map(
@@ -19,36 +50,30 @@ export default class Post extends LitElement {
               <span tag id="tag-${index}" @click="${e => this._handleClick(e)}">${text}</span>
             `,
         )}
-        <input
-          inputTag
-          id="inputTag"
-          type="text"
-          placeholder="Add a tag..."
-          keys="enter"
-          on-keys-pressed="${() => {
-            this._handleEnter();
-          }}"
-        />
       </div>
     `;
   }
 
   firstUpdated() {
-    this.shadowRoot.querySelector('#inputTag').addEventListener('keyup', e => {
-      if (e.key === 'Enter') {
-        this._handleEnter();
-      }
-    });
+    if (this.isCreatePost) {
+      this.shadowRoot.querySelector('#inputTag').addEventListener('keyup', e => {
+        if (e.key === 'Enter') {
+          this._handleEnter();
+        }
+      });
+    }
   }
 
-  _handleClick(e){
+  _handleClick(e) {
     // const selectedIndex = e.target.id.replace("tag-", "");
 
-    const ele = this.shadowRoot.querySelector(`#${e.target.id}`);
+    if (this.isCreatePost) {
+      const ele = this.shadowRoot.querySelector(`#${e.target.id}`);
 
-    const tagValue = ele.innerText;
+      const tagValue = ele.innerText;
 
-    this._addedTags = this._addedTags.filter(tag => tagValue !== tag);
+      this._addedTags = this._addedTags.filter(tag => tagValue !== tag);
+    }
   }
 
   _handleEnter() {
@@ -103,7 +128,7 @@ export default class Post extends LitElement {
 
   constructor() {
     super();
-    this._addedTags = [];
+    this._addedTags = ['example', 'tag'];
   }
 }
 

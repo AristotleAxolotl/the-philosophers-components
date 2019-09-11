@@ -2,7 +2,9 @@ import { html, css, LitElement } from 'lit-element';
 import '../philosophers-date.js';
 import './post-tags.js';
 
-// TODO: post body has a main body (text), link to resource, date resource added, technology involved tags, buttons to submit/save for later/cancel
+// post body has a main body (text), link to resource, date resource added, technology involved tags,
+// TODO: buttons to submit/save for later/cancel
+// TODO: Should refactor all code to not display two components (create/view ARE different & should have different classes.)
 export default class PostBody extends LitElement {
   static get properties() {
     return {
@@ -11,6 +13,9 @@ export default class PostBody extends LitElement {
       },
       isCreatePost: {
         type: Boolean,
+      },
+      resourceLink: {
+        type: String,
       },
     };
   }
@@ -21,6 +26,7 @@ export default class PostBody extends LitElement {
     `;
   }
 
+  // TODO: create should be wrapped in form
   _displayPostType() {
     if (this.isCreatePost) {
       return html`
@@ -35,21 +41,35 @@ export default class PostBody extends LitElement {
             </div>
             <div dateOfPost>
               <p subtitle>Date of post:</p>
-              <philosophers-date></philosophers-date>
+              <philosophers-date ?isCreateDate="${this.isCreatePost}"></philosophers-date>
             </div>
             <div tags>
               <p subtitle>Tags:</p>
-              <post-tags></post-tags>
+              <post-tags ?iscreatepost="${this.isCreatePost}"></post-tags>
             </div>
           </div>
         </div>
       `;
     }
     return html`
-      <div mainBody>
-        <p text>
-          <slot name="mainBodyText">Post text should show here...</slot>
-        </p>
+      <div createPost>
+        <div mainBody>
+          <p postText>${this.postBody}</p>
+        </div>
+        <div extraInfo>
+          <div resourceLink>
+            <p subtitle>Resource Link:</p>
+            <a href="${this.resourceLink}">Resource</a>
+          </div>
+          <div dateOfPost>
+            <p subtitle>Date of post:</p>
+            <philosophers-date ?isCreateDate="${this.isCreatePost}"></philosophers-date>
+          </div>
+          <div tags>
+            <p subtitle>Tags:</p>
+            <post-tags ?iscreatepost="${this.isCreatePost}"></post-tags>
+          </div>
+        </div>
       </div>
     `;
   }
@@ -96,8 +116,9 @@ export default class PostBody extends LitElement {
 
   constructor() {
     super();
-    this.isCreatePost = true;
+    this.isCreatePost = false;
     this.postBody = 'Enter post text here...';
+    this.resourceLink = 'default resource';
   }
 }
 
