@@ -11,48 +11,16 @@ export default class PostBody extends LitElement {
       postBody: {
         type: String,
       },
-      isCreatePost: {
-        type: Boolean,
-      },
       resourceLink: {
         type: String,
       },
     };
   }
 
+  // TODO: create should be wrapped in form
   render() {
     return html`
-      ${this._displayPostType()}
-    `;
-  }
-
-  // TODO: create should be wrapped in form
-  _displayPostType() {
-    if (this.isCreatePost) {
-      return html`
-        <div createPost>
-          <div mainBody>
-            <textarea inputPostText rows="7" placeholder=${this.postBody}></textarea>
-          </div>
-          <div extraInfo>
-            <div resourceLink>
-              <p subtitle>Resource Link:</p>
-              <input type="text" placeholder="Enter resource link here..." />
-            </div>
-            <div dateOfPost>
-              <p subtitle>Date of post:</p>
-              <philosophers-date ?isCreateDate="${this.isCreatePost}"></philosophers-date>
-            </div>
-            <div tags>
-              <p subtitle>Tags:</p>
-              <post-tags ?iscreatepost="${this.isCreatePost}"></post-tags>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-    return html`
-      <div createPost>
+      <div post>
         <div mainBody>
           <p postText>${this.postBody}</p>
         </div>
@@ -63,11 +31,11 @@ export default class PostBody extends LitElement {
           </div>
           <div dateOfPost>
             <p subtitle>Date of post:</p>
-            <philosophers-date ?isCreateDate="${this.isCreatePost}"></philosophers-date>
+            <philosophers-date ?isCreateDate=${false}></philosophers-date>
           </div>
           <div tags>
             <p subtitle>Tags:</p>
-            <post-tags ?iscreatepost="${this.isCreatePost}"></post-tags>
+            <post-tags></post-tags>
           </div>
         </div>
       </div>
@@ -76,7 +44,7 @@ export default class PostBody extends LitElement {
 
   static get styles() {
     return css`
-      [createPost] {
+      [post] {
         padding: 7px;
         /* display: flex; */
         background-color: lightgrey;
@@ -116,7 +84,6 @@ export default class PostBody extends LitElement {
 
   constructor() {
     super();
-    this.isCreatePost = false;
     this.postBody = 'Enter post text here...';
     this.resourceLink = 'default resource';
   }
