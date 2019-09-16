@@ -11,9 +11,9 @@ export default class CreatePost extends LitElement {
 
   render() {
     return html`
-      <post-body>
+      <create-post-body>
         <span slot="mainBodyText">Enter your post text here...</span>
-      </post-body>
+      </create-post-body>
     `;
   }
 

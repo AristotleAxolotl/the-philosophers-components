@@ -29,7 +29,7 @@ export default class Post extends LitElement {
   }
 
   // TODO: clicking on tags on a post could do a searxh for other posts with similar tags
-  _handleClick = e => {
+  _handleClick = (e) => {
     console.log("One day this will search for posts with a '", e.target.innerText, "' tag");
   };
 

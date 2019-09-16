@@ -1,13 +1,14 @@
 import { html, css, LitElement } from 'lit-element';
 import './navigation/nav-bar.js';
-import './navigation/nav-card.js';
 import './blog/blog-post.js';
+import './blog/create/create-blog-post.js';
 
-class ThePhilosophersComponents extends LitElement {
+export default class ThePhilosophersComponents extends LitElement {
   render() {
     return html`
     <nav-bar></nav-bar>
     <blog-post></blog-post>
+    <create-blog-post></create-blog-post>
     `;
   }
 
