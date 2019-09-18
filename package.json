@@ -1,5 +1,6 @@
 {
   "name": "the-philosophers-components",
+  "version": "0.0.5",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
