@@ -1,15 +1,27 @@
+/* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import './navigation/nav-bar.js';
-import './blog/blog-post.js';
-import './blog/create/create-blog-post.js';
 
-export default class ThePhilosophersComponents extends LitElement {
+import { NavBar } from  './tcp-navigation';
+import { Post } from './tcp-blog';
+import { CreatePost } from './tcp-blog/create';
+
+import { utils } from "./lib";
+
+export class ThePhilosophersComponents extends LitElement {
   render() {
     return html`
     <nav-bar></nav-bar>
     <blog-post></blog-post>
     <create-blog-post></create-blog-post>
     `;
+  }
+
+  static get dependencies() {
+    return [NavBar, Post, CreatePost];
+  }
+
+  static register() {
+    utils.register(ThePhilosophersComponents);
   }
 
   static get styles() {
@@ -19,4 +31,4 @@ export default class ThePhilosophersComponents extends LitElement {
   }
 }
 
-customElements.define('the-philosophers-components', ThePhilosophersComponents);
+// customElements.define('the-philosophers-components', ThePhilosophersComponents);

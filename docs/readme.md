@@ -4,5 +4,6 @@ version this library:
   git push
   git tag -a v(x).(x).(x) -m (x).(x).(x)
   git push --tags
+
 install this library: 
-  npm install AristotleAxolotl/the-philosophers-components#v0.0.5
+  npm install AristotleAxolotl/the-philosophers-components#v(x).(x).(x)

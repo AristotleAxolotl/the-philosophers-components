@@ -1,7 +1,4 @@
 node_modules
 coverage
 dist
-vsm-ui-components
-.vsm_components
-vsm-ui-server
-.vsm_server
+.vscode

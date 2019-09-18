@@ -1,7 +1,3 @@
 coverage/
-_site/
 dist/
-vsm-ui-components/
-.vsm_components/
-vsm-ui-server/
-.vsm_server/
+node_modules/
