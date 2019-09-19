@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { utils } from "../../../lib";
+import { utils } from '../../../lib';
 
 export class CreatePostTags extends LitElement {
   static get properties() {
@@ -18,6 +18,10 @@ export class CreatePostTags extends LitElement {
   // static get dependencies() {
   //   return [CreatePostBody];
   // }
+
+  static get element() {
+    return 'create-post-tags';
+  }
 
   static register() {
     utils.register(CreatePostTags);

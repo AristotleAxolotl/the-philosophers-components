@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { PhilosophersDate } from "../../../tcp-date";
-import { CreatePostTags } from "../tcp-create-post-tags";
-import { utils } from "../../../lib";
+import { PhilosophersDate } from '../../../tcp-date';
+import { CreatePostTags } from '../tcp-create-post-tags';
+import { utils } from '../../../lib';
 
 // post body has a main body (text), link to resource, date resource added, technology involved tags,
 // TODO: buttons to submit/save for later/cancel
@@ -22,6 +22,10 @@ export class CreatePostBody extends LitElement {
     };
   }
 
+  static get element() {
+    return 'create-post-body';
+  }
+
   static get dependencies() {
     return [PhilosophersDate, CreatePostTags];
   }
@@ -33,28 +37,27 @@ export class CreatePostBody extends LitElement {
   // TODO: Create should be wrapped in form
   render() {
     return html`
-    <div createPost>
-      <div mainBody>
-        <textarea inputPostText rows="7" placeholder=${this.postBody}></textarea>
+      <div createPost>
+        <div mainBody>
+          <textarea inputPostText rows="7" placeholder=${this.postBody}></textarea>
+        </div>
+        <div extraInfo>
+          <div resourceLink>
+            <p subtitle>Resource Link:</p>
+            <input type="text" placeholder="Enter resource link here..." />
+          </div>
+          <div dateOfPost>
+            <p subtitle>Date of post:</p>
+            <philosophers-date ?isCreateDate="${this.isCreatePost}"></philosophers-date>
+          </div>
+          <div tags>
+            <p subtitle>Tags:</p>
+            <post-tags ?iscreatepost="${this.isCreatePost}"></post-tags>
+          </div>
+        </div>
       </div>
-      <div extraInfo>
-        <div resourceLink>
-          <p subtitle>Resource Link:</p>
-          <input type="text" placeholder="Enter resource link here..." />
-        </div>
-        <div dateOfPost>
-          <p subtitle>Date of post:</p>
-          <philosophers-date ?isCreateDate="${this.isCreatePost}"></philosophers-date>
-        </div>
-        <div tags>
-          <p subtitle>Tags:</p>
-          <post-tags ?iscreatepost="${this.isCreatePost}"></post-tags>
-        </div>
-      </div>
-    </div>
-  `;
+    `;
   }
-
 
   static get styles() {
     return css`

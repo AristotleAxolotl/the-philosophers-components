@@ -53,10 +53,10 @@ module.exports = class Proxy {
       console.log('<< ', r.status, r.statusText);
 
       if (method === 'delete' || r.status !== 200) return null;
-  
+
       return r.json();
-    } 
-    
+    }
+
     if (this.mocks[method] || this.mocks.all) {
       const mock = this.mocks[method] || this.mocks.all;
       // eslint-disable-next-line global-require, import/no-dynamic-require

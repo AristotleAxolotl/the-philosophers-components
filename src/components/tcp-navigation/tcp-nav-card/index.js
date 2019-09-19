@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { utils } from "../../lib";
+import { utils } from '../../lib';
 
 // TODO: create comments section. comments can be replied to, etc. like reddit.
 // TODO: Each comment is indented
@@ -19,6 +19,9 @@ export class NavCard extends LitElement {
   // static get dependencies() {
 
   // }
+  static get element() {
+    return 'nav-card';
+  }
 
   static register() {
     utils.register(NavCard);
@@ -101,7 +104,7 @@ export class NavCard extends LitElement {
         color: white;
         padding: 14px 16px;
         background-color: inherit;
-       font-family: inherit; /* Important for vertical align on mobile phones */
+        font-family: inherit; /* Important for vertical align on mobile phones */
         margin: 0; /* Important for vertical align on mobile phones */
       }
 

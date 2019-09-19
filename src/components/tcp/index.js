@@ -1,19 +1,23 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
 
-import { NavBar } from  './tcp-navigation';
-import { Post } from './tcp-blog';
-import { CreatePost } from './tcp-blog/create';
+import { NavBar } from '../tcp-navigation';
+import { Post } from '../tcp-blog';
+import { CreatePost } from '../tcp-blog/create';
 
-import { utils } from "./lib";
+import { utils } from '../lib';
 
 export class ThePhilosophersComponents extends LitElement {
   render() {
     return html`
-    <nav-bar></nav-bar>
-    <blog-post></blog-post>
-    <create-blog-post></create-blog-post>
+      <nav-bar></nav-bar>
+      <blog-post></blog-post>
+      <create-blog-post></create-blog-post>
     `;
+  }
+
+  static get element() {
+    return 'the-philosophers-components';
   }
 
   static get dependencies() {
@@ -25,9 +29,7 @@ export class ThePhilosophersComponents extends LitElement {
   }
 
   static get styles() {
-    return css`
-
-    `;
+    return css``;
   }
 }
 

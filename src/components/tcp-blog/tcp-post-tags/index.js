@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { utils } from "../../lib";
+import { utils } from '../../lib';
 
 export class PostTags extends LitElement {
   static get properties() {
@@ -18,6 +18,10 @@ export class PostTags extends LitElement {
   // static get dependencies() {
 
   // }
+
+  static get element() {
+    return 'post-tags';
+  }
 
   static register() {
     utils.register(PostTags);
@@ -39,13 +43,14 @@ export class PostTags extends LitElement {
   }
 
   // TODO: clicking on tags on a post could do a searxh for other posts with similar tags
-  _handleClick = (e) => {
+  _handleClick(e) {
+    this.querySelector();
     console.log("One day this will search for posts with a '", e.target.innerText, "' tag");
-  };
+  }
 
   static get styles() {
     return css`
-       [tags] {
+      [tags] {
         display: flex;
         justify-content: left;
         text-align: center;

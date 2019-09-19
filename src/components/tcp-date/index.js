@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { utils } from "../lib";
+import { utils } from '../lib';
 
 function _toDoubleIntFormat(int) {
   let newInt;
@@ -28,6 +28,10 @@ export class PhilosophersDate extends LitElement {
   // static get dependencies() {
 
   // }
+
+  static get element() {
+    return  'philosophers-date';
+  }
 
   static register() {
     utils.register(PhilosophersDate);

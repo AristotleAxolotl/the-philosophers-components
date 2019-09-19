@@ -72,7 +72,7 @@ module.exports = class Server {
   }
 
   add(Resource, ...constructorArgs) {
-    this.resources.add({ Resource, args: constructorArgs} );
+    this.resources.add({ Resource, args: constructorArgs });
   }
 
   listen() {

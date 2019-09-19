@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { PhilosophersDate } from "../../tcp-date";
-import { PostTags} from '../tcp-post-tags';
-import { utils } from "../../lib";
+import { PhilosophersDate } from '../../tcp-date';
+import { PostTags } from '../tcp-post-tags';
+import { utils } from '../../lib';
 
 // post body has a main body (text), link to resource, date resource added, technology involved tags,
 // TODO: buttons to submit/save for later/cancel
@@ -17,6 +17,10 @@ export class PostBody extends LitElement {
         type: String,
       },
     };
+  }
+
+  static get element() {
+    return 'post-body';
   }
 
   static get dependencies() {

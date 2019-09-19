@@ -5,7 +5,16 @@ const merge = require('webpack-merge');
 module.exports = config => {
   config.set(
     merge(createDefaultConfig(config), {
-      files: [{ pattern: config.grep ? config.grep : 'test/ui/**/*.test.js', type: 'module' }],
+      files: [
+        // runs all files ending with .test in the test folder,
+        // can be overwritten by passing a --grep flag. examples:
+        //
+        // npm run test -- --grep test/foo/bar.test.js
+        // npm run test -- --grep test/bar/*
+        config.grep ? config.grep : 'test/**/*.test.js',
+      ],
+
+      // you can overwrite/extend the config further
     }),
   );
   return config;

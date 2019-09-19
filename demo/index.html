@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <style>
+    * {
+      margin: 1;
+      padding: 1;
+      font-family: sans-serif;
+    }
+
+    body {
+      background-color: white;
+    }
+  </style>
+  <title>The Philosophers Components Test Bed</title>
+</head>
+<body>
+
+  <div>
+  <tcp-container></tcp-container>
+</div>
+
+  <script type="module" type="text/javascript">
+    import { TCPContainer } from './container.js';
+    TCPContainer.register();
+    </script>
+</body>
+
+</html>

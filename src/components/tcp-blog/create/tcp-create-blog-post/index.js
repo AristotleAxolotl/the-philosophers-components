@@ -1,14 +1,16 @@
 /* eslint-disable import/extensions */
-import { html, css, LitElement } from "lit-element";
-import { CreatePostBody } from "../tcp-create-post-body";
-import { utils } from "../../../lib";
+import { html, css, LitElement } from 'lit-element';
+import { CreatePostBody } from '../tcp-create-post-body';
+import { utils } from '../../../lib';
 
 // TODO: post has a body, comment section, upvote/downvote,
 export class CreatePost extends LitElement {
-  static get properties(){
-    return {
+  static get properties() {
+    return {};
+  }
 
-    }
+  static get element() {
+    return 'create-blog-post';
   }
 
   static get dependencies() {
@@ -28,11 +30,8 @@ export class CreatePost extends LitElement {
   }
 
   static get styles() {
-    return css`
-
-    `;
+    return css``;
   }
-
 }
 
 // customElements.define('create-blog-post', CreatePost);

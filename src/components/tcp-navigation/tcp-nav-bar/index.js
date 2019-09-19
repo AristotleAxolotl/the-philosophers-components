@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { NavCard } from "../tcp-nav-card";
-import { utils } from "../../lib";
+import { NavCard } from '../tcp-nav-card';
+import { utils } from '../../lib';
 
 // TODO: something is going wrong between this and nav-card; array of links is not passing through properly & CSS not displaying properly
 
@@ -12,6 +12,10 @@ export class NavBar extends LitElement {
         type: Array,
       },
     };
+  }
+
+  static get element() {
+    return 'nav-bar';
   }
 
   static get dependencies() {

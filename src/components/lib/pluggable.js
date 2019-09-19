@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { utils } from './utils';
 
 const NOOP_EVENT = () => ({
