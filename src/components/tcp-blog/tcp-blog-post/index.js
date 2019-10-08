@@ -24,7 +24,7 @@ export class Post extends LitElement {
   render() {
     return html`
       <post-body>
-        <span slot="mainBodyText">Enter your post text here...</span>
+        <span slot="mainBodyText">[Example Post Text]</span>
       </post-body>
     `;
   }

@@ -1,2 +1,0 @@
-# VSM Image Button
-

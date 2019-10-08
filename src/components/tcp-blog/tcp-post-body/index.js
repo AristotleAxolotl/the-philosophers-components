@@ -98,7 +98,7 @@ export class PostBody extends LitElement {
 
   constructor() {
     super();
-    this.postBody = 'Enter post text here...';
+    this.postBody = '[Example Post Text]';
     this.resourceLink = 'default resource';
   }
 }
