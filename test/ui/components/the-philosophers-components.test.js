@@ -12,7 +12,12 @@ describe('<the-philosophers-components>', () => {
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-      <vsm-header level="1">The Philosophers Components</vsm-header>
+        <nav-bar>
+        </nav-bar>
+        <blog-post>
+        </blog-post>
+        <create-blog-post>
+        </create-blog-post>
       `);
     });
   });

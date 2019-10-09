@@ -45,6 +45,7 @@ export class PostTags extends LitElement {
   // TODO: clicking on tags on a post could do a searxh for other posts with similar tags
   _handleClick(e) {
     this.querySelector();
+    // eslint-disable-next-line no-console
     console.log("One day this will search for posts with a '", e.target.innerText, "' tag");
   }
 
