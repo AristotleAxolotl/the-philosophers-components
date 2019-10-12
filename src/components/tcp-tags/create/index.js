@@ -9,9 +9,6 @@ export class CreatePhilosophersTags extends LitElement {
         type: Array,
         reflect: true,
       },
-      isCreatePost: {
-        type: Boolean,
-      },
     };
   }
 
@@ -61,14 +58,11 @@ export class CreatePhilosophersTags extends LitElement {
   _handleClick(e) {
     // const selectedIndex = e.target.id.replace("tag-", "");
 
-    // TODO: isCreatePost is no longer needed, remove this after tests have been added for the functionality
-    if (this.isCreatePost) {
-      const ele = this.shadowRoot.querySelector(`#${e.target.id}`);
+    const ele = this.shadowRoot.querySelector(`#${e.target.id}`);
 
-      const tagValue = ele.innerText;
+    const tagValue = ele.innerText;
 
-      this._addedTags = this._addedTags.filter(tag => tagValue !== tag);
-    }
+    this._addedTags = this._addedTags.filter(tag => tagValue !== tag);
   }
 
   _handleEnter() {
@@ -124,7 +118,6 @@ export class CreatePhilosophersTags extends LitElement {
   constructor() {
     super();
     this._addedTags = ['example', 'tag'];
-    this.isCreatePost = true;
   }
 }
 
