@@ -11,7 +11,7 @@ describe('<blog-post>', () => {
     let el;
     beforeEach(async () => {
       Post.register();
-      el = await fixture('<blog-post/>');
+      el = await fixture('<blog-post><blog-post/>');
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
@@ -21,6 +21,25 @@ describe('<blog-post>', () => {
         </span>
       </post-body>
       `);
+    });
+  });
+  describe('custom behaviour', () => {
+    let el;
+    beforeEach(async () => {
+      Post.register();
+      el = await fixture(`
+      <blog-post>
+        <span slot="mainBodyText">
+          Custom Text
+        </span>
+      </blog-post>`);
+    });
+    it('should have a custom body text', async () => {
+      expect(el).lightDom.to.equal(`
+        <span slot="mainBodyText">
+          Custom Text
+        </span>
+        `);
     });
   });
 });

@@ -8,7 +8,7 @@ describe('<post-comments>', () => {
     let el;
     beforeEach(async () => {
       PostComments.register();
-      el = await fixture('<post-comments/>');
+      el = await fixture('<post-comments></post-comments>');
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`

@@ -8,33 +8,21 @@ describe('<create-post-tags>', () => {
     let el;
     beforeEach(async () => {
       CreatePostTags.register();
-      el = await fixture('<create-post-tags/>');
+      el = await fixture('<create-post-tags></create-post-tags>');
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-        <div tags="">
-          <span
-            id="tag-0"
-            tag=""
-          >
+        <div tags>
+          <span id="tag-0" tag>
             example
           </span>
-          <span
-            id="tag-1"
-            tag=""
-          >
+          <span id="tag-1" tag>
             tag
           </span>
-          <input
-            id="inputTag"
-            inputtag=""
-            keys="enter"
-            on-keys-pressed="() => {
+          <input id="inputTag" inputtag keys="enter" on-keys-pressed="() => {
             this._handleEnter();
           }"
-            placeholder="Add a tag..."
-            type="text"
-          >
+          placeholder="Add a tag..." type="text">
         </div>
       `);
     });

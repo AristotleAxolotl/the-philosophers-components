@@ -8,7 +8,7 @@ describe('<create-blog-post>', () => {
     let el;
     beforeEach(async () => {
       CreatePost.register();
-      el = await fixture('<create-blog-post/>');
+      el = await fixture('<create-blog-post></create-blog-post>');
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
@@ -18,6 +18,25 @@ describe('<create-blog-post>', () => {
          </span>
        </create-post-body>
       `);
+    });
+  });
+  describe('custom behaviour', () => {
+    let el;
+    beforeEach(async () => {
+      CreatePost.register();
+      el = await fixture(`
+      <blog-post>
+        <span slot="mainBodyText">
+          Custom Text
+        </span>
+      </blog-post>`);
+    });
+    it('should have a custom body text', async () => {
+      expect(el).lightDom.to.equal(`
+        <span slot="mainBodyText">
+          Custom Text
+        </span>
+        `);
     });
   });
 });

@@ -8,46 +8,53 @@ describe('<create-post-body>', () => {
     let el;
     beforeEach(async () => {
       CreatePostBody.register();
-      el = await fixture('<create-post-body/>');
+      el = await fixture('<create-post-body></create-post-body>');
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-        <div createpost="">
-          <div mainbody="">
-            <textarea
-              inputposttext=""
-              placeholder="Enter post text here..."
-              rows="7"
-            >
-            </textarea>
+        <div createpost>
+          <div mainbody>
+            <textarea inputposttext placeholder="Enter post text here..." rows="7"></textarea>
           </div>
-          <div extrainfo="">
-            <div resourcelink="">
-              <p subtitle="">
+          <div extrainfo>
+            <div resourcelink>
+              <p subtitle>
                 Resource Link:
               </p>
-              <input
-                placeholder="Enter resource link here..."
-                type="text"
-              >
+              <input placeholder="Enter resource link here..." type="text">
             </div>
-            <div dateofpost="">
-              <p subtitle="">
+            <div dateofpost>
+              <p subtitle>
                 Date of post:
               </p>
-              <philosophers-date>
+              <philosophers-date iscreatedate>
               </philosophers-date>
             </div>
-            <div tags="">
-              <p subtitle="">
+            <div tags>
+              <p subtitle>
                 Tags:
               </p>
-              <post-tags _addedtags='["example","tag"]'>
+              <post-tags isCreatePost _addedtags='["example","tag"]'>
               </post-tags>
             </div>
           </div>
         </div>
       `);
+    });
+  });
+  describe('custom behaviour', () => {
+    let el;
+    beforeEach(async () => {
+      CreatePostBody.register();
+      el = await fixture(
+        '<create-post-body postBody="Custom Body Text MAN!!!" resourceLink="https://www.stackoverflow.com/example/resource"></create-post-body>',
+      );
+    });
+    it('should be able to enter body text', async () => {
+      expect(el.postBody).to.equal(`Custom Body Text MAN!!!`);
+    });
+    it('should be able to enter a resource link', async () => {
+      expect(el.resourceLink).to.equal(`https://www.stackoverflow.com/example/resource`);
     });
   });
 });

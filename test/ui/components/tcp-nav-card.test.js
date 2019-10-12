@@ -8,27 +8,19 @@ describe('<nav-card>', () => {
     let el;
     beforeEach(async () => {
       NavCard.register();
-      el = await fixture('<nav-card/>');
+      el = await fixture('<nav-card></nav-card>');
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-       <div nav-card="">
-         <div dropdown="">
-           <button dropbtn="">
+       <div nav-card>
+         <div dropdown>
+           <button dropbtn>
              Home
-             <i
-               arrow=""
-               down=""
-             >
-             </i>
+             <i arrow down></i>
            </button>
-           <div dropdown-content="">
-             <a href="/index">
-               /index
-             </a>
-             <a href="/test">
-               /test
-             </a>
+           <div dropdown-content>
+             <a href="/index">/index</a>
+             <a href="/test">/test</a>
            </div>
          </div>
        </div>

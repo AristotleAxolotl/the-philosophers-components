@@ -101,7 +101,7 @@ export class CreatePostBody extends LitElement {
 
   constructor() {
     super();
-    this.isCreatePost = false;
+    this.isCreatePost = true;
     this.postBody = 'Enter post text here...';
     this.resourceLink = 'default resource';
   }

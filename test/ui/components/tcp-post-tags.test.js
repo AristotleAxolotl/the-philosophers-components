@@ -8,24 +8,18 @@ describe('<post-tags>', () => {
     let el;
     beforeEach(async () => {
       PostTags.register();
-      el = await fixture('<post-tags/>');
+      el = await fixture('<post-tags></post-tags>');
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-        <div tags="">
-          <div tagwrapper="">
-            <span
-              id="tag-0"
-              tag=""
-            >
+        <div tags>
+          <div tagwrapper>
+            <span id="tag-0" tag>
               example
             </span>
           </div>
-          <div tagwrapper="">
-            <span
-              id="tag-1"
-              tag=""
-            >
+          <div tagwrapper>
+            <span id="tag-1" tag>
               tag
             </span>
           </div>

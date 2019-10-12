@@ -8,7 +8,7 @@ describe('<the-philosophers-components>', () => {
     let el;
     beforeEach(async () => {
       ThePhilosophersComponents.register();
-      el = await fixture('<the-philosophers-components/>');
+      el = await fixture('<the-philosophers-components></the-philosophers-components>');
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`

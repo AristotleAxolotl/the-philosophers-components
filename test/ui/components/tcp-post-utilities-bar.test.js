@@ -8,7 +8,7 @@ describe('<post-utilities-bar>', () => {
     let el;
     beforeEach(async () => {
       PostUtilitiesBar.register();
-      el = await fixture('<post-utilities-bar/>');
+      el = await fixture('<post-utilities-bar></post-utlities-bar>');
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
