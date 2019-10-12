@@ -27,4 +27,43 @@ describe('<philosophers-tags>', () => {
       `);
     });
   });
+  describe('custom behaviour', () => {
+    let el;
+    beforeEach(async () => {
+      PhilosophersTags.register();
+      el = await fixture(
+        `<philosophers-tags _addedTags='["test", "one", "two"]'></philosophers-tags>`,
+      );
+    });
+    it('should display custom tags', async () => {
+      expect(el).shadowDom.to.equal(`
+      <div tags="">
+        <div tagwrapper="">
+          <span
+            id="tag-0"
+            tag=""
+          >
+            test
+          </span>
+        </div>
+        <div tagwrapper="">
+          <span
+            id="tag-1"
+            tag=""
+          >
+            one
+          </span>
+        </div>
+        <div tagwrapper="">
+          <span
+            id="tag-2"
+            tag=""
+          >
+            two
+          </span>
+        </div>
+      </div>
+      `);
+    });
+  });
 });
