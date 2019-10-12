@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { utils } from '../../lib';
+import { utils } from '../../../lib';
 
 // TODO: create comments section. comments can be replied to, etc. like reddit.
 // TODO: Each comment is indented

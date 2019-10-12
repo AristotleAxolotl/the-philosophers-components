@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { PhilosophersDate } from './components/tcp-date';
 import { NavBar, NavCard } from './components/tcp-navigation';
-import { Post, PostBody, PostComments, PostTags } from './components/tcp-blog';
+import { Post, PostBody, PostComments, PostTags } from './components/tcp-blog/display';
 import { CreatePost, CreatePostBody, CreatePostTags } from './components/tcp-blog/create';
 
 import * as lib from './components/lib';

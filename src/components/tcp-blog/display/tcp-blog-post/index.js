@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
 import { PostBody } from '../tcp-post-body';
-import { utils } from '../../lib';
+import { utils } from '../../../lib';
 
 // TODO: post has a body, comment section, upvote/downvote,
 export class Post extends LitElement {

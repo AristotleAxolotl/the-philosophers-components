@@ -2,7 +2,7 @@
 import { html, css, LitElement } from 'lit-element';
 
 import { NavBar } from '../tcp-navigation';
-import { Post } from '../tcp-blog';
+import { Post } from '../tcp-blog/display';
 import { CreatePost } from '../tcp-blog/create';
 
 import { utils } from '../lib';

@@ -1,7 +1,7 @@
 // TODO: normal stuff; upvote/downvote, share, link, etc.
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { utils } from '../../lib';
+import { utils } from '../../../lib';
 
 export class PostUtilitiesBar extends LitElement {
   static get properties() {

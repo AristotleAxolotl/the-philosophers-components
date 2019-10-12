@@ -4,7 +4,7 @@
 // const fixture = require('@open-wc/testing');
 
 import { expect, fixture } from '@open-wc/testing';
-import { Post } from '../../../../src/components/tcp-blog/tcp-blog-post';
+import { Post } from '../../../../src/components/tcp-blog/display';
 
 describe('<blog-post>', () => {
   describe('default behaviour', () => {
