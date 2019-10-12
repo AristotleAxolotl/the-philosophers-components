@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
 import { expect, fixture } from '@open-wc/testing';
-import { ThePhilosophersComponents } from '../../../src/components/tcp';
+import { ThePhilosophersComponents } from '../../../../src/components/tcp';
 
 describe('<the-philosophers-components>', () => {
   describe('default behaviour', () => {
@@ -12,12 +12,9 @@ describe('<the-philosophers-components>', () => {
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-        <nav-bar>
-        </nav-bar>
-        <blog-post>
-        </blog-post>
-        <create-blog-post>
-        </create-blog-post>
+        <nav-bar></nav-bar>
+        <blog-post></blog-post>
+        <create-blog-post></create-blog-post>
       `);
     });
   });

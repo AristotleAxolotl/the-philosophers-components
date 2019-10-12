@@ -85,6 +85,7 @@ export class PostTags extends LitElement {
   constructor() {
     super();
     this._addedTags = ['example', 'tag'];
+    this.isCreatePost = false;
   }
 }
 

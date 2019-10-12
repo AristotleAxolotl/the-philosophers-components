@@ -123,6 +123,7 @@ export class CreatePostTags extends LitElement {
   constructor() {
     super();
     this._addedTags = ['example', 'tag'];
+    this.isCreatePost = true;
   }
 }
 
