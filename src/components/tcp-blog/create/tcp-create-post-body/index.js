@@ -13,9 +13,6 @@ export class CreatePostBody extends LitElement {
       postBody: {
         type: String,
       },
-      isCreatePost: {
-        type: Boolean,
-      },
       resourceLink: {
         type: String,
       },
@@ -48,13 +45,11 @@ export class CreatePostBody extends LitElement {
           </div>
           <div dateOfPost>
             <p subtitle>Date of post:</p>
-            <philosophers-date ?isCreateDate="${this.isCreatePost}"></philosophers-date>
+            <philosophers-date></philosophers-date>
           </div>
           <div tags>
             <p subtitle>Tags:</p>
-            <create-philosophers-tags
-              ?iscreatepost="${this.isCreatePost}"
-            ></create-philosophers-tags>
+            <create-philosophers-tags></create-philosophers-tags>
           </div>
         </div>
       </div>
@@ -103,7 +98,6 @@ export class CreatePostBody extends LitElement {
 
   constructor() {
     super();
-    this.isCreatePost = true;
     this.postBody = 'Enter post text here...';
     this.resourceLink = 'default resource';
   }

@@ -27,22 +27,19 @@ describe('<create-post-body>', () => {
               <p subtitle>
                 Date of post:
               </p>
-              <philosophers-date iscreatedate>
+              <philosophers-date>
               </philosophers-date>
             </div>
             <div tags>
               <p subtitle>
                 Tags:
               </p>
-              <create-philosophers-tags isCreatePost _addedtags='["example","tag"]'>
+              <create-philosophers-tags _addedtags='["example","tag"]'>
               </create-philosphers-tags>
             </div>
           </div>
         </div>
       `);
-    });
-    it('should have a boolean property, isCreatePost, defaulting to true', async () => {
-      expect(el.isCreatePost).to.be.true;
     });
   });
   describe('custom behaviour', () => {
