@@ -38,8 +38,8 @@ describe('<post-body>', () => {
               <p subtitle>
                 Tags:
               </p>
-              <post-tags _addedtags='["example","tag"]'>
-              </post-tags>
+              <philosophers-tags _addedtags='["example","tag"]'>
+              </philosphers-tags>
             </div>
           </div>
         </div>

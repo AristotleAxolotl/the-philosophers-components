@@ -2,7 +2,7 @@
 import { html, css, LitElement } from 'lit-element';
 import { utils } from '../../lib';
 
-export class CreateTags extends LitElement {
+export class CreatePhilosophersTags extends LitElement {
   static get properties() {
     return {
       _addedTags: {
@@ -20,11 +20,11 @@ export class CreateTags extends LitElement {
   // }
 
   static get element() {
-    return 'create-tags';
+    return 'create-philosophers-tags';
   }
 
   static register() {
-    utils.register(CreateTags);
+    utils.register(CreatePhilosophersTags);
   }
 
   render() {

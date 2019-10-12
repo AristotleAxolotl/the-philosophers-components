@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { CreateTags } from './create';
-import { Tags } from './display';
+import { CreatePhilosophersTags } from './create';
+import { PhilosophersTags } from './display';
 
-export { CreateTags, Tags };
+export { CreatePhilosophersTags, PhilosophersTags };

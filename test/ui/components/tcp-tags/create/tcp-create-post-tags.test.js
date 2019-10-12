@@ -1,14 +1,14 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
 import { expect, fixture } from '@open-wc/testing';
-import { CreateTags } from '../../../../../src/components/tcp-tags/create';
+import { CreatePhilosophersTags } from '../../../../../src/components/tcp-tags/create';
 
-describe('<create-post-tags>', () => {
+describe('<create-philosophers-tags>', () => {
   describe('default behaviour', () => {
     let el;
     beforeEach(async () => {
-      CreateTags.register();
-      el = await fixture('<create-post-tags></create-post-tags>');
+      CreatePhilosophersTags.register();
+      el = await fixture('<create-philosophers-tags></create-philosophers-tags>');
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`

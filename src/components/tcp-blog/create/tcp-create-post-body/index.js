@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
 import { CreatePhilosophersDate } from '../../../tcp-date/create';
-import { CreateTags } from '../../../tcp-tags/create';
+import { CreatePhilosophersTags } from '../../../tcp-tags/create';
 import { utils } from '../../../lib';
 
 // post body has a main body (text), link to resource, date resource added, technology involved tags,
@@ -27,7 +27,7 @@ export class CreatePostBody extends LitElement {
   }
 
   static get dependencies() {
-    return [CreatePhilosophersDate, CreateTags];
+    return [CreatePhilosophersDate, CreatePhilosophersTags];
   }
 
   static register() {
@@ -52,7 +52,9 @@ export class CreatePostBody extends LitElement {
           </div>
           <div tags>
             <p subtitle>Tags:</p>
-            <create-post-tags ?iscreatepost="${this.isCreatePost}"></create-post-tags>
+            <create-philosophers-tags
+              ?iscreatepost="${this.isCreatePost}"
+            ></create-philosophers-tags>
           </div>
         </div>
       </div>
