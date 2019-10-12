@@ -34,8 +34,8 @@ describe('<create-post-body>', () => {
               <p subtitle>
                 Tags:
               </p>
-              <post-tags isCreatePost _addedtags='["example","tag"]'>
-              </post-tags>
+              <create-post-tags isCreatePost _addedtags='["example","tag"]'>
+              </create-post-tags>
             </div>
           </div>
         </div>

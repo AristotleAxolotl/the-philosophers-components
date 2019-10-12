@@ -9,9 +9,6 @@ export class PostTags extends LitElement {
         type: Array,
         reflect: true,
       },
-      isCreatePost: {
-        type: Boolean,
-      },
     };
   }
 
@@ -85,7 +82,6 @@ export class PostTags extends LitElement {
   constructor() {
     super();
     this._addedTags = ['example', 'tag'];
-    this.isCreatePost = false;
   }
 }
 

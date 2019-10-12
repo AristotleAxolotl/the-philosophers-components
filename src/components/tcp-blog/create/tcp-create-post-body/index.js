@@ -52,7 +52,7 @@ export class CreatePostBody extends LitElement {
           </div>
           <div tags>
             <p subtitle>Tags:</p>
-            <post-tags ?iscreatepost="${this.isCreatePost}"></post-tags>
+            <create-post-tags ?iscreatepost="${this.isCreatePost}"></create-post-tags>
           </div>
         </div>
       </div>
