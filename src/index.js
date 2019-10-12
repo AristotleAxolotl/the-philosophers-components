@@ -4,7 +4,7 @@ import { NavBar, NavCard } from './components/tcp-navigation';
 import { Post, PostBody, PostComments, PostUtilitiesBar } from './components/tcp-blog/display';
 import { CreatePost, CreatePostBody } from './components/tcp-blog/create';
 import { CreatePhilosophersTags, PhilosophersTags } from './components/tcp-tags';
-// import {}
+import { Proxy, Resource, Server, Session } from './server/tcp-server';
 
 import * as lib from './components/lib';
 
@@ -21,5 +21,9 @@ export {
   CreatePostBody,
   CreatePhilosophersTags,
   PhilosophersTags,
+  Proxy,
+  Resource,
+  Server,
+  Session,
   lib,
 };
