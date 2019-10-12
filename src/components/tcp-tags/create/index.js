@@ -2,6 +2,8 @@
 import { html, css, LitElement } from 'lit-element';
 import { utils } from '../../lib';
 
+// import { CLICK, ENTER } from '../../../events';
+
 export class CreatePhilosophersTags extends LitElement {
   static get properties() {
     return {
@@ -71,6 +73,8 @@ export class CreatePhilosophersTags extends LitElement {
     const txt = ele.value;
 
     this._addedTags.push(txt);
+
+    ele.value = '';
 
     this.requestUpdate();
   }

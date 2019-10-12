@@ -29,7 +29,29 @@ describe('<create-philosophers-tags>', () => {
     it('should have property _addedTags defaulting to [example, tag]', async () => {
       expect(el._addedTags).to.eql(['example', 'tag']);
     });
-    it('should create a new tag on enter', async () => {});
-    it('shoudl remove an added tag when it is clicked on', async () => {});
+  });
+  // TODO: weird shit happening. click event wiping _addedTags etc. fix blegh.
+  describe('event behaviour', () => {
+    let el;
+    beforeEach(async () => {
+      CreatePhilosophersTags.register();
+      el = await fixture('<create-philosophers-tags></create-philosophers-tags>');
+    });
+    // TODO: I dont think this is the best. I'm calling the method instead of testing the event.
+    it('should create a new tag on enter', async () => {
+      el.shadowRoot.querySelector('#inputTag').value = 'newTag';
+
+      const event = new KeyboardEvent('keyup', {
+        key: 'Enter',
+      });
+
+      el.shadowRoot.querySelector('#inputTag').dispatchEvent(event);
+
+      expect(el._addedTags).to.eql(['example', 'tag', 'newTag']);
+    });
+    // it('should remove an added tag when it is clicked on', async () => {
+    //   el.shadowRoot.getElementById('tag-1').click();
+    //   expect(``).shadowDom.to.equal(``);
+    // });
   });
 });
