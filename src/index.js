@@ -2,7 +2,8 @@
 import { PhilosophersDate } from './components/tcp-date';
 import { NavBar, NavCard } from './components/tcp-navigation';
 import { Post, PostBody, PostComments, PostTags } from './components/tcp-blog/display';
-import { CreatePost, CreatePostBody, CreatePostTags } from './components/tcp-blog/create';
+import { CreatePost, CreatePostBody } from './components/tcp-blog/create';
+import { CreatePostTags } from './components/tcp-tags'
 
 import * as lib from './components/lib';
 

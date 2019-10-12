@@ -2,7 +2,7 @@
 import { html, css, LitElement } from 'lit-element';
 import { utils } from '../../lib';
 
-export class CreatePostTags extends LitElement {
+export class CreateTags extends LitElement {
   static get properties() {
     return {
       _addedTags: {
@@ -20,11 +20,11 @@ export class CreatePostTags extends LitElement {
   // }
 
   static get element() {
-    return 'create-post-tags';
+    return 'create-tags';
   }
 
   static register() {
-    utils.register(CreatePostTags);
+    utils.register(CreateTags);
   }
 
   render() {

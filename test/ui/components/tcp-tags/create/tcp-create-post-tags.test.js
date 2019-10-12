@@ -1,13 +1,13 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
 import { expect, fixture } from '@open-wc/testing';
-import { CreatePostTags } from '../../../../../src/components/tcp-tags/create';
+import { CreateTags } from '../../../../../src/components/tcp-tags/create';
 
 describe('<create-post-tags>', () => {
   describe('default behaviour', () => {
     let el;
     beforeEach(async () => {
-      CreatePostTags.register();
+      CreateTags.register();
       el = await fixture('<create-post-tags></create-post-tags>');
     });
     it('should output the correct structure', async () => {
