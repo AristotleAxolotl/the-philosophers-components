@@ -1,17 +1,20 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { PhilosophersDate } from '../../../tcp-date';
-import { Tags } from '../../../tcp-tags/display';
-import { utils } from '../../../lib';
+import { CreatePhilosophersDate } from '../../../../tcp-date/create';
+import { CreateTags } from '../../../../tcp-tags/create';
+import { utils } from '../../../../lib';
 
 // post body has a main body (text), link to resource, date resource added, technology involved tags,
 // TODO: buttons to submit/save for later/cancel
 // TODO: Should refactor all code to not display two components (create/view ARE different & should have different classes.)
-export class PostBody extends LitElement {
+export class CreatePostBody extends LitElement {
   static get properties() {
     return {
       postBody: {
         type: String,
+      },
+      isCreatePost: {
+        type: Boolean,
       },
       resourceLink: {
         type: String,
@@ -20,36 +23,36 @@ export class PostBody extends LitElement {
   }
 
   static get element() {
-    return 'post-body';
+    return 'create-post-body';
   }
 
   static get dependencies() {
-    return [PhilosophersDate, Tags];
+    return [CreatePhilosophersDate, CreateTags];
   }
 
   static register() {
-    utils.register(PostBody);
+    utils.register(CreatePostBody);
   }
 
-  // TODO: create should be wrapped in form
+  // TODO: Create should be wrapped in form
   render() {
     return html`
-      <div post>
+      <div createPost>
         <div mainBody>
-          <p postText>${this.postBody}</p>
+          <textarea inputPostText rows="7" placeholder=${this.postBody}></textarea>
         </div>
         <div extraInfo>
           <div resourceLink>
             <p subtitle>Resource Link:</p>
-            <a href="${this.resourceLink}">Resource</a>
+            <input type="text" placeholder="Enter resource link here..." />
           </div>
           <div dateOfPost>
             <p subtitle>Date of post:</p>
-            <philosophers-date ?isCreateDate=${false}></philosophers-date>
+            <philosophers-date ?isCreateDate="${this.isCreatePost}"></philosophers-date>
           </div>
           <div tags>
             <p subtitle>Tags:</p>
-            <post-tags></post-tags>
+            <create-post-tags ?iscreatepost="${this.isCreatePost}"></create-post-tags>
           </div>
         </div>
       </div>
@@ -58,7 +61,7 @@ export class PostBody extends LitElement {
 
   static get styles() {
     return css`
-      [post] {
+      [createPost] {
         padding: 7px;
         /* display: flex; */
         background-color: lightgrey;
@@ -98,9 +101,10 @@ export class PostBody extends LitElement {
 
   constructor() {
     super();
-    this.postBody = '[Example Post Text]';
+    this.isCreatePost = true;
+    this.postBody = 'Enter post text here...';
     this.resourceLink = 'default resource';
   }
 }
 
-// customElements.define('post-body', PostBody);
+// customElements.define('create-post-body', CreatePostBody);

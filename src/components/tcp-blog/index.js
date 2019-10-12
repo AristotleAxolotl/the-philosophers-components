@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { Post, PostBody, PostComments, PostTags } from './display';
+import { Post, PostBody, PostComments } from './display';
 import { CreatePost, CreatePostBody } from './create';
 
-export { Post, PostBody, PostComments, PostTags, CreatePost, CreatePostBody };
+export { Post, PostBody, PostComments, CreatePost, CreatePostBody };
