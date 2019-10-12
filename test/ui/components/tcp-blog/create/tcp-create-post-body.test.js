@@ -41,6 +41,9 @@ describe('<create-post-body>', () => {
         </div>
       `);
     });
+    it('should have a boolean property, isCreatePost, defaulting to true', async () => {
+      expect(el.isCreatePost).to.be.true;
+    });
   });
   describe('custom behaviour', () => {
     let el;
@@ -55,9 +58,6 @@ describe('<create-post-body>', () => {
     });
     it('should be able to enter a resource link', async () => {
       expect(el.resourceLink).to.equal(`https://www.stackoverflow.com/example/resource`);
-    });
-    it('should have a boolean property, isCreatePost, defaulting to true', async () => {
-      expect(el.isCreatePost).to.be.true;
     });
   });
 });
