@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { utils } from '../../../lib';
+import { utils } from '../../lib';
 
 export class CreatePostTags extends LitElement {
   static get properties() {
@@ -61,6 +61,7 @@ export class CreatePostTags extends LitElement {
   _handleClick(e) {
     // const selectedIndex = e.target.id.replace("tag-", "");
 
+    // TODO: isCreatePost is no longer needed, remove this after tests have been added for the functionality
     if (this.isCreatePost) {
       const ele = this.shadowRoot.querySelector(`#${e.target.id}`);
 

@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
 import { expect, fixture } from '@open-wc/testing';
-import { CreatePostTags } from '../../../../../src/components/tcp-blog/create/tcp-create-post-tags';
+import { CreatePostTags } from '../../../../../src/components/tcp-tags/tcp-create-post-tags';
 
 describe('<create-post-tags>', () => {
   describe('default behaviour', () => {
@@ -26,5 +26,10 @@ describe('<create-post-tags>', () => {
         </div>
       `);
     });
+    it('should have property _addedTags defaulting to [example, tag]', async () => {
+      expect(el._addedTags).to.eql(['example', 'tag']);
+    });
+    it('should create a new tag on enter', async () => {});
+    it('shoudl remove an added tag when it is clicked on', async () => {});
   });
 });
