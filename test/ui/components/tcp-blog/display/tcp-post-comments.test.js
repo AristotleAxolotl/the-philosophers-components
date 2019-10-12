@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
 import { expect, fixture } from '@open-wc/testing';
-import { PostComments } from '../../../../src/components/tcp-blog/display';
+import { PostComments } from '../../../../../src/components/tcp-blog/display';
 
 describe('<post-comments>', () => {
   describe('default behaviour', () => {

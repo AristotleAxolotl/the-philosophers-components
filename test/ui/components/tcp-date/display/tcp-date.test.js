@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
 import { expect, fixture } from '@open-wc/testing';
-import { PhilosophersDate } from '../../../../src/components/tcp-date';
+import { PhilosophersDate } from '../../../../../src/components/tcp-date/display';
 
 function _toDoubleIntFormat(int) {
   let newInt;
