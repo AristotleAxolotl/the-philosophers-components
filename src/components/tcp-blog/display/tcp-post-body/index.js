@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
 import { PhilosophersDate } from '../../../tcp-date';
-import { PostTags } from '../../../tcp-tags/tcp-post-tags';
+import { PostTags } from '../../../tcp-tags/display';
 import { utils } from '../../../lib';
 
 // post body has a main body (text), link to resource, date resource added, technology involved tags,

@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
 import { expect, fixture } from '@open-wc/testing';
-import { PostTags } from '../../../../src/components/tcp-tags/tcp-post-tags';
+import { PostTags } from '../../../../../src/components/tcp-tags/display';
 
 describe('<post-tags>', () => {
   describe('default behaviour', () => {

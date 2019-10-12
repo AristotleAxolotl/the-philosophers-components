@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import { html, css, LitElement } from 'lit-element';
-import { CreatePhilosophersDate } from '../../../tcp-date/create';
-import { CreatePostTags } from '../../../tcp-tags/create';
-import { utils } from '../../../lib';
+import { CreatePhilosophersDate } from '../../../../tcp-date/create';
+import { CreatePostTags } from '../../../../tcp-tags/create';
+import { utils } from '../../../../lib';
 
 // post body has a main body (text), link to resource, date resource added, technology involved tags,
 // TODO: buttons to submit/save for later/cancel
