@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "files": [
-    "stcp-server/**"
+    "tcp-server/**"
   ],
   "description": "tcp-ui-server",
   "author": "tcp-ui-server",
