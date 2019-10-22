@@ -45,7 +45,7 @@ export class CreatePostBody extends LitElement {
           </div>
           <div dateOfPost>
             <p subtitle>Date of post:</p>
-            <philosophers-date></philosophers-date>
+            <create-philosophers-date></create-philosophers-date>
           </div>
           <div tags>
             <p subtitle>Tags:</p>
