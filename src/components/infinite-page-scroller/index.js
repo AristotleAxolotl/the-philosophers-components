@@ -59,7 +59,6 @@ export class InfiniteScroller extends LitElement {
       this.shadowRoot.querySelector('#inner').offsetHeight -
         this.shadowRoot.querySelector('#scrollingWrapper').offsetHeight
     ) {
-      console.log('bottom');
       this.shadowRoot.querySelector('#debugHeader').innerHtML = `top: ${top} diff: ${'#inner'
         .offsetHeight - this.shadowRoot.querySelector('#scrollingWrapper').offsetHeight} bottom`;
       this.loadMore();
