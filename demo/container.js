@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 import { css, html, LitElement } from 'lit-element';
 
-import { ThePhilosophersComponents } from '../src/components/tcp';
+import { ThePhilosophersComponents } from '../src/components/tpc';
 
-import { CreatePost } from '../src/components/tcp-blog/create';
+import { CreatePost } from '../src/components/blog/create';
 
 export class TCPContainer extends LitElement {
   static get styles() {
@@ -19,7 +19,6 @@ export class TCPContainer extends LitElement {
   render() {
     return html`
       <the-philosophers-components></the-philosophers-components>
-      <create-post></create-post>
     `;
   }
 }

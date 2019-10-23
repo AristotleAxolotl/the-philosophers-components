@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
-import { PhilosophersDate, CreatePhilosophersDate } from './components/tcp-date';
-import { NavBar, NavCard } from './components/tcp-navigation';
-import { Post, PostBody, PostComments, PostUtilitiesBar } from './components/tcp-blog/display';
-import { CreatePost, CreatePostBody } from './components/tcp-blog/create';
-import { CreatePhilosophersTags, PhilosophersTags } from './components/tcp-tags';
+import { PhilosophersDate, CreatePhilosophersDate } from './components/date';
+import { NavBar, NavCard } from './components/navigation';
+import { Post, PostBody, PostComments, PostUtilitiesBar } from './components/blog/display';
+import { CreatePost, CreatePostBody } from './components/blog/create';
+import { CreatePhilosophersTags, PhilosophersTags } from './components/tags';
 
 import * as lib from './components/lib';
 
