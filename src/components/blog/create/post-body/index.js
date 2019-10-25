@@ -34,22 +34,22 @@ export class CreatePostBody extends LitElement {
   // TODO: Create should be wrapped in form
   render() {
     return html`
-      <div createPost>
-        <div mainBody>
-          <textarea inputPostText rows="7" placeholder=${this.postBody}></textarea>
+      <div createPost id="createPost">
+        <div mainBody id="mainBody">
+          <textarea inputPostText id="inputPostText" rows="7" placeholder=${this.postBody}></textarea>
         </div>
-        <div extraInfo>
-          <div resourceLink>
+        <div extraInfo id="extraInfo">
+          <div resourceLink id="resourceLink">
             <p subtitle>Resource Link:</p>
-            <input type="text" placeholder="Enter resource link here..." />
+            <input id="resourceInput" type="text" placeholder="Enter resource link here..." />
           </div>
-          <div dateOfPost>
+          <div dateOfPost id="dateOfPost">
             <p subtitle>Date of post:</p>
-            <create-philosophers-date></create-philosophers-date>
+            <create-philosophers-date id="createDate"></create-philosophers-date>
           </div>
-          <div tags>
+          <div tags id="tags">
             <p subtitle>Tags:</p>
-            <create-philosophers-tags></create-philosophers-tags>
+            <create-philosophers-tags id="createTags"></create-philosophers-tags>
           </div>
         </div>
       </div>
