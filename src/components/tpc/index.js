@@ -4,7 +4,7 @@ import { html, css, LitElement } from 'lit-element';
 import { NavBar } from '../navigation';
 import { Post } from '../blog/display';
 import { CreatePost } from '../blog/create';
-import { InfiniteScroller } from '../infinite-page-scroller';
+import { InfiniteScroller } from '../infinite-scroller';
 
 import { utils } from '../lib';
 
