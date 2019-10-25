@@ -15,6 +15,7 @@ describe('<the-philosophers-components>', () => {
         <nav-bar></nav-bar>
         <blog-post></blog-post>
         <create-blog-post></create-blog-post>
+        <infinite-scroller></infinite-scroller>
       `);
     });
   });

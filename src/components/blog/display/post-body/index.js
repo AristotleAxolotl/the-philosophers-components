@@ -31,12 +31,13 @@ export class PostBody extends LitElement {
     utils.register(PostBody);
   }
 
-  // TODO: create should be wrapped in form
   render() {
     return html`
       <div post>
         <div mainBody>
-          <p postText>${this.postBody}</p>
+          <p postText>
+            <slot name="mainBodyText"></slot>
+          </p>
         </div>
         <div extraInfo>
           <div resourceLink>
@@ -98,7 +99,7 @@ export class PostBody extends LitElement {
 
   constructor() {
     super();
-    this.postBody = '[Example Post Text]';
+    // this.postBody = '[Example Post Text]';
     this.resourceLink = 'default resource';
   }
 }

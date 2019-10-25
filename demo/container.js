@@ -3,8 +3,6 @@ import { css, html, LitElement } from 'lit-element';
 
 import { ThePhilosophersComponents } from '../src/components/tpc';
 
-import { CreatePost } from '../src/components/blog/create';
-
 export class TCPContainer extends LitElement {
   static get styles() {
     return css``;
@@ -12,7 +10,6 @@ export class TCPContainer extends LitElement {
 
   static register() {
     ThePhilosophersComponents.register();
-    CreatePost.register();
     window.customElements.define('tcp-container', TCPContainer);
   }
 

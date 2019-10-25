@@ -6,7 +6,9 @@ import { utils } from '../../../lib';
 // TODO: post has a body, comment section, upvote/downvote,
 export class Post extends LitElement {
   static get properties() {
-    return {};
+    return {
+      postBody: { type: String },
+    };
   }
 
   static get element() {
@@ -24,13 +26,18 @@ export class Post extends LitElement {
   render() {
     return html`
       <post-body>
-        <span slot="mainBodyText">[Example Post Text]</span>
+        <span slot="mainBodyText">${this.postBody}</span>
       </post-body>
     `;
   }
 
   static get styles() {
     return css``;
+  }
+
+  constructor() {
+    super();
+    this.postBody = '[Example Post Text]';
   }
 }
 

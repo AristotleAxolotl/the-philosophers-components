@@ -11,10 +11,14 @@ import { utils } from '../lib';
 export class ThePhilosophersComponents extends LitElement {
   render() {
     return html`
+      <nav-bar></nav-bar>
+      <blog-post>
+        <span slot="mainBodyText">
+          text yo
+        </span></blog-post
+      >
+      <create-blog-post></create-blog-post>
       <infinite-scroller></infinite-scroller>
-      <!-- <nav-bar></nav-bar> -->
-      <!-- <blog-post></blog-post> -->
-      <!-- <create-blog-post></create-blog-post> -->
     `;
   }
 

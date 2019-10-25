@@ -65,16 +65,15 @@ export class InfiniteScroller extends LitElement {
     }
   }
 
-  loadMore = function() {
+  loadMore() {
     for (let i = this.max - 20; i < this.max; i += 1) {
-      this.shadowRoot.querySelector('#inner').innerHTML += `<blog-post>
-      <span slot="mainBodyText">
-          ${i}
-        </span>
-      </blog-post>`;
+      this.shadowRoot.querySelector('#inner').innerHTML += `
+      <blog-post postBody=${i}>
+      </blog-post>
+      `;
     }
     this.max += 20;
-  };
+  }
 
   static get styles() {
     return css`
