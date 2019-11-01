@@ -5,6 +5,7 @@ import { NavBar } from '../navigation';
 import { Post } from '../blog/display';
 import { CreatePost } from '../blog/create';
 import { InfiniteScroller } from '../infinite-scroller';
+import { Card } from '../card';
 
 import { utils } from '../lib';
 
@@ -12,6 +13,11 @@ export class ThePhilosophersComponents extends LitElement {
   render() {
     return html`
       <nav-bar></nav-bar>
+      <philosophers-card>
+        <span slot="cardText">
+          This should be an axolotl?
+        </span>
+      </philosophers-card>
       <blog-post>
         <span slot="mainBodyText">
           text yo
@@ -27,7 +33,7 @@ export class ThePhilosophersComponents extends LitElement {
   }
 
   static get dependencies() {
-    return [NavBar, Post, CreatePost, InfiniteScroller];
+    return [NavBar, Post, CreatePost, InfiniteScroller, Card];
   }
 
   static register() {
