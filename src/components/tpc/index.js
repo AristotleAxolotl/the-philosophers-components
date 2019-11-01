@@ -13,7 +13,7 @@ export class ThePhilosophersComponents extends LitElement {
   render() {
     return html`
       <nav-bar></nav-bar>
-      <philosophers-card>
+      <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample">
         <span slot="cardText">
           This should be an axolotl?
         </span>

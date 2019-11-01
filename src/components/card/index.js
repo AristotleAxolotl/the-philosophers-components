@@ -8,12 +8,13 @@ export class Card extends LitElement {
   static get properties() {
     return {
       imgSrc: { type: String },
+      cardLink: { type: String },
     };
   }
 
   render() {
     return html`
-      <div cardWrapper>
+      <div cardWrapper @click="${() => this.followLink()}">
         <div imageWrapper>
           <img src="${this.imgSrc}" />
         </div>
@@ -26,9 +27,14 @@ export class Card extends LitElement {
     `;
   }
 
+  followLink() {
+    window.location = this.cardLink;
+  }
+
   constructor() {
     super();
     this.imgSrc = '../../../resources/axolotl.jpg';
+    this.cardLink = 'http://localhost:8000/demo/cardLink';
   }
 
   static get element() {
@@ -45,12 +51,24 @@ export class Card extends LitElement {
 
   static get styles() {
     return css`
+      * {
+        padding: 1px;
+      }
+
       [cardWrapper] {
-        border: 1px solid;
+        cursor: pointer;
+        /* border: 1px solid; */
+        box-shadow: 10px 5px 5px grey;
+        /* inside shadow */
+        /* box-shadow: inset 0 0 10px #000000; */
         border-radius: 10px;
-        width: 11vw;
-        height: 15vh;
-        padding: 2px;
+        width: 175px;
+        height: 175px;
+        margin: 5px;
+      }
+
+      [cardWrapper]:hover {
+        opacity: 0.7;
       }
 
       img {
@@ -63,14 +81,18 @@ export class Card extends LitElement {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 10vw;
-        height: 10vh;
+        width: 167px;
+        height: 120px;
       }
 
       [text] {
-        width: 11vw;
-        height: 2vh;
+        width: 172px;
+        height: 33px;
         border-top: 1px solid;
+        border-bottom: 1px solid;
+        border-right: 1px solid;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
         text-align: center;
       }
     `;
