@@ -24,8 +24,25 @@ export class ThePhilosophersComponents extends LitElement {
         </span></blog-post
       >
       <create-blog-post></create-blog-post>
-      <infinite-scroller></infinite-scroller>
+      <infinite-scroller id="demoScroller"></infinite-scroller>
     `;
+  }
+
+  methodToGet(noToGet) {
+    for (let i = noToGet - 20; i < noToGet; i += 1) {
+      this.component += `
+      <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample">
+        <span slot="cardText">
+          ${i}
+        </span>
+      </philosophers-card>
+      `;
+    }
+    return this.component;
+  }
+
+  firstUpdated() {
+    this.shadowRoot.querySelector('#demoScroller').findMore = this.methodToGet;
   }
 
   static get element() {

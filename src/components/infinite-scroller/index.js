@@ -3,12 +3,14 @@
 import { html, css, LitElement } from 'lit-element';
 
 import { utils } from '../lib';
-import { Post } from '../blog/display';
 
+// TODO: infini scroller should take a component, and a function to call to get more data.
 export class InfiniteScroller extends LitElement {
   static get properties() {
     return {
       max: { type: Number },
+      component: { type: String },
+      findMore: { type: Function },
     };
   }
 
@@ -24,6 +26,18 @@ export class InfiniteScroller extends LitElement {
   constructor() {
     super();
     this.max = 20;
+    this.component = '';
+    this.findMore = this._defaultFindMore;
+  }
+
+  _defaultFindMore(noToGet) {
+    for (let i = noToGet - 20; i < noToGet; i += 1) {
+      this.component += `
+      <blog-post postBody=${i}>
+      </blog-post>
+      `;
+    }
+    return this.component;
   }
 
   static get element() {
@@ -31,7 +45,7 @@ export class InfiniteScroller extends LitElement {
   }
 
   static get dependencies() {
-    return [Post];
+    return [];
   }
 
   firstUpdated() {
@@ -66,11 +80,14 @@ export class InfiniteScroller extends LitElement {
   }
 
   loadMore() {
-    for (let i = this.max - 20; i < this.max; i += 1) {
-      this.shadowRoot.querySelector('#inner').innerHTML += `
-      <blog-post postBody=${i}>
-      </blog-post>
-      `;
+    // call method later which will be call to DB
+    // This used to be +=, but moved that to another method - this may be innefficient but who knows
+
+    // eslint-disable-next-line no-extra-boolean-cast
+    if (!!this.findMore) {
+      this.shadowRoot.querySelector('#inner').innerHTML = this.findMore(this.max);
+    } else {
+      this.shadowRoot.querySelector('#inner').innerHTML = this._defaultFindMore(this.max);
     }
     this.max += 20;
   }
