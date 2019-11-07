@@ -12,11 +12,14 @@ describe('<create-blog-post>', () => {
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-       <create-post-body>
-         <span slot="mainBodyText">
-           Enter your post text here...
-         </span>
+       <create-post-body id="test">
        </create-post-body>
+       <button>
+         Create
+       </button>
+       <button>
+         Discard
+       </button>
       `);
     });
   });

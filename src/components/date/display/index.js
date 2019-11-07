@@ -107,7 +107,11 @@ export class PhilosophersDate extends LitElement {
 
   static get styles() {
     return css`
+          * {
+        margin: 5px;
+      }
       [wrapper] {
+        background-color: #45A29E;
         display: flex;
         align-items: left;
         justify-content: left;
@@ -128,6 +132,17 @@ export class PhilosophersDate extends LitElement {
       [date],
       [time] {
         height: 13px;
+      }
+
+      input[type=number]:focus{
+        border: 5px solid #66FCF1;
+      }
+
+      input {
+        transition: 0.5s;
+        outline: none;
+        background-color: #C5C6C7;
+        border: 0;
       }
     `;
   }

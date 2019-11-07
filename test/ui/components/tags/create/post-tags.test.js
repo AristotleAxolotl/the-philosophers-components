@@ -19,9 +19,7 @@ describe('<create-philosophers-tags>', () => {
           <span id="tag-1" tag>
             tag
           </span>
-          <input id="inputTag" inputtag keys="enter" on-keys-pressed="() => {
-            this._handleEnter();
-          }"
+          <input id="inputTag" inputtag keys="enter" on-keys-pressed="() => this._handleEnter()"
           placeholder="Add a tag..." type="text">
         </div>
       `);

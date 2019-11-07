@@ -55,7 +55,7 @@ export class NavBar extends LitElement {
 
         overflow: hidden;
 
-        background-color: #333;
+        /* background-color: #1F2833; */
 
         font-family: Arial;
       }

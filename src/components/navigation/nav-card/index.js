@@ -65,7 +65,7 @@ export class NavCard extends LitElement {
     return css`
       /* make down carat */
       i {
-        border: solid black;
+        border: solid #66FCF1;
         border-width: 0 3px 3px 0;
         display: inline-block;
         padding: 3px;
@@ -77,7 +77,7 @@ export class NavCard extends LitElement {
       /* Navbar container */
       [nav-card] {
         overflow: hidden;
-        background-color: #333;
+        /* background-color: #1F2833; */
         font-family: Arial;
       }
 
@@ -85,7 +85,7 @@ export class NavCard extends LitElement {
       [nav-card] a {
         float: left;
         font-size: 16px;
-        color: white;
+        color: #66FCF1;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
@@ -101,7 +101,7 @@ export class NavCard extends LitElement {
         font-size: 16px;
         border: none;
         outline: none;
-        color: white;
+        color: #66FCF1;
         padding: 14px 16px;
         background-color: inherit;
         font-family: inherit; /* Important for vertical align on mobile phones */
@@ -110,14 +110,14 @@ export class NavCard extends LitElement {
 
       /* Add a red background color to navbar links on hover */
       [dropdown]:hover [dropbtn] {
-        background-color: red;
+        background-color: #45A29E;
       }
 
       /* Dropdown content (hidden by default) */
       [dropdown-content] {
         display: none;
         position: absolute;
-        background-color: #f9f9f9;
+        background-color: #45A29E;
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
@@ -126,7 +126,7 @@ export class NavCard extends LitElement {
       /* Links inside the dropdown */
       [dropdown-content] a {
         float: none;
-        color: black;
+        color: #C5C6C7;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
@@ -135,7 +135,7 @@ export class NavCard extends LitElement {
 
       /* Add a grey background color to dropdown links on hover */
       [dropdown-content] a:hover {
-        background-color: #ddd;
+        background-color: #0b0C10;
       }
 
       /* Show the dropdown menu on hover */

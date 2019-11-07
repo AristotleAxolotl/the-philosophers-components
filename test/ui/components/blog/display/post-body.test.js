@@ -15,7 +15,8 @@ describe('<post-body>', () => {
         <div post>
           <div mainbody>
             <p posttext>
-              [Example Post Text]
+                  <slot name="mainBodyText">
+                  </slot>
             </p>
           </div>
           <div extrainfo>

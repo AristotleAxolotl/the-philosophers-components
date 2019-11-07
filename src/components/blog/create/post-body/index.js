@@ -57,13 +57,15 @@ export class CreatePostBody extends LitElement {
   }
 
   static get styles() {
-    return css`
+    return css`* {
+      margin: 5px;
+    }
       [createPost] {
         padding: 7px;
         /* display: flex; */
-        background-color: lightgrey;
+        background-color: #1F2833;
         /* border-left: 5px solid blue; */
-        border-bottom: 5px solid blue;
+        border-bottom: 5px solid #66FCF1;
         /* border-bottom-left-radius: 5px; */
       }
 
@@ -71,23 +73,44 @@ export class CreatePostBody extends LitElement {
         padding: 7px;
         display: flex;
         justify-content: left;
-        background-color: lightgrey;
+        background-color: #1F2833;
         /* border-left: 5px solid blue; */
-        border-bottom: 5px solid blue;
+        border-bottom: 5px solid #66FCF1;
         /* border-bottom-left-radius: 5px; */
       }
 
       [extraInfo] {
         padding: 7px;
         display: inline-block;
-        background-color: lightgrey;
+        background-color: #1F2833;
         /* border-left: 5px solid blue; */
         /* border-bottom: 5px solid blue; */
         /* border-bottom-left-radius: 5px; */
       }
 
+      input[type=text] {
+        transition: 0.5s;
+        outline: none;
+        background-color: #C5C6C7;
+        border:0;
+      }
+
+      input[type=text]:focus {
+        border: 5px solid #66FCF1;
+      }
+
+      [inputPostText]:focus {
+        border: 5px solid #66FCF1;
+      }
       [inputPostText] {
+        transition: 0.5s;
+        outline: none;
+        background-color: #C5C6C7;
         width: 100%;
+      }
+
+      [subtitle] {
+        color: #C5C6C7;
       }
 
       [text] {

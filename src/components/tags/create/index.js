@@ -41,9 +41,7 @@ export class CreatePhilosophersTags extends LitElement {
           type="text"
           placeholder="Add a tag..."
           keys="enter"
-          on-keys-pressed="${() => {
-            this._handleEnter();
-          }}"
+          on-keys-pressed="${() => this._handleEnter()}"
         />
       </div>
     `;
@@ -82,8 +80,8 @@ export class CreatePhilosophersTags extends LitElement {
   static get styles() {
     return css`
       [tags] {
+        background-color: #45A29E;
         float: left;
-        border: 1px solid #ccc;
         padding: 4px;
         font-family: Arial;
       }
@@ -110,7 +108,7 @@ export class CreatePhilosophersTags extends LitElement {
         font-size: 10px;
       }
       [tags] input {
-        background: #eee;
+        background: #C5C6C7;
         border: 0;
         margin: 4px;
         padding: 7px;

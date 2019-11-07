@@ -76,7 +76,11 @@ export class CreatePost extends LitElement {
   }
 
   static get styles() {
-    return css``;
+    return css`
+      * {
+        margin: 5px;
+      }
+    `;
   }
 }
 

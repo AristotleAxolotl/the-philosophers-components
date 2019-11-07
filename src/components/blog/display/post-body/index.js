@@ -59,12 +59,15 @@ export class PostBody extends LitElement {
 
   static get styles() {
     return css`
+    * {
+        margin: 5px;
+      }
       [post] {
         padding: 7px;
         /* display: flex; */
-        background-color: lightgrey;
+        background-color: #1F2833;
         /* border-left: 5px solid blue; */
-        border-bottom: 5px solid blue;
+        border-bottom: 5px solid #66FCF1;
         /* border-bottom-left-radius: 5px; */
       }
 
@@ -72,23 +75,28 @@ export class PostBody extends LitElement {
         padding: 7px;
         display: flex;
         justify-content: left;
-        background-color: lightgrey;
+        background-color: #1F2833;
         /* border-left: 5px solid blue; */
-        border-bottom: 5px solid blue;
+        border-bottom: 5px solid #66FCF1;
         /* border-bottom-left-radius: 5px; */
       }
 
       [extraInfo] {
         padding: 7px;
         display: inline-block;
-        background-color: lightgrey;
+        background-color: #1F2833;
         /* border-left: 5px solid blue; */
         /* border-bottom: 5px solid blue; */
         /* border-bottom-left-radius: 5px; */
       }
 
-      [inputPostText] {
+      [postText] {
+        color: #C5C6C7;
         width: 100%;
+      }
+
+      [subtitle] {
+        color: #C5C6C7;
       }
 
       [text] {

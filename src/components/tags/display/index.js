@@ -53,7 +53,7 @@ export class PhilosophersTags extends LitElement {
         justify-content: left;
         text-align: center;
 
-        border: 1px solid #ccc;
+        background-color: #45A29E;
         padding: 4px;
         font-family: Arial;
       }
@@ -68,13 +68,6 @@ export class PhilosophersTags extends LitElement {
       }
       [tags] [tag]:hover {
         opacity: 0.7;
-      }
-      [tags] input {
-        background: #eee;
-        border: 0;
-        margin: 4px;
-        padding: 7px;
-        width: auto;
       }
     `;
   }

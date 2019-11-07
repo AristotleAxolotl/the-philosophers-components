@@ -12,29 +12,29 @@ describe('<create-post-body>', () => {
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-        <div createpost>
-          <div mainbody>
-            <textarea inputposttext placeholder="Enter post text here..." rows="7"></textarea>
+        <div createpost id="createPost">
+          <div mainbody id="mainBody">
+            <textarea inputposttext id="inputPostText" placeholder="Enter post text here..." rows="7"></textarea>
           </div>
-          <div extrainfo>
-            <div resourcelink>
+          <div extrainfo id="extraInfo">
+            <div resourcelink id="resourceLink">
               <p subtitle>
                 Resource Link:
               </p>
-              <input placeholder="Enter resource link here..." type="text">
+              <input id="resourceInput" placeholder="Enter resource link here..." type="text">
             </div>
-            <div dateofpost>
+            <div dateofpost id="dateOfPost">
               <p subtitle>
                 Date of post:
               </p>
-              <create-philosophers-date>
+              <create-philosophers-date id="createDate">
               </create-philosophers-date>
             </div>
-            <div tags>
+            <div tags id="tags">
               <p subtitle>
                 Tags:
               </p>
-              <create-philosophers-tags _addedtags='["example","tag"]'>
+              <create-philosophers-tags id="createTags" _addedtags='["example","tag"]'>
               </create-philosphers-tags>
             </div>
           </div>

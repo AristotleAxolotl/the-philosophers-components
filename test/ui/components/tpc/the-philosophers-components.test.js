@@ -13,9 +13,18 @@ describe('<the-philosophers-components>', () => {
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
         <nav-bar></nav-bar>
-        <blog-post></blog-post>
+        <philosophers-card cardlink="http://localhost:8000/demo/cardLinkExample">
+          <span slot="cardText">
+            This should be an axolotl?
+          </span>
+        </philosophers-card>
+        <blog-post>
+          <span slot="mainBodyText">
+            text yo
+          </span>
+        </blog-post>
         <create-blog-post></create-blog-post>
-        <infinite-scroller></infinite-scroller>
+        <infinite-scroller id="demoScroller"></infinite-scroller>
       `);
     });
   });

@@ -25,7 +25,11 @@ export class PostUtilitiesBar extends LitElement {
   }
 
   static get styles() {
-    return css``;
+    return css`
+      * {
+        margin: 5px;
+      }
+    `;
   }
 
   // constructor() {

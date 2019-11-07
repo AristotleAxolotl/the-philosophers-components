@@ -16,9 +16,11 @@ export class InfiniteScroller extends LitElement {
 
   render() {
     return html`
-      <div debugHeader id="debugHeader">top:</div>
-      <div scrollingWrapper id="scrollingWrapper">
-        <div inner id="inner"></div>
+      <!-- <div debugHeader id="debugHeader">top:</div> -->
+      <div container>
+        <div scrollingWrapper id="scrollingWrapper">
+          <div inner id="inner"></div>
+        </div>
       </div>
     `;
   }
@@ -63,18 +65,18 @@ export class InfiniteScroller extends LitElement {
   scroller() {
     const top = this.shadowRoot.querySelector('#scrollingWrapper').scrollTop;
 
-    this.shadowRoot.querySelector(
-      '#debugHeader',
-    ).innerHTML = `top: ${top} diff: ${this.shadowRoot.querySelector('#inner').offsetHeight -
-      this.shadowRoot.querySelector('#scrollingWrapper').offsetHeight}`;
+    // this.shadowRoot.querySelector(
+    //   '#debugHeader',
+    // ).innerHTML = `top: ${top} diff: ${this.shadowRoot.querySelector('#inner').offsetHeight -
+    //   this.shadowRoot.querySelector('#scrollingWrapper').offsetHeight}`;
 
     if (
       top >=
       this.shadowRoot.querySelector('#inner').offsetHeight -
         this.shadowRoot.querySelector('#scrollingWrapper').offsetHeight
     ) {
-      this.shadowRoot.querySelector('#debugHeader').innerHtML = `top: ${top} diff: ${'#inner'
-        .offsetHeight - this.shadowRoot.querySelector('#scrollingWrapper').offsetHeight} bottom`;
+      // this.shadowRoot.querySelector('#debugHeader').innerHtML = `top: ${top} diff: ${'#inner'
+      //   .offsetHeight - this.shadowRoot.querySelector('#scrollingWrapper').offsetHeight} bottom`;
       this.loadMore();
     }
   }
@@ -94,11 +96,26 @@ export class InfiniteScroller extends LitElement {
 
   static get styles() {
     return css`
+      [container] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
       [scrollingWrapper] {
         width: 90vw;
         height: 90vh;
-        border: 1px solid black;
         overflow: auto;
+      }
+      [inner]{
+        display: grid;
+        /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-auto-rows: auto;
+        grid-gap: 10px;
+        justify-items: center; */
+        grid-gap: 15px;
+        grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+        grid-auto-rows: 200px;
+        grid-auto-flow:dense;
       }
     `;
   }

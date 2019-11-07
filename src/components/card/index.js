@@ -58,7 +58,7 @@ export class Card extends LitElement {
       [cardWrapper] {
         cursor: pointer;
         /* border: 1px solid; */
-        box-shadow: 10px 5px 5px grey;
+        box-shadow: 10px 5px 5px #1F2833;
         /* inside shadow */
         /* box-shadow: inset 0 0 10px #000000; */
         border-radius: 10px;
@@ -88,12 +88,13 @@ export class Card extends LitElement {
       [text] {
         width: 172px;
         height: 33px;
-        border-top: 1px solid;
-        border-bottom: 1px solid;
-        border-right: 1px solid;
+        border-top: 1px solid #66FCF1;
+        border-bottom: 1px solid #66FCF1;
+        border-right: 1px solid #66FCF1;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
         text-align: center;
+        color: #C5C6C7;
       }
     `;
   }
