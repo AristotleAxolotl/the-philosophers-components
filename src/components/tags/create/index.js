@@ -114,6 +114,15 @@ export class CreatePhilosophersTags extends LitElement {
         padding: 7px;
         width: auto;
       }
+      input[type=text] {
+        transition: 0.5s;
+        outline: none;
+        background-color: #C5C6C7;
+        border:0;
+      }
+      input[type=text]:focus {
+        border: 5px solid #66FCF1;
+      }
     `;
   }
 
