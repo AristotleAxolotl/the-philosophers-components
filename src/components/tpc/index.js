@@ -13,7 +13,7 @@ export class ThePhilosophersComponents extends LitElement {
   render() {
     return html`
       <nav-bar></nav-bar>
-      <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample">
+      <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample" cardType='medium'>
         <span slot="cardText">
           This should be an axolotl?
         </span>
@@ -31,7 +31,7 @@ export class ThePhilosophersComponents extends LitElement {
   methodToGet(noToGet) {
     for (let i = noToGet - 20; i < noToGet; i += 1) {
       this.component += `
-      <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample">
+      <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample" cardType='small'>
         <span slot="cardText">
           ${i}
         </span>

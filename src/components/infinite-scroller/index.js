@@ -35,7 +35,7 @@ export class InfiniteScroller extends LitElement {
   _defaultFindMore(noToGet) {
     for (let i = noToGet - 20; i < noToGet; i += 1) {
       this.component += `
-      <blog-post postBody=${i}>
+      <blog-post id=${i} postBody=${i}>
       </blog-post>
       `;
     }
@@ -88,8 +88,12 @@ export class InfiniteScroller extends LitElement {
     // eslint-disable-next-line no-extra-boolean-cast
     if (!!this.findMore) {
       this.shadowRoot.querySelector('#inner').innerHTML = this.findMore(this.max);
+      // this.shadowRoot.getElementById('inner').childNodes.forEach(element => this._editWidth(element));
+      // console.log(this.shadowRoot.getElementById('inner').childNodes.length);
     } else {
       this.shadowRoot.querySelector('#inner').innerHTML = this._defaultFindMore(this.max);
+      // this.shadowRoot.querySelector('#inner').innerHTML.forEach(element => this._editWidth(element.id));
+      // console.log(this.shadowRoot.getElementById('inner').childNodes.length);
     }
     this.max += 20;
   }
