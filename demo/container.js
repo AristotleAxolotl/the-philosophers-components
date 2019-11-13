@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { css, html, LitElement } from 'lit-element';
+import { css, html, LitElement } from '../node_modules/lit-element';
 
 import { ThePhilosophersComponents } from '../src/components/tpc';
 

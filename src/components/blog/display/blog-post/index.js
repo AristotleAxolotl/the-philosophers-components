@@ -25,9 +25,11 @@ export class Post extends LitElement {
 
   render() {
     return html`
-      <post-body>
-        <span slot="mainBodyText">${this.postBody}</span>
-      </post-body>
+      <div content class="content">
+        <post-body>
+          <span slot="mainBodyText">${this.postBody}</span>
+        </post-body>
+      </div>
     `;
   }
 
