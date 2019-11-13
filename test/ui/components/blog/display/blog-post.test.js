@@ -15,8 +15,9 @@ describe('<blog-post>', () => {
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-      <post-body>
-        <span slot="mainBodyText">
+      <div class="content" content="">
+        <post-body>
+          <span slot="mainBodyText">
             Lorem ipsum dolor sit amet, ceteros vivendum consulatu ius eu. Ius ei possit delenit necessitatibus. Sea ludus comprehensam ut. Mea saperet corpora complectitur ut, cu agam molestiae mel. Ne ludus malorum tacimates has. Congue animal ei has.
 
     His quis aeque et. Mei cu efficiantur neglegentur. Feugait cotidieque ei sea. Ad alii putant expetenda mei, iusto commodo moderatius pro ne. Duo case possim philosophia ea, malis commune voluptatibus mea te, mel ubique meliore suscipiantur ea.
@@ -28,6 +29,7 @@ describe('<blog-post>', () => {
     Te mei eleifend theophrastus, minim putant repudiandae te sed, eam ne nostrud vituperata. Dicat laoreet pro id, id qui fuisset epicuri. Tantas denique facilisis nam at, vis ei populo quaeque accommodare, ei solet oportere his. Mei in tritani dissentiet. Tacimates euripidis honestatis sed an, ut ipsum velit omnium duo. Sed et sonet veniam semper, cum ut virtute recusabo contentiones, nec ut dicit electram.
         </span>
       </post-body>
+    </div>
       `);
     });
   });

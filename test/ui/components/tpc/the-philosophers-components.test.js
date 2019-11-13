@@ -13,7 +13,7 @@ describe('<the-philosophers-components>', () => {
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
         <nav-bar></nav-bar>
-        <philosophers-card cardlink="http://localhost:8000/demo/cardLinkExample">
+        <philosophers-card cardlink="http://localhost:8000/demo/cardLinkExample" cardType="small">
           <span slot="cardText">
             This should be an axolotl?
           </span>
