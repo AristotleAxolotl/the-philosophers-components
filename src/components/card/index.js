@@ -1,6 +1,10 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-useless-return */
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable import/extensions */
-import { html, css, unsafeCSS, LitElement } from 'lit-element';
+import { html, css, LitElement } from 'lit-element';
+
+import { Image } from '../image';
 
 import { utils } from '../lib';
 
@@ -17,8 +21,8 @@ export class Card extends LitElement {
     super();
     this.imgSrc = '../../../resources/axolotl.jpg';
     this.cardLink = 'http://localhost:8000/demo/cardLink';
-    this.imgWidth = css `:host {width: 200px}`;
-    this.imgHeight = "150px";
+    // this.imgWidth = css `:host {width: 200px}`;
+    // this.imgHeight = "150px";
     this.cardType = "medium";
     // this.shadowRoot.getElementById('cardWrapper').childNodes.forEach(element => this._editWidth(element));
   }
@@ -44,19 +48,20 @@ export class Card extends LitElement {
 
   render() {
     return html`
-      ${this._renderDifferentSizes()}
+      <div content class="content" id="content">
+        ${this._renderDifferentSizes()}
+      </div>
     `;
   }
 
   _renderDifferentSizes(){
-    // check type
-    // if no type then render based on best guess
     switch(this.cardType) {
       case 'small':
           return html`
         <div cardWrapper small id="cardWrapper" @click="${() => this._followLink()}">
           <div imageWrapper id="imageWrapper">
-            <img id="image" src="${this.imgSrc}"/>
+            <!-- <img id="image" src="${this.imgSrc}"/> -->
+            <philosophers-image imgSrc="${this.imgSrc}"></philosophers-image>
           </div>
           <div textWrapper id="textWrapper">
             <p text>
@@ -89,9 +94,10 @@ export class Card extends LitElement {
           </div>
         </div>`;
       default:
-        console.log('CARD did not have a type. PLease give me a type...');
+        console.log('CARD did not have a type. PLease give me a type... OR one day i could figure it out myself.');
         break;
     }
+    return;
   }
 
   _followLink() {
@@ -145,7 +151,7 @@ export class Card extends LitElement {
   }
 
   static get dependencies() {
-    return [];
+    return [Image];
   }
 
   static register() {
@@ -190,8 +196,8 @@ margin: auto; */
         /* display: inline-block; */
         /* margin-left: auto; */
         /* margin-right: auto; */
-        height: 100%;
-        width: 100%;
+        height: 100px;
+        width: 100px;
         /* width: 167px; */
         /* height: 120px; */
       }
