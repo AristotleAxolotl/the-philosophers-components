@@ -2,7 +2,7 @@
 /* eslint-disable no-useless-return */
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable import/extensions */
-import { html, css, LitElement } from 'lit-element';
+import { css, LitElement } from 'lit-element';
 
 import { utils } from '../lib';
 
@@ -18,10 +18,8 @@ export class Image extends LitElement {
     };
   }
 
-  render() {
-    return html`
-      <div image style="background-image: url(${this.imgSrc})"></div>
-    `;
+  updated() {
+    this.style.backgroundImage = `url('${this.imgSrc}')`;
   }
 
   static get element() {
@@ -38,11 +36,11 @@ export class Image extends LitElement {
 
   static get styles() {
     return css`
-      [image] {
+      :host {
         display: block;
         height: 100%;
         width: 100%;
-        background-position: 50% 50%;
+        background-position: center top;
         background-size: 100%;
         background-repeat: no-repeat;
         background-color: transparent;
