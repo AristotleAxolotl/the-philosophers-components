@@ -35,7 +35,7 @@ export class ThePhilosophersComponents extends LitElement {
   methodToGet(noToGet) {
     for (let i = noToGet - 20; i < noToGet; i += 1) {
       this.component += `
-      <philosophers-card class="item" cardLink="http://localhost:8000/demo/cardLinkExample" cardSize='${
+      <philosophers-card item card cardLink="http://localhost:8000/demo/cardLinkExample" cardSize='${
         i % 2 === 0
           ? `{ "width": "200px", "height": "200px"}`
           : `{ "width": "500px", "height": "500px" }`

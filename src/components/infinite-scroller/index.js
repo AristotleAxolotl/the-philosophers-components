@@ -5,6 +5,11 @@ import { html, css, LitElement } from 'lit-element';
 import { utils } from '../lib';
 
 // TODO: infini scroller should take a component, and a function to call to get more data.
+
+// TODO: ROLL THIS WAAAAAY BACK
+// TODO: content should have observable properties height&width
+// TODO: these can be grabbed and set by encapsulation
+// TODO: could have a method for requested size? then this can control how close to it it gets to render it.
 export class InfiniteScroller extends LitElement {
   static get properties() {
     return {
@@ -17,9 +22,9 @@ export class InfiniteScroller extends LitElement {
   render() {
     return html`
       <!-- <div debugHeader id="debugHeader">top:</div> -->
-      <div container id="container">
-        <div scrollingWrapper id="scrollingWrapper">
-          <div grid id="grid"></div>
+      <div gridContainer>
+        <div scrollingWrapper>
+          <div grid></div>
         </div>
       </div>
     `;
@@ -42,41 +47,89 @@ export class InfiniteScroller extends LitElement {
     return this.component;
   }
 
+  // TODO: this is apparently supposed to be a aync function - in order to call nested asyncfunctions.
   // eslint-disable-next-line class-methods-use-this
-  _resizeGridElement(element){
-    console.log("resize this grid element", element);
-    const grid = this.shadowRoot.querySelector('#grid');
-    console.log("CONTAINER: ", grid);
-    const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'), 10);
-    console.log("WINDOW? ", window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+  _resizeGridElement(element) {
+    console.log(this.renderRoot);
+    console.log('resize this grid element', element);
+    const grid = this.shadowRoot.querySelector('[grid]');
+    console.log('CONTAINER: ', grid);
+    const rowHeight = parseInt(
+      window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'),
+      10,
+    );
+
+    console.log('WINDOW? ', window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
     console.log(`ROW HEIGHT:`, rowHeight);
+    console.log(`DeepActive: `, this.deepActiveElement());
     const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'), 10);
     console.log(`ROW GAP:`, rowGap);
-    const rowSpan = Math.ceil((element.querySelector('.content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
+    console.log(`debug `, this.shadowRoot.querySelector('[grid]').querySelector('[item]'));
+    const item = this.shadowRoot.querySelector('[grid]').querySelector('[item]');
+    console.log(`item: `, item);
+    let height;
+    height = (async () => {
+      await item.getContentHeight();
+    })();
+
+    console.log(`WHERE?!`, height);
+    console.log(
+      `does it work?`,
+      item.getContentHeight().then(data => {
+        height = data;
+      }),
+    );
+    console.log(`WHERE?!`, height);
+    console.log(`does it work?`, item.getContentWidth());
+    // TODO: create element 'conttent' that all content classes can inherit from with a method to return the height
+    // elements should be
+    // const itemShadow = item.attachShadow({mode: 'open'});
+    // console.log(`itemShaow: `, itemShadow);
+    // console.log(`did it work? `,itemShadow.querySelector('[content]'));
+    const rowSpan = Math.ceil(
+      (element.querySelector('[content]').getBoundingClientRect().height + rowGap) /
+        (rowHeight + rowGap),
+    );
     console.log(`ROW SPAN:`, rowSpan);
-    element.style.gridRowEnd = `span ${rowSpan}`;
- }
 
- // eslint-disable-next-line class-methods-use-this
- _resizeInstance(instance){
-  const item = instance.elements[0];
-  this._resizeGridItem(item);
-}
-
- _resizeAllGridElements(){
-   const allItems = this.shadowRoot.querySelectorAll(".item");
-   console.log("ALL ITEMS", allItems);
-  for(let x = 0; x < allItems.length; x += 1){
-    // imagesLoaded( allItems[x], this._resizeInstance);
+    // element.style.gridRowEnd = `span ${rowSpan}`;
   }
-}
 
-//  function resizeAllGridElements(){
-//   allElements = this.shadowRoot.querySelector('#container');
-//   for(x=0;x<allItems.length;x++){
-//      resizeGridItem(allItems[x]);
-//   }
-// }
+  _resizeAllGridElements() {
+    const allItems = this.shadowRoot.querySelectorAll('[item]');
+    // const allItemsArry = Array.from(allItems);
+    allItems.forEach(element => this._resizeGridElement(element));
+    // console.log('ALL ITEMS', allItemsArry);
+    // for (let i = 0; i < allItemsArry.length; i += 1) {
+    //   this._resizeGridElement(allItemsArry[i]);
+    // }
+  }
+
+  //  function resizeAllGridElements(){
+  //   allElements = this.shadowRoot.querySelector('#container');
+  //   for(x=0;x<allItems.length;x++){
+  //      resizeGridItem(allItems[x]);
+  //   }
+  // }
+
+  deepActiveElement() {
+    const element = this.shadowRoot.activeElement;
+    console.log(`Active: `, element);
+    let elementShadow;
+    while (element && element.shadowRoot && element.shadowRoot.activeElement) {
+      console.log('TRUE');
+      elementShadow = element.shadowRoot.activeElement;
+    }
+    return elementShadow;
+  }
+
+  // deepActiveElement() {
+  //   let a = document.activeElement;
+  //   while (a && a.shadowRoot && a.shadowRoot.activeElement) {
+  //     a = a.shadowRoot.activeElement;
+  //   }
+  //   return a;
+  // }
 
   static get element() {
     return 'infinite-scroller';
@@ -88,13 +141,13 @@ export class InfiniteScroller extends LitElement {
 
   firstUpdated() {
     this.shadowRoot
-      .querySelector('#scrollingWrapper')
+      .querySelector('[scrollingWrapper]')
       .addEventListener('scroll', () => this.scroller());
 
     this.loadMore();
     this._resizeAllGridElements();
-    window.addEventListener("resize", this._resizeAllGridItems);
-    console.log("first updated");
+    window.addEventListener('resize', this._resizeAllGridItems);
+    console.log('first updated');
   }
 
   static register() {
@@ -102,19 +155,19 @@ export class InfiniteScroller extends LitElement {
   }
 
   scroller() {
-    const top = this.shadowRoot.querySelector('#scrollingWrapper').scrollTop;
+    const top = this.shadowRoot.querySelector('[scrollingWrapper]').scrollTop;
 
     // this.shadowRoot.querySelector(
     //   '#debugHeader',
-    // ).innerHTML = `top: ${top} diff: ${this.shadowRoot.querySelector('#grid').offsetHeight -
+    // ).innerHTML = `top: ${top} diff: ${this.shadowRoot.querySelector('[grid]').offsetHeight -
     //   this.shadowRoot.querySelector('#scrollingWrapper').offsetHeight}`;
 
     if (
       top >=
-      this.shadowRoot.querySelector('#grid').offsetHeight -
-        this.shadowRoot.querySelector('#scrollingWrapper').offsetHeight
+      this.shadowRoot.querySelector('[grid]').offsetHeight -
+        this.shadowRoot.querySelector('[scrollingWrapper]').offsetHeight
     ) {
-      // this.shadowRoot.querySelector('#debugHeader').innerHtML = `top: ${top} diff: ${'#grid'
+      // this.shadowRoot.querySelector('#debugHeader').innerHtML = `top: ${top} diff: ${'[grid]'
       //   .offsetHeight - this.shadowRoot.querySelector('#scrollingWrapper').offsetHeight} bottom`;
       this.loadMore();
     }
@@ -126,12 +179,12 @@ export class InfiniteScroller extends LitElement {
 
     // eslint-disable-next-line no-extra-boolean-cast
     if (!!this.findMore) {
-      this.shadowRoot.querySelector('#grid').innerHTML = this.findMore(this.max);
+      this.shadowRoot.querySelector('[grid]').innerHTML = this.findMore(this.max);
       // this.shadowRoot.getElementById('grid').childNodes.forEach(element => this._editWidth(element));
       // console.log(this.shadowRoot.getElementById('grid').childNodes.length);
     } else {
-      this.shadowRoot.querySelector('#grid').innerHTML = this._defaultFindMore(this.max);
-      // this.shadowRoot.querySelector('#grid').innerHTML.forEach(element => this._editWidth(element.id));
+      this.shadowRoot.querySelector('[grid]').innerHTML = this._defaultFindMore(this.max);
+      // this.shadowRoot.querySelector('[grid]').innerHTML.forEach(element => this._editWidth(element.id));
       // console.log(this.shadowRoot.getElementById('grid').childNodes.length);
     }
     this.max += this.max;
@@ -139,7 +192,7 @@ export class InfiniteScroller extends LitElement {
 
   static get styles() {
     return css`
-      [container] {
+      [gridContainer] {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -149,11 +202,11 @@ export class InfiniteScroller extends LitElement {
         height: 90vh;
         overflow: auto;
       }
-      [grid]{
+      [grid] {
         display: grid;
         grid-gap: 10px;
-        grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
-        grid-auto-rows: 150px;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-auto-rows: 20px;
       }
     `;
   }
