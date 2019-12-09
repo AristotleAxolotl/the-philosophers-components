@@ -32,13 +32,13 @@ export class InfiniteScroller extends LitElement {
 
   constructor() {
     super();
-    this.max = 20;
+    this.max = 50;
     this.component = '';
     this.findMore = this._defaultFindMore;
   }
 
   _defaultFindMore(noToGet) {
-    for (let i = noToGet - 20; i < noToGet; i += 1) {
+    for (let i = noToGet - this.max; i < noToGet; i += 1) {
       this.component += `
       <blog-post class="item" id=${i} postBody=${i}>
       </blog-post>
@@ -48,88 +48,72 @@ export class InfiniteScroller extends LitElement {
   }
 
   // TODO: this is apparently supposed to be a aync function - in order to call nested asyncfunctions.
-  // eslint-disable-next-line class-methods-use-this
-  _resizeGridElement(element) {
-    console.log(this.renderRoot);
-    console.log('resize this grid element', element);
+  async _resizeGridElement(element) {
     const grid = this.shadowRoot.querySelector('[grid]');
-    console.log('CONTAINER: ', grid);
+    const gridWidth = grid.clientWidth;
+
     const rowHeight = parseInt(
-      window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'),
+      window.getComputedStyle(grid).getPropertyValue('grid-template-rows'),
       10,
     );
 
-    console.log('WINDOW? ', window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-    console.log(`ROW HEIGHT:`, rowHeight);
-    console.log(`DeepActive: `, this.deepActiveElement());
     const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'), 10);
-    console.log(`ROW GAP:`, rowGap);
-    console.log(`debug `, this.shadowRoot.querySelector('[grid]').querySelector('[item]'));
-    const item = this.shadowRoot.querySelector('[grid]').querySelector('[item]');
-    console.log(`item: `, item);
-    let height;
-    height = (async () => {
-      await item.getContentHeight();
-    })();
 
-    console.log(`WHERE?!`, height);
-    console.log(
-      `does it work?`,
-      item.getContentHeight().then(data => {
-        height = data;
-      }),
+    const columnWidth = parseInt(
+      window.getComputedStyle(grid).getPropertyValue('grid-template-columns'),
+      10,
     );
-    console.log(`WHERE?!`, height);
-    console.log(`does it work?`, item.getContentWidth());
+
+    const columnGap = parseInt(
+      window.getComputedStyle(grid).getPropertyValue('grid-column-gap'),
+      10,
+    );
+
+    let height = await element.getContentHeight();
+    height = height.replace(/\D/g, '');
+
+    let width = await element.getContentWidth();
+    width = width.replace(/\D/g, '');
+
     // TODO: create element 'conttent' that all content classes can inherit from with a method to return the height
-    // elements should be
-    // const itemShadow = item.attachShadow({mode: 'open'});
-    // console.log(`itemShaow: `, itemShadow);
-    // console.log(`did it work? `,itemShadow.querySelector('[content]'));
-    const rowSpan = Math.ceil(
-      (element.querySelector('[content]').getBoundingClientRect().height + rowGap) /
-        (rowHeight + rowGap),
-    );
-    console.log(`ROW SPAN:`, rowSpan);
 
-    // element.style.gridRowEnd = `span ${rowSpan}`;
+    const rowSpan = Math.ceil(height / (rowHeight + rowGap));
+
+    const columnSpan = Math.ceil(width / (columnWidth + columnGap));
+
+    element.style.gridRowEnd = `span ${rowSpan}`;
+
+    element.style.gridColumnEnd = `span ${columnSpan}`;
+
+    // ford (n) columns, there are (n-1) gaps
+    const noOfColumns = parseInt((gridWidth + columnGap) / (columnWidth + columnGap), 10);
+
+    // TODO: maybe try with some more realistic data before deciding a chaos element is necessary?
+    if (element.id % 10 === 0) {
+      // try to include span?
+      // e.g. a span of 7 means it should start on a factor of 7
+      element.style.gridColumn = `${columnSpan + 1}`;
+
+      element.style.gridRowEnd = `span ${rowSpan}`;
+
+      element.style.gridColumnEnd = `span ${columnSpan}`;
+    } else if (element.id % 3 === 0) {
+      // element.style.gridColumn = `${parseInt((noOfColumns / 3), 10)}`;
+
+      element.style.gridRowEnd = `span ${rowSpan}`;
+
+      element.style.gridColumnEnd = `span ${columnSpan}`;
+    } else {
+      element.style.gridRowEnd = `span ${rowSpan}`;
+
+      element.style.gridColumnEnd = `span ${columnSpan}`;
+    }
   }
 
   _resizeAllGridElements() {
     const allItems = this.shadowRoot.querySelectorAll('[item]');
-    // const allItemsArry = Array.from(allItems);
     allItems.forEach(element => this._resizeGridElement(element));
-    // console.log('ALL ITEMS', allItemsArry);
-    // for (let i = 0; i < allItemsArry.length; i += 1) {
-    //   this._resizeGridElement(allItemsArry[i]);
-    // }
   }
-
-  //  function resizeAllGridElements(){
-  //   allElements = this.shadowRoot.querySelector('#container');
-  //   for(x=0;x<allItems.length;x++){
-  //      resizeGridItem(allItems[x]);
-  //   }
-  // }
-
-  deepActiveElement() {
-    const element = this.shadowRoot.activeElement;
-    console.log(`Active: `, element);
-    let elementShadow;
-    while (element && element.shadowRoot && element.shadowRoot.activeElement) {
-      console.log('TRUE');
-      elementShadow = element.shadowRoot.activeElement;
-    }
-    return elementShadow;
-  }
-
-  // deepActiveElement() {
-  //   let a = document.activeElement;
-  //   while (a && a.shadowRoot && a.shadowRoot.activeElement) {
-  //     a = a.shadowRoot.activeElement;
-  //   }
-  //   return a;
-  // }
 
   static get element() {
     return 'infinite-scroller';
@@ -139,6 +123,7 @@ export class InfiniteScroller extends LitElement {
     return [];
   }
 
+  // TODO: add event listner for resize to reset number of columns
   firstUpdated() {
     this.shadowRoot
       .querySelector('[scrollingWrapper]')
@@ -146,8 +131,6 @@ export class InfiniteScroller extends LitElement {
 
     this.loadMore();
     this._resizeAllGridElements();
-    window.addEventListener('resize', this._resizeAllGridItems);
-    console.log('first updated');
   }
 
   static register() {
@@ -173,19 +156,18 @@ export class InfiniteScroller extends LitElement {
     }
   }
 
+  _findEmptyGridSpaces() {}
+
   loadMore() {
     // call method later which will be call to DB
     // This used to be +=, but moved that to another method - this may be innefficient but who knows
 
-    // eslint-disable-next-line no-extra-boolean-cast
-    if (!!this.findMore) {
-      this.shadowRoot.querySelector('[grid]').innerHTML = this.findMore(this.max);
-      // this.shadowRoot.getElementById('grid').childNodes.forEach(element => this._editWidth(element));
-      // console.log(this.shadowRoot.getElementById('grid').childNodes.length);
+    if (this.findMore) {
+      this.shadowRoot.querySelector('[grid]').innerHTML += this.findMore(this.max);
+      this._resizeAllGridElements();
     } else {
-      this.shadowRoot.querySelector('[grid]').innerHTML = this._defaultFindMore(this.max);
-      // this.shadowRoot.querySelector('[grid]').innerHTML.forEach(element => this._editWidth(element.id));
-      // console.log(this.shadowRoot.getElementById('grid').childNodes.length);
+      this.shadowRoot.querySelector('[grid]').innerHTML += this._defaultFindMore(this.max);
+      this._resizeAllGridElements();
     }
     this.max += this.max;
   }
@@ -205,7 +187,8 @@ export class InfiniteScroller extends LitElement {
       [grid] {
         display: grid;
         grid-gap: 10px;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-auto-flow: dense;
+        grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
         grid-auto-rows: 20px;
       }
     `;

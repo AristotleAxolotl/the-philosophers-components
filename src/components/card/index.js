@@ -57,17 +57,10 @@ export class Card extends Content {
   }
 
   async getContentHeight() {
-    console.log('getting height');
-    console.log(this.shadowRoot);
-    // could be null as need to await?
-    console.log(this.shadowRoot.querySelector('[content]'));
-    console.log(this.cardSize);
-    // console.log(this.shadowRoot.querySelector('[content]').getBoundingClientRect().height);
     return this.cardSize.height;
   }
 
   async getContentWidth() {
-    console.log('getting width');
     return this.cardSize.width;
   }
 
