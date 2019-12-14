@@ -2,9 +2,12 @@
 import { html, css, LitElement } from 'lit-element';
 import { PostBody } from '../post-body';
 import { utils } from '../../../lib';
+import { Content } from '../../../content';
 
 // TODO: post has a body, comment section, upvote/downvote,
-export class Post extends LitElement {
+// TODO: height is returned incorrectly
+// How to get height of these? its fairly dynamic....
+export class Post extends Content {
   static get properties() {
     return {
       postBody: { type: String },
@@ -25,18 +28,47 @@ export class Post extends LitElement {
 
   render() {
     return html`
-      <div content class="content">
-        <post-body>
+      <div content>
+        <post-body body>
           <span slot="mainBodyText">${this.postBody}</span>
         </post-body>
       </div>
     `;
   }
 
+  async getContentHeight() {
+    const content = this.shadowRoot.querySelector('[content]');
+
+    console.log('Client from within: ', content.getBoundingClientRect().height);
+    return content.clientHeight;
+  }
+
+  async getContentWidth() {
+    const content = this.shadowRoot.querySelector('[content]');
+    console.log('Client from within: ', content.clientWidth)
+    return content.clientWidth;
+  }
+
+  firstUpdated(){
+     this.getContentHeight();
+     this.getContentWidth();
+  }
+
+  _getDimensions(type){
+    return (type === "height") ? this.getContentHeight() : this.getContentWidth();
+  }
+
+
   static get styles() {
     return css`
       * {
         margin: 5px;
+      }
+
+      [content] {
+        display: block;
+        height: 100%;
+        width: 100%;
       }
     `;
   }

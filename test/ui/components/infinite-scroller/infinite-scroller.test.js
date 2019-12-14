@@ -10,11 +10,14 @@ describe('<infinite-scroller>', () => {
       InfiniteScroller.register();
       el = await fixture('<infinite-scroller id="demoScroller"></infinite-scroller>');
     });
+    it('should have a property, max, defaulting to 50, doubling to 100 after loading', async () => {
+      expect(el.max).to.equal(100);
+    });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-      <div container="" id="container">
-        <div id="scrollingWrapper" scrollingwrapper="">
-          <div grid="" id="grid">
+      <div gridcontainer="">
+        <div scrollingwrapper="">
+          <div grid="">
             <blog-post class="item" id="0" postbody="0">
             </blog-post>
             <blog-post class="item" id="1" postbody="1">
@@ -55,6 +58,66 @@ describe('<infinite-scroller>', () => {
             </blog-post>
             <blog-post class="item" id="19" postbody="19">
             </blog-post>
+            <blog-post class="item" id="20" postbody="20">
+            </blog-post>
+            <blog-post class="item" id="21" postbody="21">
+            </blog-post>
+            <blog-post class="item" id="22" postbody="22">
+            </blog-post>
+            <blog-post class="item" id="23" postbody="23">
+            </blog-post>
+            <blog-post class="item" id="24" postbody="24">
+            </blog-post>
+            <blog-post class="item" id="25" postbody="25">
+            </blog-post>
+            <blog-post class="item" id="26" postbody="26">
+            </blog-post>
+            <blog-post class="item" id="27" postbody="27">
+            </blog-post>
+            <blog-post class="item" id="28" postbody="28">
+            </blog-post>
+            <blog-post class="item" id="29" postbody="29">
+            </blog-post>
+            <blog-post class="item" id="30" postbody="30">
+            </blog-post>
+            <blog-post class="item" id="31" postbody="31">
+            </blog-post>
+            <blog-post class="item" id="32" postbody="32">
+            </blog-post>
+            <blog-post class="item" id="33" postbody="33">
+            </blog-post>
+            <blog-post class="item" id="34" postbody="34">
+            </blog-post>
+            <blog-post class="item" id="35" postbody="35">
+            </blog-post>
+            <blog-post class="item" id="36" postbody="36">
+            </blog-post>
+            <blog-post class="item" id="37" postbody="37">
+            </blog-post>
+            <blog-post class="item" id="38" postbody="38">
+            </blog-post>
+            <blog-post class="item" id="39" postbody="39">
+            </blog-post>
+            <blog-post class="item" id="40" postbody="40">
+            </blog-post>
+            <blog-post class="item" id="41" postbody="41">
+            </blog-post>
+            <blog-post class="item" id="42" postbody="42">
+            </blog-post>
+            <blog-post class="item" id="43" postbody="43">
+            </blog-post>
+            <blog-post class="item" id="44" postbody="44">
+            </blog-post>
+            <blog-post class="item" id="45" postbody="45">
+            </blog-post>
+            <blog-post class="item" id="46" postbody="46">
+            </blog-post>
+            <blog-post class="item" id="47" postbody="47">
+            </blog-post>
+            <blog-post class="item" id="48" postbody="48">
+            </blog-post>
+            <blog-post class="item" id="49" postbody="49">
+            </blog-post>
           </div>
         </div>
       </div>
@@ -62,9 +125,6 @@ describe('<infinite-scroller>', () => {
     });
     it('should have a default find more method', async () => {
       expect(typeof el.findMore).to.equal('function');
-    });
-    it('should have a property, max, defaulting to 20', async () => {
-      expect(el.max).to.equal(40);
     });
   });
   describe('custom behaviour', () => {

@@ -12,17 +12,17 @@ describe('<philosophers-card>', () => {
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-      <div class="content" content="" id="content">
-        <div cardwrapper="" id="cardWrapper" medium="">
-          <div id="imageWrapper" imagewrapper="">
-            <img id="image" src="../../../resources/axolotl.jpg">
-          </div>
-          <div id="textWrapper" textwrapper="">
-            <p text="">
-              <slot name="cardText">
-              </slot>
-            </p>
-          </div>
+      <div cardWrapper content style="width: 200px; height: 200px;">
+        <div imagewrapper>
+          <philosophers-image image imgsrc="../../../resources/axolotl.jpg"
+            style='background-image: url("../../../resources/axolotl.jpg");'>
+          </philosophers-image>
+        </div>
+        <div textwrapper>
+          <p text>
+            <slot name="cardText">
+            </slot>
+          </p>
         </div>
       </div>
       `);

@@ -22,7 +22,6 @@ export class Card extends Content {
     super();
     this.imgSrc = '../../../resources/axolotl.jpg';
     this.cardLink = 'http://localhost:8000/demo/cardLink';
-    this.cardType = 'medium';
     // split out into seperate
     this.cardSize = { width: '200px', height: '200px' };
   }
@@ -36,7 +35,6 @@ export class Card extends Content {
     return {
       imgSrc: { type: String },
       cardLink: { type: String },
-      cardType: { type: String },
       cardSize: { type: Object },
     };
   }

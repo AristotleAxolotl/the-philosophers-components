@@ -11,7 +11,6 @@ function _toDoubleIntFormat(int) {
   }
   return int;
 }
-// TODO: post has a body, comment section, upvote/downvote,
 export class PhilosophersDate extends LitElement {
   static get properties() {
     return {
@@ -152,5 +151,3 @@ export class PhilosophersDate extends LitElement {
     this.dateCreated = new Date();
   }
 }
-
-// customElements.define('philosophers-date', PhilosophersDate);

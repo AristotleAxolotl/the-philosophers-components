@@ -10,6 +10,7 @@ import { utils } from '../lib';
 // TODO: content should have observable properties height&width
 // TODO: these can be grabbed and set by encapsulation
 // TODO: could have a method for requested size? then this can control how close to it it gets to render it.
+// TODO: check if size is just over half, if it is make it half
 export class InfiniteScroller extends LitElement {
   static get properties() {
     return {
@@ -74,8 +75,6 @@ export class InfiniteScroller extends LitElement {
 
     let width = await element.getContentWidth();
     width = width.replace(/\D/g, '');
-
-    // TODO: create element 'conttent' that all content classes can inherit from with a method to return the height
 
     const rowSpan = Math.ceil(height / (rowHeight + rowGap));
 

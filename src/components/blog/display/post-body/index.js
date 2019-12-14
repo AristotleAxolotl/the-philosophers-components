@@ -64,7 +64,7 @@ export class PostBody extends LitElement {
       }
       [post] {
         padding: 7px;
-        /* display: flex; */
+        display: block;
         background-color: #1F2833;
         /* border-left: 5px solid blue; */
         border-bottom: 5px solid #66FCF1;
@@ -93,6 +93,7 @@ export class PostBody extends LitElement {
       [postText] {
         color: #C5C6C7;
         width: 100%;
+        height: 100%;
       }
 
       [subtitle] {

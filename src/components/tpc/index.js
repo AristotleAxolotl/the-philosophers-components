@@ -19,11 +19,10 @@ export class ThePhilosophersComponents extends LitElement {
           This should be an axolotl?
         </span>
       </philosophers-card>
-      <blog-post>
-        <span slot="mainBodyText">
-          text yo
-        </span></blog-post
-      >
+      <div postContainer>
+        <blog-post demoPost postBody="main body yo">
+        </blog-post>
+      </div>
       <create-blog-post></create-blog-post>
       <div imageContainer>
         <philosophers-image></philosophers-image>
@@ -51,6 +50,8 @@ export class ThePhilosophersComponents extends LitElement {
 
   firstUpdated() {
     this.shadowRoot.querySelector('#demoScroller').findMore = this.methodToGet;
+
+    console.log("blegh ", this.shadowRoot.querySelector('[postContainer]').querySelector('[demoPost]')._getDimensions('height'));
   }
 
   static get element() {
@@ -70,6 +71,11 @@ export class ThePhilosophersComponents extends LitElement {
       [imageContainer] {
         height: 200px;
         width: 400px;
+      }
+
+      [postContainer] {
+        width: 100%;
+        height: 100%;
       }
     `;
   }

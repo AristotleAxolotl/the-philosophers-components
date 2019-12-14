@@ -24,6 +24,10 @@ describe('<the-philosophers-components>', () => {
           </span>
         </blog-post>
         <create-blog-post></create-blog-post>
+        <div imagecontainer="">
+          <philosophers-image style='background-image: url("../../../resources/axolotl.jpg");'>
+          </philosophers-image>
+        </div>
         <infinite-scroller id="demoScroller"></infinite-scroller>
       `);
     });
