@@ -9,6 +9,8 @@ import { Image } from '../image';
 import { utils } from '../lib';
 import { Content } from '../content';
 
+import { CUSTOM_ELEMENT_LOADED } from '../../events';
+
 // instead of having the method do the resizing, which seems impossible,
 // extract method to be used by classes that use it & override size attributes when creating card. BLEGH.
 // OR MAYBE
@@ -24,6 +26,7 @@ export class Card extends Content {
     this.cardLink = 'http://localhost:8000/demo/cardLink';
     // split out into seperate
     this.cardSize = { width: '200px', height: '200px' };
+    this._loaded = false;
   }
 
   updated() {
@@ -36,6 +39,7 @@ export class Card extends Content {
       imgSrc: { type: String },
       cardLink: { type: String },
       cardSize: { type: Object },
+      _loaded: { type: Boolean },
     };
   }
 
@@ -55,11 +59,23 @@ export class Card extends Content {
   }
 
   async getContentHeight() {
-    return this.cardSize.height;
+    if (!this._loaded) {
+      console.log('please wait for the element to load before requesting size');
+      return;
+    }
+    const content = this.shadowRoot.querySelector('[content]');
+    return content.clientHeight;
+    // return this.cardSize.height;
   }
 
   async getContentWidth() {
-    return this.cardSize.width;
+    if (!this._loaded) {
+      console.log('please wait for the element to load before requesting size');
+      return;
+    }
+    const content = this.shadowRoot.querySelector('[content]');
+    return content.clientWidth;
+    // return this.cardSize.width;
   }
 
   _followLink() {
@@ -113,5 +129,36 @@ export class Card extends Content {
         color: #c5c6c7;
       }
     `;
+  }
+
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    // TODO: Resize listeners should probably be in the parent class (i.e. infini-scroller)
+
+    // window.addEventListener('resize', () => {
+    //   this._loaded = true;
+    // });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOMContentLoaded, philosophers-card');
+      this._loaded = true;
+      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+    });
+  }
+
+  disconnectedCallback() {
+    // window.removeEventListener('resize', () => {
+    //   this._loaded = false;
+    // });
+
+    document.removeEventListener('DOMContentLoaded', () => {
+      console.log('DOMContentLoaded');
+      this._loaded = false;
+      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+    });
+
+    super.disconnectedCallback();
   }
 }

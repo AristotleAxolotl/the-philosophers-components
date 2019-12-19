@@ -28,7 +28,7 @@ export class ThePhilosophersComponents extends LitElement {
       <div imageContainer>
         <philosophers-image></philosophers-image>
       </div>
-      <infinite-scroller id="demoScroller"></infinite-scroller>
+      <infinite-scroller demoScroller></infinite-scroller>
     `;
   }
 
@@ -50,7 +50,7 @@ export class ThePhilosophersComponents extends LitElement {
   }
 
   firstUpdated() {
-    this.shadowRoot.querySelector('#demoScroller').findMore = this.methodToGet;
+    this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGet;
 
     const targetNode = this.shadowRoot.querySelector('[demoPost]');
 

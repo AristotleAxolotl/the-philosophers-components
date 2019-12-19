@@ -41,7 +41,7 @@ export class InfiniteScroller extends LitElement {
   _defaultFindMore(noToGet) {
     for (let i = noToGet - this.max; i < noToGet; i += 1) {
       this.component += `
-      <blog-post class="item" id=${i} postBody=${i}>
+      <blog-post item id=${i} postBody=${i}>
       </blog-post>
       `;
     }
@@ -71,10 +71,10 @@ export class InfiniteScroller extends LitElement {
     );
 
     let height = await element.getContentHeight();
-    height = height.replace(/\D/g, '');
+    // height = height.replace(/\D/g, '');
 
     let width = await element.getContentWidth();
-    width = width.replace(/\D/g, '');
+    // width = width.replace(/\D/g, '');
 
     const rowSpan = Math.ceil(height / (rowHeight + rowGap));
 
@@ -128,8 +128,15 @@ export class InfiniteScroller extends LitElement {
       .querySelector('[scrollingWrapper]')
       .addEventListener('scroll', () => this.scroller());
 
+    // targetNode.addEventListener('custom-element-loaded', e => {
+    //   console.log(e.detail);
+    //   console.log(e.target.getContentHeight());
+    //   console.log(e.target.getContentWidth());
+    // });
+
     this.loadMore();
-    this._resizeAllGridElements();
+
+    // this._resizeAllGridElements();
   }
 
   static register() {
@@ -155,6 +162,20 @@ export class InfiniteScroller extends LitElement {
     }
   }
 
+  _addEventListeners(){
+    this.shadowRoot
+    .querySelector('[grid]')
+    .querySelectorAll('[item]')
+    .forEach(element => {
+      element.addEventListener('custom-element-loaded', e => {
+        console.log('infini-scroller ', e.detail);
+        console.log(e.target.getContentHeight());
+        console.log(e.target.getContentWidth());
+        this._resizeGridElement(element);
+      });
+    });
+  }
+
   _findEmptyGridSpaces() {}
 
   loadMore() {
@@ -163,10 +184,12 @@ export class InfiniteScroller extends LitElement {
 
     if (this.findMore) {
       this.shadowRoot.querySelector('[grid]').innerHTML += this.findMore(this.max);
-      this._resizeAllGridElements();
+      this._addEventListeners();
+      // this._resizeAllGridElements();
     } else {
       this.shadowRoot.querySelector('[grid]').innerHTML += this._defaultFindMore(this.max);
-      this._resizeAllGridElements();
+      this._addEventListeners();
+      // this._resizeAllGridElements();
     }
     this.max += this.max;
   }
