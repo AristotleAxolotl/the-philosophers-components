@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { PhilosophersDate, CreatePhilosophersDate } from './components/date';
 import { NavBar, NavCard } from './components/navigation';
-import { Post, PostBody, PostComments, PostUtilitiesBar } from './components/blog/display';
+import { BlogPost, PostBody, PostComments, PostUtilitiesBar } from './components/blog/display';
 import { CreatePost, CreatePostBody } from './components/blog/create';
 import { CreatePhilosophersTags, PhilosophersTags } from './components/tags';
 import { InfiniteScroller } from './components/infinite-scroller';
@@ -14,7 +14,7 @@ export {
   CreatePhilosophersDate,
   NavBar,
   NavCard,
-  Post,
+  BlogPost,
   PostBody,
   PostComments,
   PostUtilitiesBar,

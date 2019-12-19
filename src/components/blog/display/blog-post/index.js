@@ -1,16 +1,19 @@
 /* eslint-disable import/extensions */
-import { html, css, LitElement } from 'lit-element';
+import { html, css } from 'lit-element';
 import { PostBody } from '../post-body';
 import { utils } from '../../../lib';
 import { Content } from '../../../content';
+import { CUSTOM_ELEMENT_LOADED } from '../../../../events';
 
 // TODO: post has a body, comment section, upvote/downvote,
 // TODO: height is returned incorrectly
+// TODO: based on number of characters in text (since everything else stays the same) set height+width
 // How to get height of these? its fairly dynamic....
-export class Post extends Content {
+export class BlogPost extends Content {
   static get properties() {
     return {
       postBody: { type: String },
+      _loaded: { type: Boolean },
     };
   }
 
@@ -23,7 +26,7 @@ export class Post extends Content {
   }
 
   static register() {
-    utils.register(Post);
+    utils.register(BlogPost);
   }
 
   render() {
@@ -37,27 +40,22 @@ export class Post extends Content {
   }
 
   async getContentHeight() {
+    if (!this._loaded) {
+      console.log('please wait for the element to load before requesting size');
+      return;
+    }
     const content = this.shadowRoot.querySelector('[content]');
-
-    console.log('Client from within: ', content.getBoundingClientRect().height);
     return content.clientHeight;
   }
 
   async getContentWidth() {
+    if (!this._loaded) {
+      console.log('please wait for the element to load before requesting size');
+      return;
+    }
     const content = this.shadowRoot.querySelector('[content]');
-    console.log('Client from within: ', content.clientWidth)
     return content.clientWidth;
   }
-
-  firstUpdated(){
-     this.getContentHeight();
-     this.getContentWidth();
-  }
-
-  _getDimensions(type){
-    return (type === "height") ? this.getContentHeight() : this.getContentWidth();
-  }
-
 
   static get styles() {
     return css`
@@ -84,7 +82,37 @@ export class Post extends Content {
     Ei ius tation utroque, eum et possim adipisci. Quas idque dolores eu vim, vix ne feugiat inciderint temporibus. Cibo decore repudiare vix ne, senserit iracundia est ei. Sea simul molestiae eu. Et qui ponderum apeirian, nonumes consectetuer his id. An mel iudico sensibus, pericula omittantur ut eam.
 
     Te mei eleifend theophrastus, minim putant repudiandae te sed, eam ne nostrud vituperata. Dicat laoreet pro id, id qui fuisset epicuri. Tantas denique facilisis nam at, vis ei populo quaeque accommodare, ei solet oportere his. Mei in tritani dissentiet. Tacimates euripidis honestatis sed an, ut ipsum velit omnium duo. Sed et sonet veniam semper, cum ut virtute recusabo contentiones, nec ut dicit electram.`;
+
+    this._loaded = false;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    // TODO: Resize listeners should probably be in the parent class (i.e. infini-scroller)
+
+    // window.addEventListener('resize', () => {
+    //   this._loaded = true;
+    // });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOMContentLoaded, blog-post');
+      this._loaded = true;
+      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+    });
+  }
+
+  disconnectedCallback() {
+    // window.removeEventListener('resize', () => {
+    //   this._loaded = false;
+    // });
+
+    document.removeEventListener('DOMContentLoaded', () => {
+      console.log('DOMContentLoaded');
+      this._loaded = false;
+      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+    });
+
+    super.disconnectedCallback();
   }
 }
-
-// customElements.define('blog-post', Post);

@@ -41,7 +41,7 @@ export class CreatePhilosophersTags extends LitElement {
           type="text"
           placeholder="Add a tag..."
           keys="enter"
-          on-keys-pressed="${() => this._handleEnter()}"
+          @keys-pressed="${() => this._handleEnter()}"
         />
       </div>
     `;

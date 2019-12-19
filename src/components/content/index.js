@@ -38,5 +38,3 @@ export class Content extends LitElement {
   //   super();
   // }
 }
-
-// customElements.define('content', Content);

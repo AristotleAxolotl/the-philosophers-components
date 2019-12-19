@@ -2,7 +2,7 @@
 import { html, css, LitElement } from 'lit-element';
 
 import { NavBar } from '../navigation';
-import { Post } from '../blog/display';
+import { BlogPost } from '../blog/display';
 import { CreatePost } from '../blog/create';
 import { InfiniteScroller } from '../infinite-scroller';
 import { Card } from '../card';
@@ -20,7 +20,8 @@ export class ThePhilosophersComponents extends LitElement {
         </span>
       </philosophers-card>
       <div postContainer>
-        <blog-post demoPost postBody="main body yo">
+        <blog-post demoPost>
+          <!-- <blog-post demoPost postBody="main body yo"> -->
         </blog-post>
       </div>
       <create-blog-post></create-blog-post>
@@ -51,7 +52,13 @@ export class ThePhilosophersComponents extends LitElement {
   firstUpdated() {
     this.shadowRoot.querySelector('#demoScroller').findMore = this.methodToGet;
 
-    console.log("blegh ", this.shadowRoot.querySelector('[postContainer]').querySelector('[demoPost]')._getDimensions('height'));
+    const targetNode = this.shadowRoot.querySelector('[demoPost]');
+
+    targetNode.addEventListener('custom-element-loaded', e => {
+      console.log(e.detail);
+      console.log(e.target.getContentHeight());
+      console.log(e.target.getContentWidth());
+    });
   }
 
   static get element() {
@@ -59,7 +66,7 @@ export class ThePhilosophersComponents extends LitElement {
   }
 
   static get dependencies() {
-    return [NavBar, Post, CreatePost, InfiniteScroller, Card, Image];
+    return [NavBar, BlogPost, CreatePost, InfiniteScroller, Card, Image];
   }
 
   static register() {
@@ -80,5 +87,3 @@ export class ThePhilosophersComponents extends LitElement {
     `;
   }
 }
-
-// customElements.define('the-philosophers-components', ThePhilosophersComponents);

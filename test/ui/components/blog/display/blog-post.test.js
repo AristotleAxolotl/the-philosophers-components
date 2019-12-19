@@ -4,13 +4,13 @@
 // const fixture = require('@open-wc/testing');
 
 import { expect, fixture } from '@open-wc/testing';
-import { Post } from '../../../../../src/components/blog/display';
+import { BlogPost } from '../../../../../src/components/blog/display';
 
 describe('<blog-post>', () => {
   describe('default behaviour', () => {
     let el;
     beforeEach(async () => {
-      Post.register();
+      BlogPost.register();
       el = await fixture('<blog-post><blog-post/>');
     });
     it('should output the correct structure', async () => {
@@ -36,7 +36,7 @@ describe('<blog-post>', () => {
   describe('custom behaviour', () => {
     let el;
     beforeEach(async () => {
-      Post.register();
+      BlogPost.register();
       el = await fixture(`
       <blog-post>
         <span slot="mainBodyText">
