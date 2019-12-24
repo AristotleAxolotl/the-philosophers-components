@@ -21,27 +21,34 @@ export class CreatePost extends LitElement {
     utils.register(CreatePost);
   }
 
-  _createPost(){
+  // TODO: One day this will be a call to db
+  _createPost() {
     const ele = this.shadowRoot.querySelector('#test');
     let ele2 = ele.shadowRoot.querySelector('#createPost');
     let ele3 = ele2.querySelector('#mainBody');
     let ele4 = ele3.querySelector('#inputPostText');
+    console.log('Post Text: ', ele4);
 
-    ele2 = ele.shadowRoot.querySelector('#extraInfo');
+    const EXTRAINFO = '#extraInfo';
+
+    ele2 = ele.shadowRoot.querySelector(EXTRAINFO);
     ele3 = ele2.querySelector('#resourceLink');
     ele4 = ele3.querySelector('#resourceInput');
+    console.log('Resource Link: ', ele4);
 
-    ele2 = ele.shadowRoot.querySelector('#extraInfo');
+    ele2 = ele.shadowRoot.querySelector(EXTRAINFO);
     ele3 = ele2.querySelector('#dateOfPost');
     ele4 = ele3.querySelector('#createDate');
+    console.log('Post Date: ', ele4);
 
-    ele2 = ele.shadowRoot.querySelector('#extraInfo');
+    ele2 = ele.shadowRoot.querySelector(EXTRAINFO);
     ele3 = ele2.querySelector('#tags');
     ele4 = ele3.querySelector('#createTags');
+    console.log('Post Tags: ', ele4);
   }
 
   // eslint-disable-next-line class-methods-use-this
-  _discardPost(){
+  _discardPost() {
     window.location.reload(false);
   }
 

@@ -26,9 +26,23 @@ export class Content extends LitElement {
     return html``;
   }
 
-  async getContentHeight() {}
+  async getContentHeight() {
+    if (!this._loaded) {
+      console.log('Please wait for the element to load before requesting Height');
+      return null;
+    }
+    const content = this.shadowRoot.querySelector('[content]');
+    return content.clientHeight;
+  }
 
-  async getContentWidth() {}
+  async getContentWidth() {
+    if (!this._loaded) {
+      console.log('Please wait for the element to load before requesting Width.');
+      return null;
+    }
+    const content = this.shadowRoot.querySelector('[content]');
+    return content.clientWidth;
+  }
 
   static get styles() {
     return css``;

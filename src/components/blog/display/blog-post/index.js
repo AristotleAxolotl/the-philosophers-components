@@ -14,6 +14,8 @@ export class BlogPost extends Content {
     return {
       postBody: { type: String },
       _loaded: { type: Boolean },
+      recHeight: { type: String },
+      recWidth: { type: String },
     };
   }
 
@@ -29,6 +31,15 @@ export class BlogPost extends Content {
     utils.register(BlogPost);
   }
 
+  firstUpdated() {
+    const targetNode = this.shadowRoot.querySelector('[body]');
+
+    targetNode.addEventListener('custom-element-loaded', e => {
+      console.log(e.detail);
+      this._setRecommendedDimensions();
+    });
+  }
+
   render() {
     return html`
       <div content>
@@ -37,24 +48,6 @@ export class BlogPost extends Content {
         </post-body>
       </div>
     `;
-  }
-
-  async getContentHeight() {
-    if (!this._loaded) {
-      console.log('please wait for the element to load before requesting size');
-      return;
-    }
-    const content = this.shadowRoot.querySelector('[content]');
-    return content.clientHeight;
-  }
-
-  async getContentWidth() {
-    if (!this._loaded) {
-      console.log('please wait for the element to load before requesting size');
-      return;
-    }
-    const content = this.shadowRoot.querySelector('[content]');
-    return content.clientWidth;
   }
 
   static get styles() {
@@ -67,8 +60,14 @@ export class BlogPost extends Content {
         display: block;
         height: 100%;
         width: 100%;
+        min-width: 466px;
       }
     `;
+  }
+
+  async _setRecommendedDimensions() {
+    this.recWidth = this.shadowRoot.querySelector('[body]').getContentWidth();
+    this.recHeight = this.shadowRoot.querySelector('[body]').getContentHeight();
   }
 
   constructor() {
@@ -108,9 +107,9 @@ export class BlogPost extends Content {
     // });
 
     document.removeEventListener('DOMContentLoaded', () => {
-      console.log('DOMContentLoaded');
-      this._loaded = false;
-      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+      console.log('DOMContentLoaded - remove EventListener');
+      // this._loaded = false;
+      // this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
     });
 
     super.disconnectedCallback();

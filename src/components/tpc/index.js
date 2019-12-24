@@ -32,7 +32,7 @@ export class ThePhilosophersComponents extends LitElement {
     `;
   }
 
-  methodToGet(noToGet) {
+  methodToGetCards(noToGet) {
     for (let i = noToGet - 50; i < noToGet; i += 1) {
       this.component += `
       <philosophers-card item card id=${i} cardLink="http://localhost:8000/demo/cardLinkExample" cardSize='${
@@ -49,15 +49,26 @@ export class ThePhilosophersComponents extends LitElement {
     return this.component;
   }
 
+  methodToGetBlogPosts(noToGet) {
+    for (let i = noToGet - 50; i < noToGet; i += 1) {
+      this.component += `
+      <blog-post item post id=${i}>
+          <!-- <blog-post demoPost postBody="main body yo"> -->
+        </blog-post>
+      `;
+    }
+    return this.component;
+  }
+
   firstUpdated() {
-    this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGet;
+    this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetBlogPosts;
 
     const targetNode = this.shadowRoot.querySelector('[demoPost]');
 
     targetNode.addEventListener('custom-element-loaded', e => {
       console.log(e.detail);
-      console.log(e.target.getContentHeight());
-      console.log(e.target.getContentWidth());
+      console.log('Demo post height: ', e.target.getContentHeight());
+      console.log('Demo post width: ', e.target.getContentWidth());
     });
   }
 

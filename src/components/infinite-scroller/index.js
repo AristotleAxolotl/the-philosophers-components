@@ -1,5 +1,6 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable import/extensions */
+/* eslint-disable no-param-reassign */
 import { html, css, LitElement } from 'lit-element';
 // import { imagesLoaded } from 'imagesloaded';
 import { utils } from '../lib';
@@ -51,7 +52,7 @@ export class InfiniteScroller extends LitElement {
   // TODO: this is apparently supposed to be a aync function - in order to call nested asyncfunctions.
   async _resizeGridElement(element) {
     const grid = this.shadowRoot.querySelector('[grid]');
-    const gridWidth = grid.clientWidth;
+    // const gridWidth = grid.clientWidth;
 
     const rowHeight = parseInt(
       window.getComputedStyle(grid).getPropertyValue('grid-template-rows'),
@@ -70,11 +71,19 @@ export class InfiniteScroller extends LitElement {
       10,
     );
 
-    let height = await element.getContentHeight();
-    // height = height.replace(/\D/g, '');
+    let height;
+    let width;
 
-    let width = await element.getContentWidth();
-    // width = width.replace(/\D/g, '');
+    if (!!element.recHeight && !!element.recWidth) {
+      height = await element.recHeight;
+      width = await element.recWidth;
+      // console.log('REC HW: ', height, width);
+    } else {
+      height = await element.getContentHeight();
+      // height = height.replace(/\D/g, '');
+      width = await element.getContentWidth();
+      // width = width.replace(/\D/g, '');
+    }
 
     const rowSpan = Math.ceil(height / (rowHeight + rowGap));
 
@@ -85,28 +94,28 @@ export class InfiniteScroller extends LitElement {
     element.style.gridColumnEnd = `span ${columnSpan}`;
 
     // ford (n) columns, there are (n-1) gaps
-    const noOfColumns = parseInt((gridWidth + columnGap) / (columnWidth + columnGap), 10);
+    // const noOfColumns = parseInt((gridWidth + columnGap) / (columnWidth + columnGap), 10);
 
     // TODO: maybe try with some more realistic data before deciding a chaos element is necessary?
-    if (element.id % 10 === 0) {
-      // try to include span?
-      // e.g. a span of 7 means it should start on a factor of 7
-      element.style.gridColumn = `${columnSpan + 1}`;
+    // if (element.id % 10 === 0) {
+    //   // try to include span?
+    //   // e.g. a span of 7 means it should start on a factor of 7
+    //   element.style.gridColumn = `${columnSpan + 1}`;
 
-      element.style.gridRowEnd = `span ${rowSpan}`;
+    //   element.style.gridRowEnd = `span ${rowSpan}`;
 
-      element.style.gridColumnEnd = `span ${columnSpan}`;
-    } else if (element.id % 3 === 0) {
-      // element.style.gridColumn = `${parseInt((noOfColumns / 3), 10)}`;
+    //   element.style.gridColumnEnd = `span ${columnSpan}`;
+    // } else if (element.id % 3 === 0) {
+    //   // element.style.gridColumn = `${parseInt((noOfColumns / 3), 10)}`;
 
-      element.style.gridRowEnd = `span ${rowSpan}`;
+    //   element.style.gridRowEnd = `span ${rowSpan}`;
 
-      element.style.gridColumnEnd = `span ${columnSpan}`;
-    } else {
-      element.style.gridRowEnd = `span ${rowSpan}`;
+    //   element.style.gridColumnEnd = `span ${columnSpan}`;
+    // } else {
+    element.style.gridRowEnd = `span ${rowSpan}`;
 
-      element.style.gridColumnEnd = `span ${columnSpan}`;
-    }
+    element.style.gridColumnEnd = `span ${columnSpan}`;
+    // }
   }
 
   _resizeAllGridElements() {
@@ -162,21 +171,20 @@ export class InfiniteScroller extends LitElement {
     }
   }
 
-  _addEventListeners(){
+  _addEventListeners() {
     this.shadowRoot
-    .querySelector('[grid]')
-    .querySelectorAll('[item]')
-    .forEach(element => {
-      element.addEventListener('custom-element-loaded', e => {
-        console.log('infini-scroller ', e.detail);
-        console.log(e.target.getContentHeight());
-        console.log(e.target.getContentWidth());
-        this._resizeGridElement(element);
+      .querySelector('[grid]')
+      .querySelectorAll('[item]')
+      .forEach(element => {
+        element.addEventListener('custom-element-loaded', e => {
+          console.log('infini-scroller ', e.detail);
+          console.log('height: ', e.target.getContentHeight());
+          console.log('width: ', e.target.getContentWidth());
+          // console.log('rec? ', e.target._getRecommendedDimensions());
+          this._resizeGridElement(element);
+        });
       });
-    });
   }
-
-  _findEmptyGridSpaces() {}
 
   loadMore() {
     // call method later which will be call to DB

@@ -44,7 +44,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            value="${_toDoubleIntFormat(this.dateCreated.getDate())}"
+            .value="${_toDoubleIntFormat(this.dateCreated.getDate())}"
             readonly
           />
           <label slash>/</label>
@@ -54,7 +54,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            value="${_toDoubleIntFormat(this.dateCreated.getMonth())}"
+            .value="${_toDoubleIntFormat(this.dateCreated.getMonth())}"
             readonly
           />
           <label slash>/</label>
@@ -64,7 +64,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="9999"
-            value="${Number(this.dateCreated.getFullYear())}"
+            .value="${Number(this.dateCreated.getFullYear())}"
             readonly
           />
         </div>
@@ -76,7 +76,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            value="${_toDoubleIntFormat(this.dateCreated.getHours())}"
+            .value="${_toDoubleIntFormat(this.dateCreated.getHours())}"
             readonly
           />
           <label colon>:</label>
@@ -86,7 +86,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            value="${_toDoubleIntFormat(this.dateCreated.getMinutes())}"
+            .value="${_toDoubleIntFormat(this.dateCreated.getMinutes())}"
             readonly
           />
           <label colon>:</label>
@@ -96,7 +96,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            value="${_toDoubleIntFormat(this.dateCreated.getSeconds())}"
+            .value="${_toDoubleIntFormat(this.dateCreated.getSeconds())}"
             readonly
           />
         </div>
@@ -106,11 +106,11 @@ export class PhilosophersDate extends LitElement {
 
   static get styles() {
     return css`
-          * {
+      * {
         margin: 5px;
       }
       [wrapper] {
-        background-color: #45A29E;
+        background-color: #45a29e;
         display: flex;
         align-items: left;
         justify-content: left;
@@ -133,14 +133,14 @@ export class PhilosophersDate extends LitElement {
         height: 13px;
       }
 
-      input[type=number]:focus{
-        border: 5px solid #66FCF1;
+      input[type='number']:focus {
+        border: 5px solid #66fcf1;
       }
 
       input {
         transition: 0.5s;
         outline: none;
-        background-color: #C5C6C7;
+        background-color: #c5c6c7;
         border: 0;
       }
     `;

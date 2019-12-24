@@ -58,26 +58,6 @@ export class Card extends Content {
     `;
   }
 
-  async getContentHeight() {
-    if (!this._loaded) {
-      console.log('please wait for the element to load before requesting size');
-      return;
-    }
-    const content = this.shadowRoot.querySelector('[content]');
-    return content.clientHeight;
-    // return this.cardSize.height;
-  }
-
-  async getContentWidth() {
-    if (!this._loaded) {
-      console.log('please wait for the element to load before requesting size');
-      return;
-    }
-    const content = this.shadowRoot.querySelector('[content]');
-    return content.clientWidth;
-    // return this.cardSize.width;
-  }
-
   _followLink() {
     window.location = this.cardLink;
   }
@@ -131,7 +111,6 @@ export class Card extends Content {
     `;
   }
 
-
   connectedCallback() {
     super.connectedCallback();
 
@@ -154,9 +133,9 @@ export class Card extends Content {
     // });
 
     document.removeEventListener('DOMContentLoaded', () => {
-      console.log('DOMContentLoaded');
-      this._loaded = false;
-      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+      console.log('DOMContentLoaded - remove EventListener');
+      // this._loaded = false;
+      // this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
     });
 
     super.disconnectedCallback();
