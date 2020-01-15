@@ -25,24 +25,33 @@ export class Card extends Content {
     this.imgSrc = '../../../resources/axolotl.jpg';
     this.cardLink = 'http://localhost:8000/demo/cardLink';
     // split out into seperate
-    this.cardSize = { width: '200px', height: '200px' };
+    this.cardWidth = '200px';
+    this.cardHeight = '200px';
     this._loaded = false;
   }
 
   updated() {
-    this.shadowRoot.querySelector('[cardWrapper]').style.width = this.cardSize.width;
-    this.shadowRoot.querySelector('[cardWrapper]').style.height = this.cardSize.height;
-    this._loaded = true;
+    this.shadowRoot.querySelector('[cardWrapper]').style.width = this.cardWidth;
+    this.shadowRoot.querySelector('[cardWrapper]').style.height = this.cardHeight;
+    if(!this._loaded) this._loaded = true;
     this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_UPDATED);
   }
+
+  // setCardWidth(width){
+  //   this.shadowRoot.querySelector('[cardWrapper]').style.width = width;
+  // }
+
+  // setCardHeight(height){
+  //   this.shadowRoot.querySelector('[cardWrapper]').style.height = height;
+  // }
 
   static get properties() {
     return {
       imgSrc: { type: String },
       cardText: { type: String },
       cardLink: { type: String },
-      cardSize: { type: Object },
-      _loaded: { type: Boolean },
+      cardWidth: { type: String },
+      cardHeight: { type: String },
     };
   }
 
@@ -112,34 +121,5 @@ export class Card extends Content {
         color: #c5c6c7;
       }
     `;
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    // TODO: Resize listeners should probably be in the parent class (i.e. infini-scroller)
-
-    // window.addEventListener('resize', () => {
-    //   this._loaded = true;
-    // });
-
-    document.addEventListener('DOMContentLoaded', e => {
-      console.log('DOMContentLoaded, philosophers-card');
-      this._loaded = true;
-      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
-    });
-  }
-
-  disconnectedCallback() {
-    // window.removeEventListener('resize', () => {
-    //   this._loaded = false;
-    // });
-
-    document.removeEventListener('DOMContentLoaded', e => {
-      console.log('DOMContentLoaded - remove EventListener');
-      // this._loaded = false;
-      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
-    });
-
-    super.disconnectedCallback();
   }
 }

@@ -17,7 +17,6 @@ export class InfiniteScroller extends LitElement {
     return {
       maxLoad: { type: Number },
       maxDisplay: { type: Number },
-      component: { type: String },
       findMore: { type: Function },
     };
   }
@@ -37,24 +36,40 @@ export class InfiniteScroller extends LitElement {
     super();
     this.maxLoad = 20;
     this.maxDisplay = 20;
-    this.component = '';
     // this.findMore = this._defaultFindMore;
   }
 
-  _defaultFindMore(noToLoad, noToShow) {
-    let extraLoaded;
+  _defaultFindMore(noToShow, noToLoad, eleReference) {
+    let elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
-      extraLoaded += `
-      <blog-post item post id=${i} postBody=${i}>
-      </blog-post>
-      `;
+      const element = document.createElement(eleReference);
+
+      element.id = i;
+      element.cardLink = 'http://localhost:8000/demo/cardLinkExample';
+      element.cardWidth = i % 2 === 0 ? '200px' : '500px';
+      element.cardHeight = i % 2 === 0 ? '200px' : '500px';
+
+      const card = document.createAttribute('card');
+      const item = document.createAttribute('item');
+
+      element.setAttributeNodeNS(card);
+      element.setAttributeNodeNS(item);
+      element.cardText = i;
+      // element.addEventListener('custom-element-loaded', e => {
+      //   console.log('infini-scroller ', e.detail);
+      //   console.log('height: ', e.target.getContentHeight());
+      //   console.log('width: ', e.target.getContentWidth());
+      //   // console.log('rec? ', e.target._getRecommendedDimensions());
+      //   this._resizeGridElement(element);
+      // });
+      elementList.push(element);
     }
-    return extraLoaded;
+    return elementList;
   }
 
   // TODO: this is apparently supposed to be a aync function - in order to call nested asyncfunctions.
   async _resizeGridElement(element) {
-    console.log('resizing: ', element);
+    // console.log('resizing: ', element);
     const grid = this.shadowRoot.querySelector('[grid]');
     // const gridWidth = grid.clientWidth;
 
@@ -125,22 +140,22 @@ export class InfiniteScroller extends LitElement {
       .querySelector('[scrollingWrapper]')
       .addEventListener('scroll', () => this.scroller());
 
-    console.log(this.shadowRoot.querySelector('[grid]'));
+    // console.log(this.shadowRoot.querySelector('[grid]'));
     let observer = new MutationObserver(mutationRecords => {
-      console.log(`Change detected: ${mutationRecords}`);
+      // console.log(`Change detected: ${mutationRecords}`);
       mutationRecords.forEach(mutation => {
-        console.log(mutation);
-        console.log(mutation.target);
-        console.log(mutation.addedNodes);
+        // console.log(mutation);
+        // console.log(mutation.target);
+        // console.log(mutation.addedNodes);
         mutation.addedNodes.forEach(node => {
           // this._resizeGridElement(node);
           node.addEventListener('custom-element-updated', e => {
-            console.log('infini-scroller ', e.detail);
-            console.log('height: ', e.target.getContentHeight());
-            console.log('width: ', e.target.getContentWidth());
+            // console.log('infini-scroller ', e.detail);
+            // console.log('height: ', e.target.getContentHeight());
+            // console.log('width: ', e.target.getContentWidth());
             this._resizeGridElement(node);
           });
-        })
+        });
       });
     });
 
@@ -216,30 +231,34 @@ export class InfiniteScroller extends LitElement {
     // This used to be +=, but moved that to another method - this may be innefficient but who knows
 
     if (!!this.findMore) {
-      console.log('loading more...');
-
+      // console.log('loading more...');
+      const elementList = this.findMore(this.maxDisplay, this.maxLoad);
+      elementList.forEach(element => this.shadowRoot.querySelector('[grid]').appendChild(element));
       // ATTEMPT with DOM functions
-      for (let i = this.maxDisplay - this.maxLoad; i < this.maxDisplay; i += 1) {
-        const element = document.createElement('philosophers-card');
-        element.id = i;
-        element.cardLink = 'http://localhost:8000/demo/cardLinkExample';
-        element.cardSize =
-          i % 2 === 0 ? { width: '200px', height: '200px' } : { width: '500px', height: '500px' };
-        const card = document.createAttribute('card');
-        const item = document.createAttribute('item');
-        element.setAttributeNodeNS(card);
-        element.setAttributeNodeNS(item);
-        element.cardText = i;
-        // element.addEventListener('custom-element-loaded', e => {
-        //   console.log('infini-scroller ', e.detail);
-        //   console.log('height: ', e.target.getContentHeight());
-        //   console.log('width: ', e.target.getContentWidth());
-        //   // console.log('rec? ', e.target._getRecommendedDimensions());
-        //   this._resizeGridElement(element);
-        // });
-        console.log(element);
-        this.shadowRoot.querySelector('[grid]').appendChild(element);
-      }
+      // for (let i = this.maxDisplay - this.maxLoad; i < this.maxDisplay; i += 1) {
+      //   const element = document.createElement('philosophers-card');
+
+      //   element.id = i;
+      //   element.cardLink = 'http://localhost:8000/demo/cardLinkExample';
+      //   element.cardWidth = i % 2 === 0 ? '200px' : '500px';
+      //   element.cardHeight = i % 2 === 0 ? '200px' : '500px';
+
+      //   const card = document.createAttribute('card');
+      //   const item = document.createAttribute('item');
+
+      //   element.setAttributeNodeNS(card);
+      //   element.setAttributeNodeNS(item);
+      //   element.cardText = i;
+      //   // element.addEventListener('custom-element-loaded', e => {
+      //   //   console.log('infini-scroller ', e.detail);
+      //   //   console.log('height: ', e.target.getContentHeight());
+      //   //   console.log('width: ', e.target.getContentWidth());
+      //   //   // console.log('rec? ', e.target._getRecommendedDimensions());
+      //   //   this._resizeGridElement(element);
+      //   // });
+      //   console.log(element);
+      //   this.shadowRoot.querySelector('[grid]').appendChild(element);
+      // }
 
       // this.shadowRoot.querySelector('[grid]').insertAdjacentHTML('beforeend', this.findMore(
       //   this.maxLoad,
@@ -248,10 +267,9 @@ export class InfiniteScroller extends LitElement {
       // this._addEventListeners();
       // this._resizeAllGridElements();
     } else {
-      console.log('default loading more...');
-
-      const element = document.createElement('philosophers-card');
-      this.shadowRoot.querySelector('[grid]').appendChild(element);
+      // console.log('default loading more...');
+      const elementList = this._defaultFindMore(this.maxDisplay, this.maxLoad, 'philosophers-card');
+      elementList.forEach(element => this.shadowRoot.querySelector('[grid]').appendChild(element));
       // this.shadowRoot.querySelector('[grid]').innerHTML += this._defaultFindMore(
       //   this.maxLoad,
       //   this.maxDisplay,

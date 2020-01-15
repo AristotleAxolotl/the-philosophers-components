@@ -5,7 +5,7 @@ import { PhilosophersTags } from '../../../tags/display';
 import { utils } from '../../../lib';
 import { Content } from '../../../content';
 
-import { CUSTOM_ELEMENT_LOADED } from '../../../../events';
+import { CUSTOM_ELEMENT_LOADED, CUSTOM_ELEMENT_UPDATED } from '../../../../events';
 
 // post body has a main body (text), link to resource, date resource added, technology involved tags,
 // TODO: buttons to submit/save for later/cancel
@@ -32,6 +32,11 @@ export class PostBody extends Content {
 
   static register() {
     utils.register(PostBody);
+  }
+
+  updated(){
+    if(!this._loaded) this._loaded = true;
+    this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_UPDATED);
   }
 
   render() {
@@ -119,35 +124,35 @@ export class PostBody extends Content {
     this.resourceLink = 'default resource';
   }
 
-  connectedCallback() {
-    super.connectedCallback();
+  // connectedCallback() {
+  //   super.connectedCallback();
 
-    // TODO: Resize listeners should probably be in the parent class (i.e. infini-scroller)
+  //   // TODO: Resize listeners should probably be in the parent class (i.e. infini-scroller)
 
-    // window.addEventListener('resize', () => {
-    //   this._loaded = true;
-    // });
+  //   // window.addEventListener('resize', () => {
+  //   //   this._loaded = true;
+  //   // });
 
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOMContentLoaded, post-body');
-      this._loaded = true;
-      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
-    });
-  }
+  //   document.addEventListener('DOMContentLoaded', () => {
+  //     console.log('DOMContentLoaded, post-body');
+  //     this._loaded = true;
+  //     this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+  //   });
+  // }
 
-  disconnectedCallback() {
-    // window.removeEventListener('resize', () => {
-    //   this._loaded = false;
-    // });
+  // disconnectedCallback() {
+  //   // window.removeEventListener('resize', () => {
+  //   //   this._loaded = false;
+  //   // });
 
-    document.removeEventListener('DOMContentLoaded', () => {
-      console.log('DOMContentLoaded - remove EventListener');
-      this._loaded = false;
-      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
-    });
+  //   document.removeEventListener('DOMContentLoaded', () => {
+  //     console.log('DOMContentLoaded - remove EventListener');
+  //     this._loaded = false;
+  //     this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+  //   });
 
-    super.disconnectedCallback();
-  }
+  //   super.disconnectedCallback();
+  // }
 }
 
 // customElements.define('post-body', PostBody);

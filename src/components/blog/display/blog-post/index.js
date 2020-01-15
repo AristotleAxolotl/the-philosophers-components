@@ -3,7 +3,7 @@ import { html, css } from 'lit-element';
 import { PostBody } from '../post-body';
 import { utils } from '../../../lib';
 import { Content } from '../../../content';
-import { CUSTOM_ELEMENT_LOADED } from '../../../../events';
+import { CUSTOM_ELEMENT_LOADED, CUSTOM_ELEMENT_UPDATED } from '../../../../events';
 
 // TODO: post has a body, comment section, upvote/downvote,
 // TODO: height is returned incorrectly
@@ -13,7 +13,6 @@ export class BlogPost extends Content {
   static get properties() {
     return {
       postBody: { type: String },
-      _loaded: { type: Boolean },
       recHeight: { type: String },
       recWidth: { type: String },
     };
@@ -33,10 +32,14 @@ export class BlogPost extends Content {
 
   firstUpdated() {
     const targetNode = this.shadowRoot.querySelector('[body]');
-    console.log('TARGET NODE: ', targetNode);
-    targetNode.addEventListener('custom-element-loaded', e => {
+    targetNode.addEventListener('custom-element-updated', e => {
       this._setRecommendedDimensions();
     });
+  }
+
+  updated(){
+    if(!this._loaded) this._loaded = true;
+    this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_UPDATED);
   }
 
   render() {
@@ -67,8 +70,6 @@ export class BlogPost extends Content {
   _setRecommendedDimensions() {
     this.recWidth = this.shadowRoot.querySelector('[body]').getContentWidth();
     this.recHeight = this.shadowRoot.querySelector('[body]').getContentHeight();
-    console.log('REC W: ', this.recWidth);
-    console.log('REC H:', this.recHeight);
   }
 
   constructor() {
@@ -86,33 +87,33 @@ export class BlogPost extends Content {
     this._loaded = false;
   }
 
-  connectedCallback() {
-    super.connectedCallback();
+  // connectedCallback() {
+  //   super.connectedCallback();
 
-    // TODO: Resize listeners should probably be in the parent class (i.e. infini-scroller)
+  //   // TODO: Resize listeners should probably be in the parent class (i.e. infini-scroller)
 
-    // window.addEventListener('resize', () => {
-    //   this._loaded = true;
-    // });
+  //   // window.addEventListener('resize', () => {
+  //   //   this._loaded = true;
+  //   // });
 
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOMContentLoaded, blog-post');
-      this._loaded = true;
-      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
-    });
-  }
+  //   document.addEventListener('DOMContentLoaded', () => {
+  //     console.log('DOMContentLoaded, blog-post');
+  //     this._loaded = true;
+  //     this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+  //   });
+  // }
 
-  disconnectedCallback() {
-    // window.removeEventListener('resize', () => {
-    //   this._loaded = false;
-    // });
+  // disconnectedCallback() {
+  //   // window.removeEventListener('resize', () => {
+  //   //   this._loaded = false;
+  //   // });
 
-    document.removeEventListener('DOMContentLoaded', () => {
-      console.log('DOMContentLoaded - remove EventListener');
-      this._loaded = false;
-      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
-    });
+  //   document.removeEventListener('DOMContentLoaded', () => {
+  //     console.log('DOMContentLoaded - remove EventListener');
+  //     this._loaded = false;
+  //     this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+  //   });
 
-    super.disconnectedCallback();
-  }
+  //   super.disconnectedCallback();
+  // }
 }

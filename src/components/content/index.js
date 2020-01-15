@@ -5,9 +5,18 @@
 import { html, css, LitElement } from 'lit-element';
 import { utils } from '../lib';
 
+import { CUSTOM_ELEMENT_LOADED, CUSTOM_ELEMENT_UPDATED } from '../../events';
+
 export class Content extends LitElement {
   static get properties() {
-    return {};
+    return {
+      _loaded: { type: String },
+    };
+  }
+
+  constructor() {
+    super();
+    this._loaded = false;
   }
 
   static get element() {
@@ -20,6 +29,11 @@ export class Content extends LitElement {
 
   static register() {
     utils.register(Content);
+  }
+
+  updated() {
+    // this._loaded = true;
+    // this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_UPDATED);
   }
 
   render() {
@@ -47,8 +61,4 @@ export class Content extends LitElement {
   static get styles() {
     return css``;
   }
-
-  // constructor() {
-  //   super();
-  // }
 }

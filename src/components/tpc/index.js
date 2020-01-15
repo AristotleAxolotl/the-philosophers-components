@@ -32,41 +32,66 @@ export class ThePhilosophersComponents extends LitElement {
     `;
   }
 
-  methodToGetCards(noToLoad, noToShow) {
-    let extraLoaded;
+  methodToGetCards(noToShow, noToLoad) {
+    let elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
-      extraLoaded += `
-      <philosophers-card item card id=${i} cardLink="http://localhost:8000/demo/cardLinkExample" cardSize='${
-        i % 2 === 0
-          ? `{ "width": "200px", "height": "200px"}`
-          : `{ "width": "500px", "height": "500px" }`
-      }'>
-        <span slot="cardText">
-          ${i}
-        </span>
-      </philosophers-card>
-      `;
+      const element = document.createElement('philosophers-card');
+
+      element.id = i;
+      element.cardLink = 'http://localhost:8000/demo/cardLinkExample';
+      element.cardWidth = i % 2 === 0 ? '200px' : '500px';
+      element.cardHeight = i % 2 === 0 ? '200px' : '500px';
+
+      const card = document.createAttribute('card');
+      const item = document.createAttribute('item');
+
+      element.setAttributeNodeNS(card);
+      element.setAttributeNodeNS(item);
+      element.cardText = i;
+      // element.addEventListener('custom-element-loaded', e => {
+      //   console.log('infini-scroller ', e.detail);
+      //   console.log('height: ', e.target.getContentHeight());
+      //   console.log('width: ', e.target.getContentWidth());
+      //   // console.log('rec? ', e.target._getRecommendedDimensions());
+      //   this._resizeGridElement(element);
+      // });
+      elementList.push(element);
     }
-    return extraLoaded;
+    return elementList;
   }
 
 
   // this is refering to component in infiniscroller, maybe should grab the element &doit?
-  methodToGetBlogPosts(noToLoad, noToShow) {
-    let extraLoaded;
+  methodToGetBlogPosts(noToShow, noToLoad) {
+    let elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
-      extraLoaded += `
-      <blog-post item post id=${i}>
-          <!-- <blog-post demoPost postBody="main body yo"> -->
-        </blog-post>
-      `;
+      const element = document.createElement('blog-post');
+
+      element.id = i;
+      element.cardLink = 'http://localhost:8000/demo/cardLinkExample';
+      element.cardWidth = i % 2 === 0 ? '200px' : '500px';
+      element.cardHeight = i % 2 === 0 ? '200px' : '500px';
+
+      const post = document.createAttribute('post');
+      const item = document.createAttribute('item');
+
+      element.setAttributeNodeNS(post);
+      element.setAttributeNodeNS(item);
+      // element.addEventListener('custom-element-loaded', e => {
+      //   console.log('infini-scroller ', e.detail);
+      //   console.log('height: ', e.target.getContentHeight());
+      //   console.log('width: ', e.target.getContentWidth());
+      //   // console.log('rec? ', e.target._getRecommendedDimensions());
+      //   this._resizeGridElement(element);
+      // });
+      elementList.push(element);
     }
-    return extraLoaded;
+    return elementList;
   }
 
   firstUpdated() {
-    // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetBlogPosts;
-    this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetCards;
+    this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetBlogPosts;
+    // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetCards;
 
 
     const targetNode = this.shadowRoot.querySelector('[demoPost]');
