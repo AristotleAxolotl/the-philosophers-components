@@ -33,7 +33,7 @@ export class ThePhilosophersComponents extends LitElement {
   }
 
   methodToGetCards(noToShow, noToLoad) {
-    let elementList = [];
+    const elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
       const element = document.createElement('philosophers-card');
 
@@ -63,7 +63,7 @@ export class ThePhilosophersComponents extends LitElement {
 
   // this is refering to component in infiniscroller, maybe should grab the element &doit?
   methodToGetBlogPosts(noToShow, noToLoad) {
-    let elementList = [];
+    const elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
       const element = document.createElement('blog-post');
 

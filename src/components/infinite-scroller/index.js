@@ -11,7 +11,7 @@ import { utils } from '../lib';
 // TODO: these can be grabbed and set by encapsulation
 // TODO: could have a method for requested size? then this can control how close to it it gets to render it.
 // TODO: check if size is just over half, if it is make it half
-//Have mutation observer here or in child?
+// Have mutation observer here or in child?
 export class InfiniteScroller extends LitElement {
   static get properties() {
     return {
@@ -40,7 +40,7 @@ export class InfiniteScroller extends LitElement {
   }
 
   _defaultFindMore(noToShow, noToLoad, eleReference) {
-    let elementList = [];
+    const elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
       const element = document.createElement(eleReference);
 
@@ -141,7 +141,7 @@ export class InfiniteScroller extends LitElement {
       .addEventListener('scroll', () => this.scroller());
 
     // console.log(this.shadowRoot.querySelector('[grid]'));
-    let observer = new MutationObserver(mutationRecords => {
+    const observer = new MutationObserver(mutationRecords => {
       // console.log(`Change detected: ${mutationRecords}`);
       mutationRecords.forEach(mutation => {
         // console.log(mutation);
@@ -230,7 +230,7 @@ export class InfiniteScroller extends LitElement {
     // call method later which will be call to DB
     // This used to be +=, but moved that to another method - this may be innefficient but who knows
 
-    if (!!this.findMore) {
+    if (this.findMore) {
       // console.log('loading more...');
       const elementList = this.findMore(this.maxDisplay, this.maxLoad);
       elementList.forEach(element => this.shadowRoot.querySelector('[grid]').appendChild(element));
