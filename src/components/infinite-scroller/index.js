@@ -2,7 +2,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-param-reassign */
 import { html, css, LitElement } from 'lit-element';
-// import { imagesLoaded } from 'imagesloaded';
 import { utils } from '../lib';
 
 // TODO: infini scroller should take a component, and a function to call to get more data.
@@ -12,10 +11,12 @@ import { utils } from '../lib';
 // TODO: these can be grabbed and set by encapsulation
 // TODO: could have a method for requested size? then this can control how close to it it gets to render it.
 // TODO: check if size is just over half, if it is make it half
+//Have mutation observer here or in child?
 export class InfiniteScroller extends LitElement {
   static get properties() {
     return {
-      max: { type: Number },
+      maxLoad: { type: Number },
+      maxDisplay: { type: Number },
       component: { type: String },
       findMore: { type: Function },
     };
@@ -34,23 +35,26 @@ export class InfiniteScroller extends LitElement {
 
   constructor() {
     super();
-    this.max = 50;
+    this.maxLoad = 20;
+    this.maxDisplay = 20;
     this.component = '';
-    this.findMore = this._defaultFindMore;
+    // this.findMore = this._defaultFindMore;
   }
 
-  _defaultFindMore(noToGet) {
-    for (let i = noToGet - this.max; i < noToGet; i += 1) {
-      this.component += `
-      <blog-post item id=${i} postBody=${i}>
+  _defaultFindMore(noToLoad, noToShow) {
+    let extraLoaded;
+    for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
+      extraLoaded += `
+      <blog-post item post id=${i} postBody=${i}>
       </blog-post>
       `;
     }
-    return this.component;
+    return extraLoaded;
   }
 
   // TODO: this is apparently supposed to be a aync function - in order to call nested asyncfunctions.
   async _resizeGridElement(element) {
+    console.log('resizing: ', element);
     const grid = this.shadowRoot.querySelector('[grid]');
     // const gridWidth = grid.clientWidth;
 
@@ -97,31 +101,15 @@ export class InfiniteScroller extends LitElement {
     // const noOfColumns = parseInt((gridWidth + columnGap) / (columnWidth + columnGap), 10);
 
     // TODO: maybe try with some more realistic data before deciding a chaos element is necessary?
-    // if (element.id % 10 === 0) {
-    //   // try to include span?
-    //   // e.g. a span of 7 means it should start on a factor of 7
-    //   element.style.gridColumn = `${columnSpan + 1}`;
 
-    //   element.style.gridRowEnd = `span ${rowSpan}`;
-
-    //   element.style.gridColumnEnd = `span ${columnSpan}`;
-    // } else if (element.id % 3 === 0) {
-    //   // element.style.gridColumn = `${parseInt((noOfColumns / 3), 10)}`;
-
-    //   element.style.gridRowEnd = `span ${rowSpan}`;
-
-    //   element.style.gridColumnEnd = `span ${columnSpan}`;
-    // } else {
     element.style.gridRowEnd = `span ${rowSpan}`;
-
     element.style.gridColumnEnd = `span ${columnSpan}`;
-    // }
   }
 
-  _resizeAllGridElements() {
-    const allItems = this.shadowRoot.querySelectorAll('[item]');
-    allItems.forEach(element => this._resizeGridElement(element));
-  }
+  // _resizeAllGridElements() {
+  //   const allItems = this.shadowRoot.querySelectorAll('[item]');
+  //   allItems.forEach(element => this._resizeGridElement(element));
+  // }
 
   static get element() {
     return 'infinite-scroller';
@@ -136,6 +124,31 @@ export class InfiniteScroller extends LitElement {
     this.shadowRoot
       .querySelector('[scrollingWrapper]')
       .addEventListener('scroll', () => this.scroller());
+
+    console.log(this.shadowRoot.querySelector('[grid]'));
+    let observer = new MutationObserver(mutationRecords => {
+      console.log(`Change detected: ${mutationRecords}`);
+      mutationRecords.forEach(mutation => {
+        console.log(mutation);
+        console.log(mutation.target);
+        console.log(mutation.addedNodes);
+        mutation.addedNodes.forEach(node => {
+          // this._resizeGridElement(node);
+          node.addEventListener('custom-element-updated', e => {
+            console.log('infini-scroller ', e.detail);
+            console.log('height: ', e.target.getContentHeight());
+            console.log('width: ', e.target.getContentWidth());
+            this._resizeGridElement(node);
+          });
+        })
+      });
+    });
+
+    observer.observe(this.shadowRoot.querySelector('[grid]'), { childList: true });
+
+    // this.shadowRoot.querySelector('[grid]').addEventListener('custom-element-loaded', e => {
+    //   console.log('delegated:: ', e.target);
+    // });
 
     // targetNode.addEventListener('custom-element-loaded', e => {
     //   console.log(e.detail);
@@ -171,35 +184,83 @@ export class InfiniteScroller extends LitElement {
     }
   }
 
-  _addEventListeners() {
-    this.shadowRoot
-      .querySelector('[grid]')
-      .querySelectorAll('[item]')
-      .forEach(element => {
-        element.addEventListener('custom-element-loaded', e => {
-          console.log('infini-scroller ', e.detail);
-          console.log('height: ', e.target.getContentHeight());
-          console.log('width: ', e.target.getContentWidth());
-          // console.log('rec? ', e.target._getRecommendedDimensions());
-          this._resizeGridElement(element);
-        });
-      });
-  }
+  // _addEventListeners() {
+  //   // console.log(this.shadowRoot.querySelector('[grid]').querySelectorAll('[item]'));
+  //   this.shadowRoot
+  //     .querySelector('[grid]')
+  //     .querySelectorAll('[item]')
+  //     .forEach(element => {
+  //       if (!element.style.gridRowEnd && !element.style.gridColumnEnd) {
+  //         console.log('non-loaded element', element);
+  //         console.log(element._loaded);
+  //         //This is not wokring due to event delegation
+  //         //Need to listen in a super-parent class
+  //         //Or maybe just here? this might be the super-parent.
+  //         //Or maybe create the element inside the document instead?
+  //         element.addEventListener('custom-element-loaded', e => {
+  //           console.log('infini-scroller ', e.detail);
+  //           console.log('height: ', e.target.getContentHeight());
+  //           console.log('width: ', e.target.getContentWidth());
+  //           // console.log('rec? ', e.target._getRecommendedDimensions());
+  //           this._resizeGridElement(element);
+  //         });
+  //         return;
+  //       }
+  //       console.log('loaded element ', element);
+  //     });
+  // }
 
+  // TODO: this could be optimised by loading one at a time & calling the func 'max' no of times
   loadMore() {
     // call method later which will be call to DB
     // This used to be +=, but moved that to another method - this may be innefficient but who knows
 
-    if (this.findMore) {
-      this.shadowRoot.querySelector('[grid]').innerHTML += this.findMore(this.max);
-      this._addEventListeners();
+    if (!!this.findMore) {
+      console.log('loading more...');
+
+      // ATTEMPT with DOM functions
+      for (let i = this.maxDisplay - this.maxLoad; i < this.maxDisplay; i += 1) {
+        const element = document.createElement('philosophers-card');
+        element.id = i;
+        element.cardLink = 'http://localhost:8000/demo/cardLinkExample';
+        element.cardSize =
+          i % 2 === 0 ? { width: '200px', height: '200px' } : { width: '500px', height: '500px' };
+        const card = document.createAttribute('card');
+        const item = document.createAttribute('item');
+        element.setAttributeNodeNS(card);
+        element.setAttributeNodeNS(item);
+        element.cardText = i;
+        // element.addEventListener('custom-element-loaded', e => {
+        //   console.log('infini-scroller ', e.detail);
+        //   console.log('height: ', e.target.getContentHeight());
+        //   console.log('width: ', e.target.getContentWidth());
+        //   // console.log('rec? ', e.target._getRecommendedDimensions());
+        //   this._resizeGridElement(element);
+        // });
+        console.log(element);
+        this.shadowRoot.querySelector('[grid]').appendChild(element);
+      }
+
+      // this.shadowRoot.querySelector('[grid]').insertAdjacentHTML('beforeend', this.findMore(
+      //   this.maxLoad,
+      //   this.maxDisplay,
+      // ));
+      // this._addEventListeners();
       // this._resizeAllGridElements();
     } else {
-      this.shadowRoot.querySelector('[grid]').innerHTML += this._defaultFindMore(this.max);
-      this._addEventListeners();
+      console.log('default loading more...');
+
+      const element = document.createElement('philosophers-card');
+      this.shadowRoot.querySelector('[grid]').appendChild(element);
+      // this.shadowRoot.querySelector('[grid]').innerHTML += this._defaultFindMore(
+      //   this.maxLoad,
+      //   this.maxDisplay,
+      // );
+      // this._addEventListeners();
       // this._resizeAllGridElements();
     }
-    this.max += this.max;
+    // this._addEventListeners();
+    this.maxDisplay += this.maxLoad;
   }
 
   static get styles() {

@@ -33,9 +33,8 @@ export class BlogPost extends Content {
 
   firstUpdated() {
     const targetNode = this.shadowRoot.querySelector('[body]');
-
+    console.log('TARGET NODE: ', targetNode);
     targetNode.addEventListener('custom-element-loaded', e => {
-      console.log(e.detail);
       this._setRecommendedDimensions();
     });
   }
@@ -65,9 +64,11 @@ export class BlogPost extends Content {
     `;
   }
 
-  async _setRecommendedDimensions() {
+  _setRecommendedDimensions() {
     this.recWidth = this.shadowRoot.querySelector('[body]').getContentWidth();
     this.recHeight = this.shadowRoot.querySelector('[body]').getContentHeight();
+    console.log('REC W: ', this.recWidth);
+    console.log('REC H:', this.recHeight);
   }
 
   constructor() {
@@ -108,8 +109,8 @@ export class BlogPost extends Content {
 
     document.removeEventListener('DOMContentLoaded', () => {
       console.log('DOMContentLoaded - remove EventListener');
-      // this._loaded = false;
-      // this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+      this._loaded = false;
+      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
     });
 
     super.disconnectedCallback();

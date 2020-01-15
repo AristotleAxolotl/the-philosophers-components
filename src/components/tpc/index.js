@@ -28,13 +28,14 @@ export class ThePhilosophersComponents extends LitElement {
       <div imageContainer>
         <philosophers-image></philosophers-image>
       </div>
-      <infinite-scroller demoScroller></infinite-scroller>
+      <infinite-scroller demoScroller maxLoad=20 maxDisplay=20></infinite-scroller>
     `;
   }
 
-  methodToGetCards(noToGet) {
-    for (let i = noToGet - 50; i < noToGet; i += 1) {
-      this.component += `
+  methodToGetCards(noToLoad, noToShow) {
+    let extraLoaded;
+    for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
+      extraLoaded += `
       <philosophers-card item card id=${i} cardLink="http://localhost:8000/demo/cardLinkExample" cardSize='${
         i % 2 === 0
           ? `{ "width": "200px", "height": "200px"}`
@@ -46,22 +47,27 @@ export class ThePhilosophersComponents extends LitElement {
       </philosophers-card>
       `;
     }
-    return this.component;
+    return extraLoaded;
   }
 
-  methodToGetBlogPosts(noToGet) {
-    for (let i = noToGet - 50; i < noToGet; i += 1) {
-      this.component += `
+
+  // this is refering to component in infiniscroller, maybe should grab the element &doit?
+  methodToGetBlogPosts(noToLoad, noToShow) {
+    let extraLoaded;
+    for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
+      extraLoaded += `
       <blog-post item post id=${i}>
           <!-- <blog-post demoPost postBody="main body yo"> -->
         </blog-post>
       `;
     }
-    return this.component;
+    return extraLoaded;
   }
 
   firstUpdated() {
-    this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetBlogPosts;
+    // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetBlogPosts;
+    this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetCards;
+
 
     const targetNode = this.shadowRoot.querySelector('[demoPost]');
 

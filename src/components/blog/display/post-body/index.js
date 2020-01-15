@@ -142,8 +142,8 @@ export class PostBody extends Content {
 
     document.removeEventListener('DOMContentLoaded', () => {
       console.log('DOMContentLoaded - remove EventListener');
-      // this._loaded = false;
-      // this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+      this._loaded = false;
+      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
     });
 
     super.disconnectedCallback();

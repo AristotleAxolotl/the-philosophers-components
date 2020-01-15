@@ -9,7 +9,7 @@ import { Image } from '../image';
 import { utils } from '../lib';
 import { Content } from '../content';
 
-import { CUSTOM_ELEMENT_LOADED } from '../../events';
+import { CUSTOM_ELEMENT_LOADED, CUSTOM_ELEMENT_UPDATED } from '../../events';
 
 // instead of having the method do the resizing, which seems impossible,
 // extract method to be used by classes that use it & override size attributes when creating card. BLEGH.
@@ -32,11 +32,14 @@ export class Card extends Content {
   updated() {
     this.shadowRoot.querySelector('[cardWrapper]').style.width = this.cardSize.width;
     this.shadowRoot.querySelector('[cardWrapper]').style.height = this.cardSize.height;
+    this._loaded = true;
+    this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_UPDATED);
   }
 
   static get properties() {
     return {
       imgSrc: { type: String },
+      cardText: { type: String },
       cardLink: { type: String },
       cardSize: { type: Object },
       _loaded: { type: Boolean },
@@ -51,7 +54,7 @@ export class Card extends Content {
         </div>
         <div textWrapper>
           <p text>
-            <slot name="cardText"></slot>
+            <slot name="cardText">${this.cardText}</slot>
           </p>
         </div>
       </div>
@@ -113,14 +116,13 @@ export class Card extends Content {
 
   connectedCallback() {
     super.connectedCallback();
-
     // TODO: Resize listeners should probably be in the parent class (i.e. infini-scroller)
 
     // window.addEventListener('resize', () => {
     //   this._loaded = true;
     // });
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', e => {
       console.log('DOMContentLoaded, philosophers-card');
       this._loaded = true;
       this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
@@ -132,10 +134,10 @@ export class Card extends Content {
     //   this._loaded = false;
     // });
 
-    document.removeEventListener('DOMContentLoaded', () => {
+    document.removeEventListener('DOMContentLoaded', e => {
       console.log('DOMContentLoaded - remove EventListener');
       // this._loaded = false;
-      // this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
+      this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_LOADED);
     });
 
     super.disconnectedCallback();
