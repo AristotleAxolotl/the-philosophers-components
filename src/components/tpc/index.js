@@ -68,9 +68,9 @@ export class ThePhilosophersComponents extends LitElement {
       const element = document.createElement('blog-post');
 
       element.id = i;
-      element.cardLink = 'http://localhost:8000/demo/cardLinkExample';
-      element.cardWidth = i % 2 === 0 ? '200px' : '500px';
-      element.cardHeight = i % 2 === 0 ? '200px' : '500px';
+      // element.cardLink = 'http://localhost:8000/demo/cardLinkExample';
+      // element.cardWidth = i % 2 === 0 ? '200px' : '500px';
+      // element.cardHeight = i % 2 === 0 ? '200px' : '500px';
 
       const post = document.createAttribute('post');
       const item = document.createAttribute('item');
