@@ -9,7 +9,7 @@ import { Image } from '../image';
 import { utils } from '../lib';
 import { Content } from '../content';
 
-import { CUSTOM_ELEMENT_LOADED, CUSTOM_ELEMENT_UPDATED } from '../../events';
+import { CUSTOM_ELEMENT_UPDATED } from '../../events';
 
 // instead of having the method do the resizing, which seems impossible,
 // extract method to be used by classes that use it & override size attributes when creating card. BLEGH.
@@ -22,7 +22,7 @@ import { CUSTOM_ELEMENT_LOADED, CUSTOM_ELEMENT_UPDATED } from '../../events';
 export class Card extends Content {
   constructor() {
     super();
-    this.imgSrc = '../../../resources/axolotl.jpg';
+    this.imgSrc = '../../../resources/images/axolotl.jpg';
     this.cardLink = 'http://localhost:8000/demo/cardLink';
     // split out into seperate
     this.cardWidth = '200px';
@@ -33,7 +33,7 @@ export class Card extends Content {
   updated() {
     this.shadowRoot.querySelector('[cardWrapper]').style.width = this.cardWidth;
     this.shadowRoot.querySelector('[cardWrapper]').style.height = this.cardHeight;
-    if(!this._loaded) this._loaded = true;
+    if (!this._loaded) this._loaded = true;
     this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_UPDATED);
   }
 
