@@ -67,9 +67,9 @@ export class BlogPost extends Content {
     `;
   }
 
-  _setRecommendedDimensions() {
-    this.recWidth = this.shadowRoot.querySelector('[body]').getContentWidth();
-    this.recHeight = this.shadowRoot.querySelector('[body]').getContentHeight();
+  async _setRecommendedDimensions() {
+    this.recWidth = await this.shadowRoot.querySelector('[body]').getContentWidth();
+    this.recHeight = await this.shadowRoot.querySelector('[body]').getContentHeight();
   }
 
   constructor() {
