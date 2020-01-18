@@ -68,7 +68,7 @@ export class ThePhilosophersComponents extends LitElement {
 
 
   // this is refering to component in infiniscroller, maybe should grab the element &doit?
-  methodToGetBlogPosts(noToShow, noToLoad) {
+  methodToGetBlogPosts(noToShow, noToLoad, klass) {
     const elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
       const element = document.createElement('blog-post');
@@ -96,7 +96,7 @@ export class ThePhilosophersComponents extends LitElement {
   }
 
   firstUpdated() {
-    this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetBlogPosts;
+    // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetBlogPosts;
     // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetCards;
 
 
