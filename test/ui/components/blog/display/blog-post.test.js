@@ -6,17 +6,27 @@
 import { expect, fixture } from '@open-wc/testing';
 import { BlogPost } from '../../../../../src/components/blog/display';
 
+import { waitFor } from '../../../common/timings';
+
 describe('<blog-post>', () => {
   describe('default behaviour', () => {
     let el;
     beforeEach(async () => {
       BlogPost.register();
       el = await fixture('<blog-post><blog-post/>');
+      await waitFor(el._loaded);
+      return el;
+    });
+    it('should have a recommended width attribute', () => {
+      expect(el.recWidth).to.equal(790);
+    });
+    it('should have a recommended height attribute', () => {
+      expect(el.recHeight).to.equal(647);
     });
     it('should output the correct structure', async () => {
       expect(el).shadowDom.to.equal(`
-      <div class="content" content="">
-        <post-body>
+      <div content="">
+        <post-body body>
           <span slot="mainBodyText">
             Lorem ipsum dolor sit amet, ceteros vivendum consulatu ius eu. Ius ei possit delenit necessitatibus. Sea ludus comprehensam ut. Mea saperet corpora complectitur ut, cu agam molestiae mel. Ne ludus malorum tacimates has. Congue animal ei has.
 
