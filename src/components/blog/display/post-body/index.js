@@ -120,7 +120,7 @@ export class PostBody extends Content {
 
   constructor() {
     super();
-    // this.postBody = '[Example Post Text]';
+    this.postBody = '[Example Post Text]';
     this.resourceLink = 'default resource';
   }
 

@@ -2,6 +2,8 @@
 import { html, css, LitElement } from 'lit-element';
 import { utils } from '../../../lib';
 
+// TODO: evaluate the responsibility of each class & update tests
+
 // TODO: create comments section. comments can be replied to, etc. like reddit.
 // TODO: Each comment is indented
 export class PostComments extends LitElement {

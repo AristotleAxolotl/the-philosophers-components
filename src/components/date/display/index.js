@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+/* eslint-disable no-value-attribute */
 import { html, css, LitElement } from 'lit-element';
 import { utils } from '../../lib';
 
@@ -43,7 +44,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            .value="${_toDoubleIntFormat(this.dateCreated.getDate())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getDate())}"
             readonly
           />
           <label slash>/</label>
@@ -53,7 +54,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            .value="${_toDoubleIntFormat(this.dateCreated.getMonth())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getMonth())}"
             readonly
           />
           <label slash>/</label>
@@ -63,7 +64,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="9999"
-            .value="${Number(this.dateCreated.getFullYear())}"
+            value="${Number(this.dateCreated.getFullYear())}"
             readonly
           />
         </div>
@@ -75,7 +76,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            .value="${_toDoubleIntFormat(this.dateCreated.getHours())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getHours())}"
             readonly
           />
           <label colon>:</label>
@@ -85,7 +86,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            .value="${_toDoubleIntFormat(this.dateCreated.getMinutes())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getMinutes())}"
             readonly
           />
           <label colon>:</label>
@@ -95,7 +96,7 @@ export class PhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            .value="${_toDoubleIntFormat(this.dateCreated.getSeconds())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getSeconds())}"
             readonly
           />
         </div>

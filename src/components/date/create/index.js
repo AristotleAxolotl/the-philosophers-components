@@ -45,7 +45,7 @@ export class CreatePhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            .value="${_toDoubleIntFormat(this.dateCreated.getDate())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getDate())}"
           />
           <label slash>/</label>
           <input
@@ -54,7 +54,7 @@ export class CreatePhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            .value="${_toDoubleIntFormat(this.dateCreated.getMonth())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getMonth())}"
           />
           <label slash>/</label>
           <input
@@ -63,7 +63,7 @@ export class CreatePhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="9999"
-            .value="${Number(this.dateCreated.getFullYear())}"
+            value="${Number(this.dateCreated.getFullYear())}"
           />
         </div>
         <div timeWrapper>
@@ -74,7 +74,7 @@ export class CreatePhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            .value="${_toDoubleIntFormat(this.dateCreated.getHours())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getHours())}"
           />
           <label colon>:</label>
           <input
@@ -83,7 +83,7 @@ export class CreatePhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            .value="${_toDoubleIntFormat(this.dateCreated.getMinutes())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getMinutes())}"
           />
           <label colon>:</label>
           <input
@@ -92,7 +92,7 @@ export class CreatePhilosophersDate extends LitElement {
             type="number"
             min="1"
             max="99"
-            .value="${_toDoubleIntFormat(this.dateCreated.getSeconds())}"
+            value="${_toDoubleIntFormat(this.dateCreated.getSeconds())}"
           />
         </div>
       </div>

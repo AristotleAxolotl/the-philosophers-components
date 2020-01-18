@@ -11,6 +11,12 @@ import { Image } from '../image';
 import { utils } from '../lib';
 
 export class ThePhilosophersComponents extends LitElement {
+  static get properties() {
+    return {
+      _loaded: { type: Boolean },
+    };
+  }
+
   render() {
     return html`
       <nav-bar></nav-bar>
@@ -101,6 +107,11 @@ export class ThePhilosophersComponents extends LitElement {
       console.log('Demo post height: ', e.target.getContentHeight());
       console.log('Demo post width: ', e.target.getContentWidth());
     });
+  }
+
+  updated(){
+    if(!this._loaded) this._loaded = true;
+    // this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_UPDATED);
   }
 
   static get element() {
