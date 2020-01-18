@@ -70,5 +70,3 @@ export class CreatePost extends LitElement {
     `;
   }
 }
-
-// customElements.define('create-blog-post', CreatePost);

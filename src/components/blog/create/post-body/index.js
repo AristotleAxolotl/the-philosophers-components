@@ -36,7 +36,12 @@ export class CreatePostBody extends LitElement {
     return html`
       <div createPost id="createPost">
         <div mainBody id="mainBody">
-          <textarea inputPostText id="inputPostText" rows="7" placeholder=${this.postBody}></textarea>
+          <textarea
+            inputPostText
+            id="inputPostText"
+            rows="7"
+            placeholder=${this.postBody}
+          ></textarea>
         </div>
         <div extraInfo id="extraInfo">
           <div resourceLink id="resourceLink">
@@ -57,15 +62,16 @@ export class CreatePostBody extends LitElement {
   }
 
   static get styles() {
-    return css`* {
-      margin: 5px;
-    }
+    return css`
+      * {
+        margin: 5px;
+      }
       [createPost] {
         padding: 7px;
         /* display: flex; */
-        background-color: #1F2833;
+        background-color: #1f2833;
         /* border-left: 5px solid blue; */
-        border-bottom: 5px solid #66FCF1;
+        border-bottom: 5px solid #66fcf1;
         /* border-bottom-left-radius: 5px; */
       }
 
@@ -73,44 +79,44 @@ export class CreatePostBody extends LitElement {
         padding: 7px;
         display: flex;
         justify-content: left;
-        background-color: #1F2833;
+        background-color: #1f2833;
         /* border-left: 5px solid blue; */
-        border-bottom: 5px solid #66FCF1;
+        border-bottom: 5px solid #66fcf1;
         /* border-bottom-left-radius: 5px; */
       }
 
       [extraInfo] {
         padding: 7px;
         display: inline-block;
-        background-color: #1F2833;
+        background-color: #1f2833;
         /* border-left: 5px solid blue; */
         /* border-bottom: 5px solid blue; */
         /* border-bottom-left-radius: 5px; */
       }
 
-      input[type=text] {
+      input[type='text'] {
         transition: 0.5s;
         outline: none;
-        background-color: #C5C6C7;
-        border:0;
+        background-color: #c5c6c7;
+        border: 0;
       }
 
-      input[type=text]:focus {
-        border: 5px solid #66FCF1;
+      input[type='text']:focus {
+        border: 5px solid #66fcf1;
       }
 
       [inputPostText]:focus {
-        border: 5px solid #66FCF1;
+        border: 5px solid #66fcf1;
       }
       [inputPostText] {
         transition: 0.5s;
         outline: none;
-        background-color: #C5C6C7;
+        background-color: #c5c6c7;
         width: 100%;
       }
 
       [subtitle] {
-        color: #C5C6C7;
+        color: #c5c6c7;
       }
 
       [text] {
@@ -125,5 +131,3 @@ export class CreatePostBody extends LitElement {
     this.resourceLink = 'default resource';
   }
 }
-
-// customElements.define('create-post-body', CreatePostBody);

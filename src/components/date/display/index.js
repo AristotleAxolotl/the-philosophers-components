@@ -15,7 +15,6 @@ export class PhilosophersDate extends LitElement {
   static get properties() {
     return {
       dateCreated: {
-        attribute: false,
         type: Date,
       },
     };

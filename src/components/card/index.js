@@ -20,11 +20,20 @@ import { CUSTOM_ELEMENT_UPDATED } from '../../events';
 // const widthLimits = ['100', '300', '500', '750', '1000', '1500', '2500'];
 
 export class Card extends Content {
+  static get properties() {
+    return {
+      imgSrc: { type: String },
+      cardText: { type: String },
+      cardLink: { type: String },
+      cardWidth: { type: String },
+      cardHeight: { type: String },
+    };
+  }
+
   constructor() {
     super();
     this.imgSrc = '../../../resources/images/axolotl.jpg';
     this.cardLink = 'http://localhost:8000/demo/cardLink';
-    // split out into seperate
     this.cardWidth = '200px';
     this.cardHeight = '200px';
     this._loaded = false;
@@ -44,16 +53,6 @@ export class Card extends Content {
   // setCardHeight(height){
   //   this.shadowRoot.querySelector('[cardWrapper]').style.height = height;
   // }
-
-  static get properties() {
-    return {
-      imgSrc: { type: String },
-      cardText: { type: String },
-      cardLink: { type: String },
-      cardWidth: { type: String },
-      cardHeight: { type: String },
-    };
-  }
 
   render() {
     return html`
