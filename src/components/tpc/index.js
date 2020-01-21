@@ -19,7 +19,7 @@ export class ThePhilosophersComponents extends LitElement {
 
   render() {
     return html`
-      <nav-bar></nav-bar>
+      <nav-bar navCards='[ { "name": "home", "links": ["/"] }, { "name": "blog", "links": ["/blog", "/blog/create"] }, { "name": "projects", "links": ["/projects"] } ]'></nav-bar>
       <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample" cardType="small">
         <span slot="cardText">
           This should be an axolotl?
