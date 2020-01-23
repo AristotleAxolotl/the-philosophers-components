@@ -41,7 +41,7 @@ export class InfiniteScroller extends LitElement {
     // this.findMore = this._defaultFindMore;
   }
 
-  _defaultFindMore(noToShow, noToLoad, klass) {
+  async _defaultFindMore(noToShow, noToLoad, klass) {
     const elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
       const element = document.createElement(klass.element);
@@ -228,13 +228,13 @@ export class InfiniteScroller extends LitElement {
   // }
 
   // TODO: this could be optimised by loading one at a time & calling the func 'max' no of times
-  loadMore() {
+  async loadMore() {
     // call method later which will be call to DB
     // This used to be +=, but moved that to another method - this may be innefficient but who knows
 
     if (this.findMore) {
       // console.log('loading more...');
-      const elementList = this.findMore(this.maxDisplay, this.maxLoad);
+      const elementList = await this.findMore(this.maxDisplay, this.maxLoad);
       elementList.forEach(element => this.shadowRoot.querySelector('[grid]').appendChild(element));
       // ATTEMPT with DOM functions
       // for (let i = this.maxDisplay - this.maxLoad; i < this.maxDisplay; i += 1) {
@@ -270,7 +270,7 @@ export class InfiniteScroller extends LitElement {
       // this._resizeAllGridElements();
     } else {
       // console.log('default loading more...');
-      const elementList = this._defaultFindMore(this.maxDisplay, this.maxLoad, Card);
+      const elementList = await this._defaultFindMore(this.maxDisplay, this.maxLoad, Card);
       elementList.forEach(element => this.shadowRoot.querySelector('[grid]').appendChild(element));
       // this.shadowRoot.querySelector('[grid]').innerHTML += this._defaultFindMore(
       //   this.maxLoad,
