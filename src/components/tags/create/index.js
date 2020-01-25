@@ -26,6 +26,10 @@ export class CreatePhilosophersTags extends LitElement {
     utils.register(CreatePhilosophersTags);
   }
 
+  getTags(){
+    return this._addedTags;
+  }
+
   render() {
     return html`
       <div tags>

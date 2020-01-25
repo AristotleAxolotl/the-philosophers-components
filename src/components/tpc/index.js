@@ -30,7 +30,7 @@ export class ThePhilosophersComponents extends LitElement {
           <!-- <blog-post demoPost postBody="main body yo"> -->
         </blog-post>
       </div>
-      <create-blog-post></create-blog-post>
+      <create-blog-post demoCreatePost></create-blog-post>
       <div imageContainer>
         <philosophers-image></philosophers-image>
       </div>
@@ -95,14 +95,19 @@ export class ThePhilosophersComponents extends LitElement {
     return elementList;
   }
 
+  methodToCreatePosts(post){
+    console.log(`I HAVE CREATED: \n${post}`);
+  }
+
   firstUpdated() {
     // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetBlogPosts;
     // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetCards;
 
+    this.shadowRoot.querySelector('[demoCreatePost]').createPost = this.methodToCreatePosts;
 
-    const targetNode = this.shadowRoot.querySelector('[demoPost]');
+    const demoPost = this.shadowRoot.querySelector('[demoPost]');
 
-    targetNode.addEventListener('custom-element-loaded', e => {
+    demoPost.addEventListener('custom-element-loaded', e => {
       console.log(e.detail);
       console.log('Demo post height: ', e.target.getContentHeight());
       console.log('Demo post width: ', e.target.getContentWidth());

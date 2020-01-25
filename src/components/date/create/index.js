@@ -23,6 +23,10 @@ export class CreatePhilosophersDate extends LitElement {
     };
   }
 
+  getDate(){
+    return this.dateCreated;
+  }
+
   // static get dependencies() {
 
   // }
