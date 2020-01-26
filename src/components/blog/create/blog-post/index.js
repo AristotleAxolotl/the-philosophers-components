@@ -3,6 +3,8 @@ import { html, css, LitElement } from 'lit-element';
 import { CreatePostBody } from '../post-body';
 import { utils } from '../../../lib';
 
+// Date is unessacary - not used; db makes its own
+
 // TODO: post has a body, comment section, upvote/downvote,
 export class CreatePost extends LitElement {
   static get properties() {
@@ -11,7 +13,7 @@ export class CreatePost extends LitElement {
     };
   }
 
-  constructor(){
+  constructor() {
     super();
   }
 
@@ -55,9 +57,12 @@ export class CreatePost extends LitElement {
       Tags: tags,
     };
 
-    if(!!this.createPost) this.createPost(post);
-
-    return post;
+    if (!!this.createPost) {
+      const response = this.createPost(post);
+      console.log(response);
+    } else {
+      console.error('Please set a function for createPost');
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this
