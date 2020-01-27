@@ -7,6 +7,7 @@ import { CreatePost } from '../blog/create';
 import { InfiniteScroller } from '../infinite-scroller';
 import { Card } from '../card';
 import { Image } from '../image';
+import { TopBanner } from '../banner';
 
 import { utils } from '../lib';
 
@@ -19,7 +20,10 @@ export class ThePhilosophersComponents extends LitElement {
 
   render() {
     return html`
-      <nav-bar navCards='[ { "name": "home", "links": ["/"] }, { "name": "blog", "links": ["/blog", "/blog/create"] }, { "name": "projects", "links": ["/projects"] } ]'></nav-bar>
+      <top-banner successMessage bannerText='You pressed the Create button!'></top-banner>
+      <nav-bar
+        navCards='[ { "name": "home", "links": ["/"] }, { "name": "blog", "links": ["/blog", "/blog/create"] }, { "name": "projects", "links": ["/projects"] } ]'
+      ></nav-bar>
       <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample" cardType="small">
         <span slot="cardText">
           This should be an axolotl?
@@ -34,7 +38,7 @@ export class ThePhilosophersComponents extends LitElement {
       <div imageContainer>
         <philosophers-image></philosophers-image>
       </div>
-      <infinite-scroller demoScroller maxLoad=20 maxDisplay=20></infinite-scroller>
+      <infinite-scroller demoScroller maxLoad="20" maxDisplay="20"></infinite-scroller>
     `;
   }
 
@@ -66,7 +70,6 @@ export class ThePhilosophersComponents extends LitElement {
     return elementList;
   }
 
-
   // this is refering to component in infiniscroller, maybe should grab the element &doit?
   methodToGetBlogPosts(noToShow, noToLoad, klass) {
     const elementList = [];
@@ -95,15 +98,17 @@ export class ThePhilosophersComponents extends LitElement {
     return elementList;
   }
 
-  methodToCreatePosts(post){
-    console.log(`I HAVE CREATED: \n${post}`);
+  methodToCreatePosts(post) {
+    const successMessage = this.shadowRoot.querySelector('[successMessage]');
+    successMessage.showFor(5000);
+    // successMessage.toggle();
   }
 
   firstUpdated() {
     // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetBlogPosts;
     // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetCards;
 
-    this.shadowRoot.querySelector('[demoCreatePost]').createPost = this.methodToCreatePosts;
+    this.shadowRoot.querySelector('[demoCreatePost]').createPost = this.methodToCreatePosts.bind(this);
 
     const demoPost = this.shadowRoot.querySelector('[demoPost]');
 
@@ -114,8 +119,8 @@ export class ThePhilosophersComponents extends LitElement {
     });
   }
 
-  updated(){
-    if(!this._loaded) this._loaded = true;
+  updated() {
+    if (!this._loaded) this._loaded = true;
     // this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_UPDATED);
   }
 
@@ -124,7 +129,7 @@ export class ThePhilosophersComponents extends LitElement {
   }
 
   static get dependencies() {
-    return [NavBar, BlogPost, CreatePost, InfiniteScroller, Card, Image];
+    return [NavBar, BlogPost, CreatePost, InfiniteScroller, Card, Image, TopBanner];
   }
 
   static register() {
