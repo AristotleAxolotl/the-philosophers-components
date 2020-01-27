@@ -1,7 +1,7 @@
 {
   "name": "the-philosophers-components",
   "license": "UNLICENSED",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "main": "src/index.js",
   "files": [
     "src/**"
