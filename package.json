@@ -27,7 +27,9 @@
     "server:prod": "npm run dist && node ./dist/server/index.js",
     "start": "concurrently \"npm:server\" \"npm:dist\" \"npm:lint\" \"npm:test\"",
     "build": "npm run test && npm run lint && npm run format",
-    "init": "npm install"
+    "init": "npm install",
+    "update:tcp": "rm -rf ./node_modules/the-philosophers-components && rm -rf ./node_modules/tcp-ui-server && rm ./package-lock.json && npm install",
+    "update:all": "rm -rf ./node_modules/ && rm ./package-lock.json && npm install"
   },
   "dependencies": {
     "karma": "^4.4.1",
@@ -35,7 +37,8 @@
   },
   "devDependencies": {
     "@open-wc/building-rollup": "^0.19.1",
-    "@open-wc/prettier-config": "^0.1.13",
+    "@open-wc/eslint-config": "2.0.2",
+    "@open-wc/prettier-config": "0.1.13",
     "@open-wc/testing": "^2.5.1",
     "@open-wc/testing-karma": "^3.2.30",
     "concurrently": "^5.0.2",
@@ -43,13 +46,14 @@
     "es-dev-server": "^1.36.2",
     "eslint": "6.8.0",
     "eslint-plugin-sonarjs": "^0.5.0",
+    "husky": "4.2.0",
     "lint-staged": "^10.0.1",
     "npm-watch": "0.6.0",
     "webpack-merge": "^4.2.2"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
+    "./{src,test}/**/*.js": [
+      "eslint",
       "prettier --write",
       "git add"
     ]
