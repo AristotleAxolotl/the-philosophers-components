@@ -6,7 +6,7 @@ import { BlogPost } from '../blog/display';
 import { CreatePost } from '../blog/create';
 import { InfiniteScroller } from '../infinite-scroller';
 import { Card } from '../card';
-import { Image } from '../image';
+import { ImageCss, ImageHtml } from '../image';
 import { TopBanner } from '../banner';
 
 import { utils } from '../lib';
@@ -20,7 +20,7 @@ export class ThePhilosophersComponents extends LitElement {
 
   render() {
     return html`
-      <top-banner successMessage bannerText='You pressed the Create button!'></top-banner>
+      <top-banner successMessage bannerText="You pressed the Create button!"></top-banner>
       <nav-bar
         navCards='[ { "name": "home", "links": ["/"] }, { "name": "blog", "links": ["/blog", "/blog/create"] }, { "name": "projects", "links": ["/projects"] } ]'
       ></nav-bar>
@@ -36,8 +36,9 @@ export class ThePhilosophersComponents extends LitElement {
       </div>
       <create-blog-post demoCreatePost></create-blog-post>
       <div imageContainer>
-        <philosophers-image></philosophers-image>
+        <philosophers-image-css></philosophers-image-css>
       </div>
+      <div imageContainer><philosophers-image-html></philosophers-image-html></div>
       <infinite-scroller demoScroller maxLoad="20" maxDisplay="20"></infinite-scroller>
     `;
   }
@@ -108,7 +109,9 @@ export class ThePhilosophersComponents extends LitElement {
     // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetBlogPosts;
     // this.shadowRoot.querySelector('[demoScroller]').findMore = this.methodToGetCards;
 
-    this.shadowRoot.querySelector('[demoCreatePost]').createPost = this.methodToCreatePosts.bind(this);
+    this.shadowRoot.querySelector('[demoCreatePost]').createPost = this.methodToCreatePosts.bind(
+      this,
+    );
 
     const demoPost = this.shadowRoot.querySelector('[demoPost]');
 
@@ -129,7 +132,7 @@ export class ThePhilosophersComponents extends LitElement {
   }
 
   static get dependencies() {
-    return [NavBar, BlogPost, CreatePost, InfiniteScroller, Card, Image, TopBanner];
+    return [NavBar, BlogPost, CreatePost, InfiniteScroller, Card, ImageCss, ImageHtml, TopBanner];
   }
 
   static register() {

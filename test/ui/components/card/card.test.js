@@ -30,9 +30,9 @@ describe('<philosophers-card>', () => {
       expect(el).shadowDom.to.equal(`
       <div cardWrapper content style="width: 200px; height: 200px;">
         <div imagewrapper>
-          <philosophers-image image imgsrc="../../../resources/images/axolotl.jpg"
+          <philosophers-image-css image imgsrc="../../../resources/images/axolotl.jpg"
             style='background-image: url("../../../resources/images/axolotl.jpg");'>
-          </philosophers-image>
+          </philosophers-image-css>
         </div>
         <div textwrapper>
           <p text>

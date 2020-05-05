@@ -4,7 +4,7 @@
 /* eslint-disable import/extensions */
 import { html, css } from 'lit-element';
 
-import { Image } from '../../image';
+import { ImageCss } from '../../image';
 
 import { utils } from '../../lib';
 import { Content } from '../../content';

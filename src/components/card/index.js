@@ -4,7 +4,7 @@
 /* eslint-disable import/extensions */
 import { html, css } from 'lit-element';
 
-import { Image } from '../image';
+import { ImageCss } from '../image';
 
 import { utils } from '../lib';
 import { Content } from '../content';
@@ -58,7 +58,7 @@ export class Card extends Content {
     return html`
       <div content cardWrapper @click="${() => this._followLink()}">
         <div imageWrapper>
-          <philosophers-image image imgSrc="${this.imgSrc}"></philosophers-image>
+          <philosophers-image-css image imgSrc="${this.imgSrc}"></philosophers-image-css>
         </div>
         <div textWrapper>
           <p text>
@@ -78,7 +78,7 @@ export class Card extends Content {
   }
 
   static get dependencies() {
-    return [Image];
+    return [ImageCss];
   }
 
   static register() {
