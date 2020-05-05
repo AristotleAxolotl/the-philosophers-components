@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
+/* eslint-disable max-nested-callbacks */
 import { expect, fixture } from '@open-wc/testing';
 import { NavCard } from '../../../../../src/components/navigation/nav-card';
 

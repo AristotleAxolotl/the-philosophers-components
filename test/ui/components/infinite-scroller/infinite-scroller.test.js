@@ -1,10 +1,8 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
-import { html, css, LitElement } from 'lit-element';
+/* eslint-disable max-nested-callbacks */
 import { expect, fixture } from '@open-wc/testing';
 import { InfiniteScroller } from '../../../../src/components/infinite-scroller';
-
-import { waitFor } from '../../common/timings';
 
 describe('<infinite-scroller>', () => {
   describe('default behaviour', () => {
@@ -60,10 +58,12 @@ describe('<infinite-scroller>', () => {
     let el;
     beforeEach(async () => {
       InfiniteScroller.register();
-      el = await fixture(`<infinite-scroller demoScroller maxLoad=30 maxDisplay=30></infinite-scroller>`);
-      el.findMore = function(){
+      el = await fixture(
+        `<infinite-scroller demoScroller maxLoad=30 maxDisplay=30></infinite-scroller>`,
+      );
+      el.findMore = function () {
         console.log('This is a test function!');
-      }
+      };
     });
     it('should be able to enter custom maxLoad', async () => {
       expect(el.maxLoad).to.equal(30);

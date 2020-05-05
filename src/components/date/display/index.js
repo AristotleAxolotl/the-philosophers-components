@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-/* eslint-disable no-value-attribute */
+/* eslint-disable lit/no-value-attribute */
 import { html, css, LitElement } from 'lit-element';
 import { utils } from '../../lib';
 

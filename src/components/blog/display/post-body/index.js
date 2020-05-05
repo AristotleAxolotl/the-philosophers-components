@@ -5,7 +5,7 @@ import { PhilosophersTags } from '../../../tags/display';
 import { utils } from '../../../lib';
 import { Content } from '../../../content';
 
-import { CUSTOM_ELEMENT_LOADED, CUSTOM_ELEMENT_UPDATED } from '../../../../events';
+import { CUSTOM_ELEMENT_UPDATED } from '../../../../events';
 
 // post body has a main body (text), link to resource, date resource added, technology involved tags,
 // TODO: buttons to submit/save for later/cancel
@@ -34,8 +34,8 @@ export class PostBody extends Content {
     utils.register(PostBody);
   }
 
-  updated(){
-    if(!this._loaded) this._loaded = true;
+  updated() {
+    if (!this._loaded) this._loaded = true;
     this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_UPDATED);
   }
 

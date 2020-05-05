@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { createDefaultConfig } = require('@open-wc/testing-karma');
 const merge = require('webpack-merge');
+process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = config => {
   config.set(
@@ -16,6 +17,7 @@ module.exports = config => {
       esm: {
         nodeResolve: true,
       },
+      browsers: ['ChromeHeadlessNoSandbox'],
       // you can overwrite/extend the config further
     }),
   );

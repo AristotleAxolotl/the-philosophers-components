@@ -22,7 +22,11 @@ export class ThePhilosophersComponents extends LitElement {
     return html`
       <top-banner successMessage bannerText="You pressed the Create button!"></top-banner>
       <nav-bar
-        navCards='[ { "name": "home", "links": ["/"] }, { "name": "blog", "links": ["/blog", "/blog/create"] }, { "name": "projects", "links": ["/projects"] } ]'
+        .navCards=${[
+          { name: 'home', links: ['/'] },
+          { name: 'blog', links: ['/blog', '/blog/create'] },
+          { name: 'projects', links: ['/projects'] },
+        ]}
       ></nav-bar>
       <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample" cardType="small">
         <span slot="cardText">
@@ -30,9 +34,7 @@ export class ThePhilosophersComponents extends LitElement {
         </span>
       </philosophers-card>
       <div postContainer>
-        <blog-post demoPost>
-          <!-- <blog-post demoPost postBody="main body yo"> -->
-        </blog-post>
+        <blog-post demoPost> </blog-post>
       </div>
       <create-blog-post demoCreatePost></create-blog-post>
       <div imageContainer>
@@ -43,6 +45,7 @@ export class ThePhilosophersComponents extends LitElement {
     `;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   methodToGetCards(noToShow, noToLoad) {
     const elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
@@ -72,7 +75,8 @@ export class ThePhilosophersComponents extends LitElement {
   }
 
   // this is refering to component in infiniscroller, maybe should grab the element &doit?
-  methodToGetBlogPosts(noToShow, noToLoad, klass) {
+  // eslint-disable-next-line class-methods-use-this
+  methodToGetBlogPosts(noToShow, noToLoad) {
     const elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
       const element = document.createElement('blog-post');
@@ -99,7 +103,7 @@ export class ThePhilosophersComponents extends LitElement {
     return elementList;
   }
 
-  methodToCreatePosts(post) {
+  methodToCreatePosts() {
     const successMessage = this.shadowRoot.querySelector('[successMessage]');
     successMessage.showFor(5000);
     // successMessage.toggle();

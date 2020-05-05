@@ -4,8 +4,6 @@
 /* eslint-disable import/extensions */
 import { html, css } from 'lit-element';
 
-import { ImageCss } from '../../image';
-
 import { utils } from '../../lib';
 import { Content } from '../../content';
 
@@ -53,9 +51,11 @@ export class TopBanner extends Content {
       </div>
     `;
   }
+
   static get element() {
     return 'top-banner';
   }
+
   static get dependencies() {
     return [];
   }

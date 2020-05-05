@@ -3,7 +3,7 @@ import { html, css } from 'lit-element';
 import { PostBody } from '../post-body';
 import { utils } from '../../../lib';
 import { Content } from '../../../content';
-import { CUSTOM_ELEMENT_LOADED, CUSTOM_ELEMENT_UPDATED } from '../../../../events';
+import { CUSTOM_ELEMENT_UPDATED } from '../../../../events';
 
 // TODO: post has a body, comment section, upvote/downvote,
 // TODO: height is returned incorrectly
@@ -32,13 +32,13 @@ export class BlogPost extends Content {
 
   firstUpdated() {
     const targetNode = this.shadowRoot.querySelector('[body]');
-    targetNode.addEventListener('custom-element-updated', e => {
+    targetNode.addEventListener('custom-element-updated', () => {
       this._setRecommendedDimensions();
     });
   }
 
-  updated(){
-    if(!this._loaded) this._loaded = true;
+  updated() {
+    if (!this._loaded) this._loaded = true;
     this.shadowRoot.querySelector('[content]').dispatchEvent(CUSTOM_ELEMENT_UPDATED);
   }
 

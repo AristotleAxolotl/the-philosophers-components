@@ -1,7 +1,5 @@
 /* eslint-disable import/extensions */
-
-// const { expect } = require('@open-wc/testing');
-// const fixture = require('@open-wc/testing');
+/* eslint-disable max-nested-callbacks */
 
 import { expect, fixture } from '@open-wc/testing';
 import { BlogPost } from '../../../../../src/components/blog/display';

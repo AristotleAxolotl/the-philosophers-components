@@ -13,10 +13,6 @@ export class CreatePost extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-  }
-
   static get element() {
     return 'create-blog-post';
   }
@@ -57,6 +53,7 @@ export class CreatePost extends LitElement {
       Tags: tags,
     };
 
+    // eslint-disable-next-line no-extra-boolean-cast
     if (!!this.createPost) {
       const response = this.createPost(post);
       console.log(response);

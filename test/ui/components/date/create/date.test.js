@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-expressions */
+/* eslint-disable max-nested-callbacks */
 import { expect, fixture } from '@open-wc/testing';
 import { CreatePhilosophersDate } from '../../../../../src/components/date/create';
 

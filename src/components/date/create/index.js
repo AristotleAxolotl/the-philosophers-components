@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+/* eslint-disable lit/no-value-attribute */
 import { html, css, LitElement } from 'lit-element';
 import { utils } from '../../lib';
 
@@ -23,7 +24,7 @@ export class CreatePhilosophersDate extends LitElement {
     };
   }
 
-  getDate(){
+  getDate() {
     return this.dateCreated;
   }
 

@@ -41,6 +41,7 @@ export class InfiniteScroller extends LitElement {
     // this.findMore = this._defaultFindMore;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   async _defaultFindMore(noToShow, noToLoad, klass) {
     const elementList = [];
     for (let i = noToShow - noToLoad; i < noToShow; i += 1) {
@@ -76,7 +77,7 @@ export class InfiniteScroller extends LitElement {
     // const gridWidth = grid.clientWidth;
 
     const rowHeight = parseInt(
-      window.getComputedStyle(grid).getPropertyValue('grid-template-rows'),
+      window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'),
       10,
     );
 
@@ -106,10 +107,16 @@ export class InfiniteScroller extends LitElement {
       // width = width.replace(/\D/g, '');
     }
 
+    // console.log('WIDTH ::', width);
+    // console.log('HEIGHT :: ', height);
+    // console.log('ROW HEIGHT :: ', rowHeight);
+    // console.log('ROW GAP ::', rowGap);
+
     const rowSpan = Math.ceil(height / (rowHeight + rowGap));
+    // console.log('ROW SPAN :: ', rowSpan);
 
     const columnSpan = Math.ceil(width / (columnWidth + columnGap));
-
+    // console.log('COLUMN SPAN :: ', columnSpan);
     element.style.gridRowEnd = `span ${rowSpan}`;
 
     element.style.gridColumnEnd = `span ${columnSpan}`;
@@ -151,7 +158,9 @@ export class InfiniteScroller extends LitElement {
         // console.log(mutation.addedNodes);
         mutation.addedNodes.forEach(node => {
           // this._resizeGridElement(node);
-          node.addEventListener('custom-element-updated', e => {
+
+          // eslint-disable-next-line max-nested-callbacks
+          node.addEventListener('custom-element-updated', () => {
             // console.log('infini-scroller ', e.detail);
             // console.log('height: ', e.target.getContentHeight());
             // console.log('width: ', e.target.getContentWidth());

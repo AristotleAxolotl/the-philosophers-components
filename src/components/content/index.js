@@ -5,7 +5,7 @@
 import { html, css, LitElement } from 'lit-element';
 import { utils } from '../lib';
 
-import { CUSTOM_ELEMENT_LOADED, CUSTOM_ELEMENT_UPDATED } from '../../events';
+// import { CUSTOM_ELEMENT_LOADED, CUSTOM_ELEMENT_UPDATED } from '../../events';
 
 export class Content extends LitElement {
   static get properties() {
