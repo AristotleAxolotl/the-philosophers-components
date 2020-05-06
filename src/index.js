@@ -1,12 +1,19 @@
 /* eslint-disable import/extensions */
-import { PhilosophersDate, CreatePhilosophersDate } from './components/date';
-import { NavBar, NavCard } from './components/navigation';
-import { BlogPost, PostBody, PostComments, PostUtilitiesBar } from './components/blog/display';
 import { TopBanner } from './components/banner';
-import { CreatePost, CreatePostBody } from './components/blog/create';
-import { CreatePhilosophersTags, PhilosophersTags } from './components/tags';
-import { InfiniteScroller } from './components/infinite-scroller';
+import {
+  BlogPost,
+  PostBody,
+  PostComments,
+  PostUtilitiesBar,
+  CreatePost,
+  CreatePostBody,
+} from './components/blog';
 import { Card } from './components/card';
+import { PhilosophersDate, CreatePhilosophersDate } from './components/date';
+import { ImageCss, ImageHtml } from './components/image';
+import { InfiniteScroller } from './components/infinite-scroller';
+import { NavBar, NavCard } from './components/navigation';
+import { CreatePhilosophersTags, PhilosophersTags } from './components/tags';
 
 import * as lib from './components/lib';
 
@@ -25,6 +32,8 @@ export {
   CreatePhilosophersTags,
   PhilosophersTags,
   InfiniteScroller,
+  ImageCss,
+  ImageHtml,
   Card,
   lib,
 };
