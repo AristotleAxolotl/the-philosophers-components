@@ -8,6 +8,7 @@ import { InfiniteScroller } from '../infinite-scroller';
 import { Card } from '../card';
 import { ImageCss, ImageHtml } from '../image';
 import { TopBanner } from '../banner';
+import { PhilosophersHeader } from '../header';
 
 import { utils } from '../lib';
 
@@ -28,6 +29,7 @@ export class ThePhilosophersComponents extends LitElement {
           { name: 'projects', links: ['/projects'] },
         ]}
       ></nav-bar>
+      <philosophers-header level="5">HELLO WORLD!</philosophers-header>
       <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample" cardType="small">
         <span slot="cardText">
           This should be an axolotl?
@@ -136,7 +138,17 @@ export class ThePhilosophersComponents extends LitElement {
   }
 
   static get dependencies() {
-    return [NavBar, BlogPost, CreatePost, InfiniteScroller, Card, ImageCss, ImageHtml, TopBanner];
+    return [
+      NavBar,
+      BlogPost,
+      CreatePost,
+      InfiniteScroller,
+      Card,
+      ImageCss,
+      ImageHtml,
+      TopBanner,
+      PhilosophersHeader,
+    ];
   }
 
   static register() {

@@ -10,6 +10,7 @@ import {
 } from './components/blog';
 import { Card } from './components/card';
 import { PhilosophersDate, CreatePhilosophersDate } from './components/date';
+import { PhilosophersHeader } from './components/header';
 import { ImageCss, ImageHtml } from './components/image';
 import { InfiniteScroller } from './components/infinite-scroller';
 import { NavBar, NavCard } from './components/navigation';
@@ -26,6 +27,7 @@ export {
   PostBody,
   PostComments,
   PostUtilitiesBar,
+  PhilosophersHeader,
   TopBanner,
   CreatePost,
   CreatePostBody,
