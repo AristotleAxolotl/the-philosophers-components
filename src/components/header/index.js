@@ -10,7 +10,7 @@ export class PhilosophersHeader extends LitElement {
   }
 
   static get element() {
-    return 'tcp-header';
+    return 'philosophers-header';
   }
 
   static register() {
