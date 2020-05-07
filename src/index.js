@@ -8,7 +8,7 @@ import {
   CreatePost,
   CreatePostBody,
 } from './components/blog';
-import { Card } from './components/card';
+import { ImageCard, TextCard } from './components/card';
 import { PhilosophersDate, CreatePhilosophersDate } from './components/date';
 import { PhilosophersHeader } from './components/header';
 import { ImageCss, ImageHtml } from './components/image';
@@ -36,6 +36,7 @@ export {
   InfiniteScroller,
   ImageCss,
   ImageHtml,
-  Card,
+  ImageCard,
+  TextCard,
   lib,
 };

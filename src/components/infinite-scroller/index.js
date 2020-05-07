@@ -4,7 +4,7 @@
 import { html, css, LitElement } from 'lit-element';
 import { utils } from '../lib';
 
-import { Card } from '../card';
+import { ImageCard } from '../card';
 
 // TODO: infini scroller should take a component, and a function to call to get more data.
 
@@ -279,7 +279,7 @@ export class InfiniteScroller extends LitElement {
       // this._resizeAllGridElements();
     } else {
       // console.log('default loading more...');
-      const elementList = await this._defaultFindMore(this.maxDisplay, this.maxLoad, Card);
+      const elementList = await this._defaultFindMore(this.maxDisplay, this.maxLoad, ImageCard);
       elementList.forEach(element => this.shadowRoot.querySelector('[grid]').appendChild(element));
       // this.shadowRoot.querySelector('[grid]').innerHTML += this._defaultFindMore(
       //   this.maxLoad,

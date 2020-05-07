@@ -5,7 +5,7 @@ import { NavBar } from '../navigation';
 import { BlogPost } from '../blog/display';
 import { CreatePost } from '../blog/create';
 import { InfiniteScroller } from '../infinite-scroller';
-import { Card } from '../card';
+import { ImageCard, TextCard } from '../card';
 import { ImageCss, ImageHtml } from '../image';
 import { TopBanner } from '../banner';
 import { PhilosophersHeader } from '../header';
@@ -30,11 +30,37 @@ export class ThePhilosophersComponents extends LitElement {
         ]}
       ></nav-bar>
       <philosophers-header level="5">HELLO WORLD!</philosophers-header>
-      <philosophers-card cardLink="http://localhost:8000/demo/cardLinkExample" cardType="small">
+      <philosophers-image-card cardLink="http://localhost:8000/demo/cardLinkExample">
         <span slot="cardText">
           This should be an axolotl?
         </span>
-      </philosophers-card>
+      </philosophers-image-card>
+      <philosophers-text-card
+        cardWidth="100%"
+        cardHeight="100%"
+        cardLink="http://localhost:8000/demo/cardLinkExample"
+        ><span slot="cardText"
+          >Lorem ipsum dolor sit amet, ceteros vivendum consulatu ius eu. Ius ei possit delenit
+          necessitatibus. Sea ludus comprehensam ut. Mea saperet corpora complectitur ut, cu agam
+          molestiae mel. Ne ludus malorum tacimates has. Congue animal ei has. His quis aeque et.
+          Mei cu efficiantur neglegentur. Feugait cotidieque ei sea. Ad alii putant expetenda mei,
+          iusto commodo moderatius pro ne. Duo case possim philosophia ea, malis commune
+          voluptatibus mea te, mel ubique meliore suscipiantur ea. Has ex primis recteque
+          definiebas, elit percipitur mel eu. No vim tation maiorum adversarium, eam amet ullum
+          mediocrem an. Mel fugit aeterno id. Eos dissentiunt theophrastus at, vix enim consul
+          possim et. Sea te exerci eirmod suscipiantur, et sea indoctum urbanitas, per ei illum
+          reformidans referrentur. Quo ut dicit salutandi argumentum. Ei postea regione repudiare
+          sea, ad oporteat menandri incorrupte has, dicat decore antiopam quo et. Ei ius tation
+          utroque, eum et possim adipisci. Quas idque dolores eu vim, vix ne feugiat inciderint
+          temporibus. Cibo decore repudiare vix ne, senserit iracundia est ei. Sea simul molestiae
+          eu. Et qui ponderum apeirian, nonumes consectetuer his id. An mel iudico sensibus,
+          pericula omittantur ut eam. Te mei eleifend theophrastus, minim putant repudiandae te sed,
+          eam ne nostrud vituperata. Dicat laoreet pro id, id qui fuisset epicuri. Tantas denique
+          facilisis nam at, vis ei populo quaeque accommodare, ei solet oportere his. Mei in tritani
+          dissentiet. Tacimates euripidis honestatis sed an, ut ipsum velit omnium duo. Sed et sonet
+          veniam semper, cum ut virtute recusabo contentiones, nec ut dicit electram.</span
+        ></philosophers-text-card
+      >
       <div postContainer>
         <blog-post demoPost> </blog-post>
       </div>
@@ -143,7 +169,8 @@ export class ThePhilosophersComponents extends LitElement {
       BlogPost,
       CreatePost,
       InfiniteScroller,
-      Card,
+      ImageCard,
+      TextCard,
       ImageCss,
       ImageHtml,
       TopBanner,
@@ -165,6 +192,10 @@ export class ThePhilosophersComponents extends LitElement {
       [postContainer] {
         width: 100%;
         height: 100%;
+      }
+
+      philosophers-text-card {
+        /* color: white; */
       }
     `;
   }
