@@ -6,6 +6,7 @@ import { html, css } from 'lit-element';
 
 import { utils } from '../../lib';
 import { Content } from '../../content';
+import { PhilosophersHeader } from '../../header';
 
 import { CUSTOM_ELEMENT_UPDATED } from '../../../events';
 
@@ -20,6 +21,7 @@ import { CUSTOM_ELEMENT_UPDATED } from '../../../events';
 export class TextCard extends Content {
   static get properties() {
     return {
+      cardTitle: { type: String },
       cardText: { type: String },
       cardLink: { type: String },
       cardWidth: { type: String },
@@ -53,6 +55,11 @@ export class TextCard extends Content {
   render() {
     return html`
       <div content cardWrapper @click="${() => this._followLink()}">
+        <div titleWrapper>
+          <philosophers-header level="6">
+            <slot name="cardTitle">${this.cardTitle}</slot>
+          </philosophers-header>
+        </div>
         <div textWrapper>
           <p text>
             <slot name="cardText">${this.cardText}</slot>
@@ -71,7 +78,7 @@ export class TextCard extends Content {
   }
 
   static get dependencies() {
-    return [];
+    return [PhilosophersHeader];
   }
 
   static register() {
@@ -93,14 +100,25 @@ export class TextCard extends Content {
         opacity: 0.7;
       }
 
+      [titleWrapper] {
+        text-align: center;
+        display: block;
+        color: #c5c6c7;
+        width: 100%;
+        padding-top: 2%;
+      }
+
       [textWrapper] {
         display: block;
-        height: 100%;
+        height: 80%;
         width: 100%;
         overflow: auto;
       }
 
       [text] {
+        font-family: 'Century Gothic';
+        letter-spacing: 0.0625em;
+        font-size: 16px;
         text-align: center;
         padding: 10px 0;
         color: #c5c6c7;
