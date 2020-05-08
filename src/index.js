@@ -14,6 +14,7 @@ import { PhilosophersHeader } from './components/header';
 import { ImageCss, ImageHtml } from './components/image';
 import { InfiniteScroller } from './components/infinite-scroller';
 import { NavBar, NavCard } from './components/navigation';
+import { PhilosophersPara } from './components/para';
 import { CreatePhilosophersTags, PhilosophersTags } from './components/tags';
 
 import * as lib from './components/lib';
@@ -28,6 +29,7 @@ export {
   PostComments,
   PostUtilitiesBar,
   PhilosophersHeader,
+  PhilosophersPara,
   TopBanner,
   CreatePost,
   CreatePostBody,
