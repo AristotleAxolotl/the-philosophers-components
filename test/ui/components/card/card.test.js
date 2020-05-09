@@ -2,14 +2,14 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable max-nested-callbacks */
 import { expect, fixture } from '@open-wc/testing';
-import { Card } from '../../../../src/components/card';
+import { ImageCard } from '../../../../src/components/card';
 
 describe('<philosophers-card>', () => {
   describe('default behaviour', () => {
     let el;
     beforeEach(async () => {
-      Card.register();
-      el = await fixture('<philosophers-card></philosophers-card>');
+      ImageCard.register();
+      el = await fixture('<philosophers-image-card></philosophers-image-card>');
     });
     it('should have a default text', async () => {
       expect(el).lightDom.to.equal(`
@@ -48,7 +48,7 @@ describe('<philosophers-card>', () => {
   describe('custom behaviour', () => {
     let el;
     beforeEach(async () => {
-      Card.register();
+      ImageCard.register();
       el = await fixture(
         `<philosophers-card cardlink="http://localhost:8000/demo/cardLinkExample" imgSrc="../../example/img/src" cardHeight='500px' cardWidth='500px'>
         <span slot="cardText">

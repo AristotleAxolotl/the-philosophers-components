@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
-import { html, css, LitElement } from 'lit-element';
+/* eslint-disable lit/no-useless-template-literals */
+import { html, css, unsafeCSS, LitElement } from 'lit-element';
 
 import { NavBar } from '../navigation';
 import { BlogPost } from '../blog/display';
@@ -12,6 +13,9 @@ import { PhilosophersHeader } from '../header';
 import { PhilosophersPara } from '../para';
 
 import { utils } from '../lib';
+
+// const AXO_IMAGE = unsafeCSS('../../resources/images/axolotl.jpg');
+const SKY_IMAGE = unsafeCSS('../../resources/images/IMG_5371.jpg');
 
 export class ThePhilosophersComponents extends LitElement {
   static get properties() {
@@ -36,32 +40,8 @@ export class ThePhilosophersComponents extends LitElement {
           This should be an axolotl?
         </span>
       </philosophers-image-card>
-      <philosophers-para
-        >Lorem ipsum dolor sit amet, ceteros vivendum consulatu ius eu. Ius ei possit delenit
-        necessitatibus. Sea ludus comprehensam ut. Mea saperet corpora complectitur ut, cu agam
-        molestiae mel. Ne ludus malorum tacimates has. Congue animal ei has. His quis aeque et. Mei
-        cu efficiantur neglegentur. Feugait cotidieque ei sea. Ad alii putant expetenda mei, iusto
-        commodo moderatius pro ne. Duo case possim philosophia ea, malis commune voluptatibus mea
-        te, mel ubique meliore suscipiantur ea. Has ex primis recteque definiebas, elit percipitur
-        mel eu. No vim tation maiorum adversarium, eam amet ullum mediocrem an. Mel fugit aeterno
-        id. Eos dissentiunt theophrastus at, vix enim consul possim et. Sea te exerci eirmod
-        suscipiantur, et sea indoctum urbanitas, per ei illum reformidans referrentur. Quo ut dicit
-        salutandi argumentum. Ei postea regione repudiare sea, ad oporteat menandri incorrupte has,
-        dicat decore antiopam quo et. Ei ius tation utroque, eum et possim adipisci. Quas idque
-        dolores eu vim, vix ne feugiat inciderint temporibus. Cibo decore repudiare vix ne, senserit
-        iracundia est ei. Sea simul molestiae eu. Et qui ponderum apeirian, nonumes consectetuer his
-        id. An mel iudico sensibus, pericula omittantur ut eam. Te mei eleifend theophrastus, minim
-        putant repudiandae te sed, eam ne nostrud vituperata. Dicat laoreet pro id, id qui fuisset
-        epicuri. Tantas denique facilisis nam at, vis ei populo quaeque accommodare, ei solet
-        oportere his. Mei in tritani dissentiet. Tacimates euripidis honestatis sed an, ut ipsum
-        velit omnium duo. Sed et sonet veniam semper, cum ut virtute recusabo contentiones, nec ut
-        dicit electram.</philosophers-para
-      >
-      <philosophers-text-card
-        cardWidth="100%"
-        cardHeight="100%"
-        cardLink="http://localhost:8000/demo/cardLinkExample"
-        ><span slot="cardText"
+      <div paraWrapper>
+        <philosophers-para ?invertedText=${true}
           >Lorem ipsum dolor sit amet, ceteros vivendum consulatu ius eu. Ius ei possit delenit
           necessitatibus. Sea ludus comprehensam ut. Mea saperet corpora complectitur ut, cu agam
           molestiae mel. Ne ludus malorum tacimates has. Congue animal ei has. His quis aeque et.
@@ -71,27 +51,47 @@ export class ThePhilosophersComponents extends LitElement {
           definiebas, elit percipitur mel eu. No vim tation maiorum adversarium, eam amet ullum
           mediocrem an. Mel fugit aeterno id. Eos dissentiunt theophrastus at, vix enim consul
           possim et. Sea te exerci eirmod suscipiantur, et sea indoctum urbanitas, per ei illum
-          reformidans referrentur. Quo ut dicit salutandi argumentum. Ei postea regione repudiare
-          sea, ad oporteat menandri incorrupte has, dicat decore antiopam quo et. Ei ius tation
-          utroque, eum et possim adipisci. Quas idque dolores eu vim, vix ne feugiat inciderint
-          temporibus. Cibo decore repudiare vix ne, senserit iracundia est ei. Sea simul molestiae
-          eu. Et qui ponderum apeirian, nonumes consectetuer his id. An mel iudico sensibus,
-          pericula omittantur ut eam. Te mei eleifend theophrastus, minim putant repudiandae te sed,
-          eam ne nostrud vituperata. Dicat laoreet pro id, id qui fuisset epicuri. Tantas denique
-          facilisis nam at, vis ei populo quaeque accommodare, ei solet oportere his. Mei in tritani
-          dissentiet. Tacimates euripidis honestatis sed an, ut ipsum velit omnium duo. Sed et sonet
-          veniam semper, cum ut virtute recusabo contentiones, nec ut dicit electram.</span
-        ></philosophers-text-card
-      >
-      <div postContainer>
-        <blog-post demoPost> </blog-post>
+          reformidans referrentur. Quo ut dicit salutandi argumentum. Ei postea regione repudiare</philosophers-para
+        >
       </div>
-      <create-blog-post demoCreatePost></create-blog-post>
-      <div imageContainer>
-        <philosophers-image-css></philosophers-image-css>
+          <philosophers-text-card
+            cardWidth="100%"
+            cardHeight="100%"
+            cardLink="http://localhost:8000/demo/cardLinkExample"
+            ><span slot="cardText"
+              >Lorem ipsum dolor sit amet, ceteros vivendum consulatu ius eu. Ius ei possit delenit
+              necessitatibus. Sea ludus comprehensam ut. Mea saperet corpora complectitur ut, cu
+              agam molestiae mel. Ne ludus malorum tacimates has. Congue animal ei has. His quis
+              aeque et. Mei cu efficiantur neglegentur. Feugait cotidieque ei sea. Ad alii putant
+              expetenda mei, iusto commodo moderatius pro ne. Duo case possim philosophia ea, malis
+              commune voluptatibus mea te, mel ubique meliore suscipiantur ea. Has ex primis
+              recteque definiebas, elit percipitur mel eu. No vim tation maiorum adversarium, eam
+              amet ullum mediocrem an. Mel fugit aeterno id. Eos dissentiunt theophrastus at, vix
+              enim consul possim et. Sea te exerci eirmod suscipiantur, et sea indoctum urbanitas,
+              per ei illum reformidans referrentur. Quo ut dicit salutandi argumentum. Ei postea
+              regione repudiare sea, ad oporteat menandri incorrupte has, dicat decore antiopam quo
+              et. Ei ius tation utroque, eum et possim adipisci. Quas idque dolores eu vim, vix ne
+              feugiat inciderint temporibus. Cibo decore repudiare vix ne, senserit iracundia est
+              ei. Sea simul molestiae eu. Et qui ponderum apeirian, nonumes consectetuer his id. An
+              mel iudico sensibus, pericula omittantur ut eam. Te mei eleifend theophrastus, minim
+              putant repudiandae te sed, eam ne nostrud vituperata. Dicat laoreet pro id, id qui
+              fuisset epicuri. Tantas denique facilisis nam at, vis ei populo quaeque accommodare,
+              ei solet oportere his. Mei in tritani dissentiet. Tacimates euripidis honestatis sed
+              an, ut ipsum velit omnium duo. Sed et sonet veniam semper, cum ut virtute recusabo
+              contentiones, nec ut dicit electram.</span
+            ></philosophers-text-card
+          >
+          <div postContainer>
+            <blog-post demoPost> </blog-post>
+          </div>
+          <create-blog-post demoCreatePost></create-blog-post>
+          <div imageContainer>
+            <philosophers-image-css imgSrc="/resources/images/axolotl.jpg"></philosophers-image-css>
+          </div>
+          <div imageContainer><philosophers-image-html></philosophers-image-html></div>
+          <infinite-scroller demoScroller maxLoad="20" maxDisplay="20"></infinite-scroller>
+        </div>
       </div>
-      <div imageContainer><philosophers-image-html></philosophers-image-html></div>
-      <infinite-scroller demoScroller maxLoad="20" maxDisplay="20"></infinite-scroller>
     `;
   }
 
@@ -167,6 +167,8 @@ export class ThePhilosophersComponents extends LitElement {
       this,
     );
 
+    this.shadowRoot.querySelector('[paraWrapper]').style.backgroundImage = `url(' ${SKY_IMAGE} ')`;
+
     const demoPost = this.shadowRoot.querySelector('[demoPost]');
 
     demoPost.addEventListener('custom-element-loaded', e => {
@@ -221,14 +223,20 @@ export class ThePhilosophersComponents extends LitElement {
         /* color: white; */
       }
 
-      philosophers-para {
-        color: white;
-        padding: 25px;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        background-color: #1f2833;
+      [paraWrapper] {
+        background-position: center top;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        width: 100%;
+      }
 
-        border-radius: 2px;
+      philosophers-para {
+        /* background-position: center top;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-color: transparent; */
+        /* width: 50%; */
       }
     `;
   }
