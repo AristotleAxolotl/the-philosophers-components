@@ -37,13 +37,14 @@ export class ThePhilosophersComponents extends LitElement {
       <philosophers-header one level="2" fontFamily="chic">Aristotle The Axoltol, Chic</philosophers-header>
       <philosophers-header two level="2" fontFamily="strong">Aristotle The Axoltol, Strong</philosophers-header>
       <philosophers-header three level="2" fontFamily="clean">Aristotle The Axoltol, Clean</philosophers-header>
+      <philosophers-header four level="2" fontFamily="progressive">Aristotle The Axoltol, Progressive</philosophers-header>
       <philosophers-image-card cardLink="http://localhost:8000/demo/cardLinkExample">
         <span slot="cardText">
           This should be an axolotl?
         </span>
       </philosophers-image-card>
       <div paraWrapper>
-        <philosophers-para ?invertedText=${true}
+        <philosophers-para ?invertedText=${true} fontFamily="clean"
           >Lorem ipsum dolor sit amet, ceteros vivendum consulatu ius eu. Ius ei possit delenit
           necessitatibus. Sea ludus comprehensam ut. Mea saperet corpora complectitur ut, cu agam
           molestiae mel. Ne ludus malorum tacimates has. Congue animal ei has. His quis aeque et.
@@ -249,6 +250,10 @@ export class ThePhilosophersComponents extends LitElement {
         /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; */
       }
 
+      [four] {
+        color: white;
+      }
+
       [paraWrapper] {
         background-position: center top;
         background-size: 100%;
@@ -262,7 +267,7 @@ export class ThePhilosophersComponents extends LitElement {
         background-size: 100%;
         background-repeat: no-repeat;
         background-color: transparent; */
-        width: 50%;
+        /* width: 50%; */
       }
     `;
   }

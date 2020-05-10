@@ -6,6 +6,7 @@ export class PhilosophersPara extends LitElement {
   static get properties() {
     return {
       invertedText: { type: Boolean },
+      fontFamily: { type: String },
     };
   }
 
@@ -67,6 +68,18 @@ export class PhilosophersPara extends LitElement {
 
         margin: 0;
         padding: 0;
+      }
+
+      :host([fontFamily='clean']) {
+        font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+      }
+
+      :host([fontFamily='strong']) {
+        font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+      }
+
+      :host([fontFamily='chic']) {
+        font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
       }
     `;
   }
