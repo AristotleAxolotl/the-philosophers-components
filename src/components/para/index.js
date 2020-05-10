@@ -71,15 +71,19 @@ export class PhilosophersPara extends LitElement {
       }
 
       :host([fontFamily='clean']) {
-        font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+        font-family: 'Clean';
       }
 
       :host([fontFamily='strong']) {
-        font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+        font-family: 'Strong';
       }
 
       :host([fontFamily='chic']) {
-        font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+        font-family: 'Chic';
+      }
+
+      :host([fontFamily='progressive']) {
+        font-family: 'Progressive';
       }
     `;
   }
