@@ -43,6 +43,37 @@ export class PhilosophersHeader extends LitElement {
           padding: 0;
         }
 
+        :host([invertedText]) {
+          display: block;
+          /* font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+          /* font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+          /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+          /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; */
+          font-family: inherit;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+
+          /* font-size: 3rem;
+        line-height: 4rem;
+        letter-spacing: 0.03125em; */
+          font-size: inherit;
+          line-height: inherit;
+          letter-spacing: inherit;
+          text-decoration: inherit;
+          text-transform: inherit;
+
+          background: inherit;
+          background-clip: text;
+          -webkit-background-clip: text;
+          -moz-background-clip: text;
+
+          color: transparent;
+          filter: invert(1) grayscale(0) contrast(9);
+
+          margin: 0;
+          padding: 0;
+        }
+
         :host([fontFamily='clean']) {
           font-family: 'Clean';
         }
