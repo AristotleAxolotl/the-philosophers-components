@@ -37,25 +37,27 @@ export class PhilosophersPara extends LitElement {
 
       :host([invertedText]) {
         display: block;
-        font-family: Roboto, sans-serif;
+        /* font-family: Roboto, sans-serif; */
+        font-family: inherit;
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
 
-        font-size: 3rem;
+        /* font-size: 3rem;
         line-height: 4rem;
-        letter-spacing: 0.03125em;
+        letter-spacing: 0.03125em; */
+        font-size: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
         text-decoration: inherit;
         text-transform: inherit;
 
         background: inherit;
-        /* background-color: transparent; */
         background-clip: text;
         -webkit-background-clip: text;
         -moz-background-clip: text;
 
         color: transparent;
-        mix-blend-mode: difference;
-        filter: invert(1) grayscale(1) contrast(0);
+        filter: invert(1) grayscale(0) contrast(9);
 
         margin: 0;
         padding: 0;

@@ -236,7 +236,7 @@ export class ThePhilosophersComponents extends LitElement {
         background-size: 100%;
         background-repeat: no-repeat;
         background-color: transparent; */
-        /* width: 50%; */
+        width: 50%;
       }
     `;
   }
