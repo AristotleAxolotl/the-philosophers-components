@@ -34,7 +34,9 @@ export class ThePhilosophersComponents extends LitElement {
           { name: 'projects', links: ['/projects'] },
         ]}
       ></nav-bar>
-      <philosophers-header level="5">HELLO WORLD!</philosophers-header>
+      <philosophers-header one level="2" fontFamily="chic">Aristotle The Axoltol, Chic</philosophers-header>
+      <philosophers-header two level="2" fontFamily="strong">Aristotle The Axoltol, Strong</philosophers-header>
+      <philosophers-header three level="2" fontFamily="clean">Aristotle The Axoltol, Clean</philosophers-header>
       <philosophers-image-card cardLink="http://localhost:8000/demo/cardLinkExample">
         <span slot="cardText">
           This should be an axolotl?
@@ -221,6 +223,30 @@ export class ThePhilosophersComponents extends LitElement {
 
       philosophers-text-card {
         /* color: white; */
+      }
+
+      [one] {
+        color: white;
+        /* font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+        /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; */
+      }
+
+      [two] {
+        color: white;
+        /* font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+        /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; */
+      }
+
+      [three] {
+        color: white;
+        /* font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+        /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; */
       }
 
       [paraWrapper] {

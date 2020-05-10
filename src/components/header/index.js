@@ -1,11 +1,12 @@
 import { html, css, LitElement } from 'lit-element';
 
-import { utils, fonts } from '../lib';
+import { utils } from '../lib';
 
 export class PhilosophersHeader extends LitElement {
   static get properties() {
     return {
       level: { type: Number },
+      fontFamily: { type: String },
     };
   }
 
@@ -18,67 +19,73 @@ export class PhilosophersHeader extends LitElement {
   }
 
   static get styles() {
-    return [
-      fonts.Chich,
-      fonts.Progressive,
-      fonts.Strong,
-      fonts.Clean,
-      css`
-        :host {
-          display: block;
-          /* font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
-          /* font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
-          /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
-          /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; */
+    return css`
+      :host {
+        display: block;
+        /* font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+        /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; */
+        font-family: inherit;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
 
-          -moz-osx-font-smoothing: grayscale;
-          -webkit-font-smoothing: antialiased;
+        /* font-weight: 100; */
 
-          /* font-weight: 300; */
+        text-decoration: inherit;
+        text-transform: inherit;
+        margin: 0;
+        padding: 0;
+      }
 
-          text-decoration: inherit;
-          text-transform: inherit;
-          margin: 0;
-          padding: 0;
-        }
+      :host([fontFamily='clean']) {
+        font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+      }
 
-        :host([level='1']) {
-          font-size: 96px;
-          line-height: 120px;
-          letter-spacing: 3px;
-        }
+      :host([fontFamily='strong']) {
+        font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+      }
 
-        :host([level='2']) {
-          font-size: 60px;
-          line-height: 70px;
-          letter-spacing: 3px;
-        }
+      :host([fontFamily='chic']) {
+        font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+      }
 
-        :host([level='3']) {
-          font-size: 48px;
-          line-height: 58px;
-          letter-spacing: 3px;
-        }
+      :host([level='1']) {
+        font-size: 96px;
+        line-height: 120px;
+        letter-spacing: 3px;
+      }
 
-        :host([level='4']) {
-          font-size: 34px;
-          line-height: 44px;
-          letter-spacing: 4px;
-        }
+      :host([level='2']) {
+        font-size: 60px;
+        line-height: 70px;
+        letter-spacing: 3px;
+      }
 
-        :host([level='5']) {
-          font-size: 24px;
-          line-height: 34px;
-          letter-spacing: 3px;
-        }
+      :host([level='3']) {
+        font-size: 48px;
+        line-height: 58px;
+        letter-spacing: 3px;
+      }
 
-        :host([level='6']) {
-          font-size: 20px;
-          line-height: 30px;
-          letter-spacing: 3px;
-        }
-      `,
-    ];
+      :host([level='4']) {
+        font-size: 34px;
+        line-height: 44px;
+        letter-spacing: 4px;
+      }
+
+      :host([level='5']) {
+        font-size: 24px;
+        line-height: 34px;
+        letter-spacing: 3px;
+      }
+
+      :host([level='6']) {
+        font-size: 20px;
+        line-height: 30px;
+        letter-spacing: 3px;
+      }
+    `;
   }
 
   render() {

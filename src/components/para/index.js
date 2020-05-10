@@ -21,7 +21,10 @@ export class PhilosophersPara extends LitElement {
     return css`
       :host {
         display: block;
-        font-family: Roboto, sans-serif;
+        /* font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+        /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; */
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
 
@@ -37,7 +40,10 @@ export class PhilosophersPara extends LitElement {
 
       :host([invertedText]) {
         display: block;
-        /* font-family: Roboto, sans-serif; */
+        /* font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif; */
+        /* font-family: Futura, "Trebuchet MS", Arial, sans-serif; */
+        /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; */
         font-family: inherit;
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
