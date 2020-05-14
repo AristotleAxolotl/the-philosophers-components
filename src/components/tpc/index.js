@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable import/extensions */
 /* eslint-disable lit/no-useless-template-literals */
 import { html, css, unsafeCSS, LitElement } from 'lit-element';
@@ -34,17 +35,17 @@ export class ThePhilosophersComponents extends LitElement {
           { name: 'projects', links: ['/projects'] },
         ]}
       ></nav-bar>
-      <philosophers-header one level="2" fontFamily="chic">Aristotle The Axoltol, Chic</philosophers-header>
+      <!-- <philosophers-header one level="2" fontFamily="chic">Aristotle The Axoltol, Chic</philosophers-header>
       <philosophers-header two level="2" fontFamily="strong">Aristotle The Axoltol, Strong</philosophers-header>
       <philosophers-header three level="2" fontFamily="clean">Aristotle The Axoltol, Clean</philosophers-header>
-      <philosophers-header four level="2" fontFamily="progressive">Aristotle The Axoltol, Progressive</philosophers-header>
+      <philosophers-header four level="2" fontFamily="progressive">Aristotle The Axoltol, Progressive</philosophers-header> -->
       <philosophers-image-card cardLink="http://localhost:8000/demo/cardLinkExample">
         <span slot="cardText">
           This should be an axolotl?
         </span>
       </philosophers-image-card>
       <div paraWrapper>
-        <philosophers-para ?invertedText=${true} fontFamily="clean"
+        <philosophers-para ?invertedText=${true} fontFamily="strong"
           >Lorem ipsum dolor sit amet, ceteros vivendum consulatu ius eu. Ius ei possit delenit
           necessitatibus. Sea ludus comprehensam ut. Mea saperet corpora complectitur ut, cu agam
           molestiae mel. Ne ludus malorum tacimates has. Congue animal ei has. His quis aeque et.
@@ -57,7 +58,20 @@ export class ThePhilosophersComponents extends LitElement {
           reformidans referrentur. Quo ut dicit salutandi argumentum. Ei postea regione repudiare</philosophers-para
         >
       </div>
-          <philosophers-text-card
+      <div headerWrapper>
+        <philosophers-header ?invertedText=${true} level="6" fontFamily="strong">Lorem ipsum dolor sit amet, ceteros vivendum consulatu ius eu. Ius ei possit delenit
+          necessitatibus. Sea ludus comprehensam ut. Mea saperet corpora complectitur ut, cu agam
+          molestiae mel. Ne ludus malorum tacimates has. Congue animal ei has. His quis aeque et.
+          Mei cu efficiantur neglegentur. Feugait cotidieque ei sea. Ad alii putant expetenda mei,
+          iusto commodo moderatius pro ne. Duo case possim philosophia ea, malis commune
+          voluptatibus mea te, mel ubique meliore suscipiantur ea. Has ex primis recteque
+          definiebas, elit percipitur mel eu. No vim tation maiorum adversarium, eam amet ullum
+          mediocrem an. Mel fugit aeterno id. Eos dissentiunt theophrastus at, vix enim consul
+          possim et. Sea te exerci eirmod suscipiantur, et sea indoctum urbanitas, per ei illum
+          reformidans referrentur. Quo ut dicit salutandi argumentum. Ei postea regione repudiare</philosophers-header
+        >
+      </div>
+          <!-- <philosophers-text-card
             cardWidth="100%"
             cardHeight="100%"
             cardLink="http://localhost:8000/demo/cardLinkExample"
@@ -83,7 +97,7 @@ export class ThePhilosophersComponents extends LitElement {
               an, ut ipsum velit omnium duo. Sed et sonet veniam semper, cum ut virtute recusabo
               contentiones, nec ut dicit electram.</span
             ></philosophers-text-card
-          >
+          > -->
           <div postContainer>
             <blog-post demoPost> </blog-post>
           </div>
@@ -171,6 +185,9 @@ export class ThePhilosophersComponents extends LitElement {
     );
 
     this.shadowRoot.querySelector('[paraWrapper]').style.backgroundImage = `url(' ${SKY_IMAGE} ')`;
+    this.shadowRoot.querySelector(
+      '[headerWrapper]',
+    ).style.backgroundImage = `url(' ${SKY_IMAGE} ')`;
 
     const demoPost = this.shadowRoot.querySelector('[demoPost]');
 
@@ -259,10 +276,48 @@ export class ThePhilosophersComponents extends LitElement {
         background-size: 100%;
         background-repeat: no-repeat;
         background-color: transparent;
+        background-position: center center;
+        font-size: 20px;
+        line-height: 30px;
+        letter-spacing: 3px;
+        /* font-size: 2em; */
+        /* line-height: 3em; */
+        /* letter-spacing: 1em; */
+        /* font-size: 3rem;
+        line-height: 4rem;
+        letter-spacing: 0.03125em; */
         width: 100%;
+        height: 50vh;
+      }
+      [headerWrapper] {
+        /* display: flex;
+        align-items: flex-end; */
+
+        background-position: center top;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        background-position: center center;
+        /* font-size: 2em; */
+        /* line-height: 3em; */
+        /* letter-spacing: 1em; */
+        /* font-size: 3rem;
+        line-height: 4rem;
+        letter-spacing: 0.03125em; */
+        width: 100%;
+        height: 50vh;
+      }
+
+      philosophers-header {
+        position: relative;
+        top: 10vh;
+        width: 75%;
+        left: 0;
       }
 
       philosophers-para {
+        position: relative;
+        top: 10vh;
         /* background-position: center top;
         background-size: 100%;
         background-repeat: no-repeat;
