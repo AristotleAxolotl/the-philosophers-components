@@ -7,6 +7,7 @@ export class PhilosophersPara extends LitElement {
     return {
       invertedText: { type: Boolean },
       fontFamily: { type: String },
+      parentBackgroundSize: { type: String },
     };
   }
 
@@ -102,6 +103,7 @@ export class PhilosophersPara extends LitElement {
     const parentWidth = this.parentNode.clientWidth;
     const parentHeight = this.parentNode.clientHeight;
     const parentPos = this.parentNode.getBoundingClientRect();
+    const parentBGSize = this.parentBackgroundSize.replace('%', '') / 100;
 
     const currentWidth = this.clientWidth;
     // const currentHeight = this.clientHeight;
@@ -114,10 +116,16 @@ export class PhilosophersPara extends LitElement {
       left: parentPos.left - currentPos.left,
     };
 
-    const percentWidth = (parentWidth / currentWidth) * 100;
+    let percentWidth;
+    // eslint-disable-next-line no-extra-boolean-cast
+    if (!!this.parentBackgroundSize) {
+      percentWidth = (parentWidth / currentWidth) * 100 * parentBGSize;
+    } else {
+      percentWidth = (parentWidth / currentWidth) * 100;
+    }
 
-    const imgHeight = dimensions.height * (parentWidth / dimensions.width);
-    const imgWidth = dimensions.width * (parentWidth / dimensions.width);
+    const imgHeight = dimensions.height * ((parentWidth * parentBGSize) / dimensions.width);
+    const imgWidth = dimensions.width * ((parentWidth * parentBGSize) / dimensions.width);
 
     // const parentCenterPoint = {};
     // parentCenterPoint.x = parentWidth / 2;
