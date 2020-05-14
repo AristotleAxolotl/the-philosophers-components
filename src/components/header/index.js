@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { html, css, LitElement } from 'lit-element';
 
 import { utils, fonts } from '../lib';
@@ -134,6 +135,11 @@ export class PhilosophersHeader extends LitElement {
   }
 
   async firstUpdated() {
+    await this.resizeBackground();
+    window.addEventListener('resize', async () => this.resizeBackground());
+  }
+
+  async resizeBackground() {
     const dimensions = await this.getBackgroundDimensions();
 
     const parentWidth = this.parentNode.clientWidth;

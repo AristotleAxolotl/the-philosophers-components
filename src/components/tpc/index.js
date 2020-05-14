@@ -293,7 +293,6 @@ export class ThePhilosophersComponents extends LitElement {
         /* display: flex;
         align-items: flex-end; */
 
-        background-position: center top;
         background-size: 100%;
         background-repeat: no-repeat;
         background-color: transparent;
