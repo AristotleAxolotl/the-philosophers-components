@@ -146,7 +146,7 @@ export class PhilosophersHeader extends LitElement {
     const parentWidth = this.parentNode.clientWidth;
     const parentHeight = this.parentNode.clientHeight;
     const parentPos = this.parentNode.getBoundingClientRect();
-    const parentBGSize = this.parentBackgroundSize.replace('%', '') / 100;
+    let parentBGSize;
 
     const currentWidth = this.clientWidth;
     // const currentHeight = this.clientHeight;
@@ -162,8 +162,10 @@ export class PhilosophersHeader extends LitElement {
     let percentWidth;
     // eslint-disable-next-line no-extra-boolean-cast
     if (!!this.parentBackgroundSize) {
+      parentBGSize = this.parentBackgroundSize.replace('%', '') / 100;
       percentWidth = (parentWidth / currentWidth) * 100 * parentBGSize;
     } else {
+      parentBGSize = '1';
       percentWidth = (parentWidth / currentWidth) * 100;
     }
 
