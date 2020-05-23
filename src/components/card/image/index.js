@@ -32,7 +32,7 @@ export class ImageCard extends Content {
 
   constructor() {
     super();
-    this.imgSrc = '../../../resources/images/axolotl.jpg';
+    this.imgSrc = '../../../assets/images/axolotl.jpg';
     this.cardLink = 'http://localhost:8000/demo/cardLink';
     this.cardWidth = '200px';
     this.cardHeight = '200px';

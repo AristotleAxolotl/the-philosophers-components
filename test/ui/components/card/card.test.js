@@ -19,7 +19,7 @@ describe('<philosophers-card>', () => {
       expect(el.cardLink).to.equal(`http://localhost:8000/demo/cardLink`);
     });
     it('should have a default image link', async () => {
-      expect(el.imgSrc).to.equal('../../../resources/images/axolotl.jpg');
+      expect(el.imgSrc).to.equal('../../../assets/images/axolotl.jpg');
     });
     it('should have an attribute, cardHeight, defaulting to 200px', async () => {
       expect(el.cardHeight).to.equal('200px');
@@ -31,8 +31,8 @@ describe('<philosophers-card>', () => {
       expect(el).shadowDom.to.equal(`
       <div cardWrapper content style="width: 200px; height: 200px;">
         <div imagewrapper>
-          <philosophers-image-css image imgsrc="../../../resources/images/axolotl.jpg"
-            style='background-image: url("../../../resources/images/axolotl.jpg");'>
+          <philosophers-image-css image imgsrc="../../../assets/images/axolotl.jpg"
+            style='background-image: url("../../../assets/images/axolotl.jpg");'>
           </philosophers-image-css>
         </div>
         <div textwrapper>

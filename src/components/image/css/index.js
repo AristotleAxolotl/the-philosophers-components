@@ -9,7 +9,7 @@ import { utils } from '../../lib';
 export class ImageCss extends LitElement {
   constructor() {
     super();
-    this.imgSrc = '../../../resources/images/axolotl.jpg';
+    this.imgSrc = '../../../assets/images/axolotl.jpg';
   }
 
   static get properties() {

@@ -31,7 +31,7 @@
 //         </blog-post>
 //         <create-blog-post></create-blog-post>
 //         <div imagecontainer="">
-//           <philosophers-image style='background-image: url("../../../resources/images/axolotl.jpg");'>
+//           <philosophers-image style='background-image: url("../../../assets/images/axolotl.jpg");'>
 //           </philosophers-image>
 //         </div>
 //         <infinite-scroller demoScroller></infinite-scroller>

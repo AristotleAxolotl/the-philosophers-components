@@ -9,7 +9,7 @@ import { utils } from '../../lib';
 export class ImageHtml extends LitElement {
   constructor() {
     super();
-    this.imgSrc = '../../../resources/images/axolotl.jpg';
+    this.imgSrc = '../../../assets/images/axolotl.jpg';
   }
 
   static get properties() {
@@ -40,7 +40,7 @@ export class ImageHtml extends LitElement {
       }
       img {
         width: 100%;
-        height:100%;
+        height: 100%;
       }
     `;
   }
@@ -48,7 +48,7 @@ export class ImageHtml extends LitElement {
   render() {
     return html`
       <!-- <div image-container> -->
-        <img src=${this.imgSrc} />
+      <img src=${this.imgSrc} />
       <!-- </div> -->
     `;
   }

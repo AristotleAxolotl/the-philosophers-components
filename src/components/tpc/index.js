@@ -15,8 +15,8 @@ import { PhilosophersPara } from '../para';
 
 import { utils } from '../lib';
 
-// const AXO_IMAGE = unsafeCSS('../../resources/images/axolotl.jpg');
-const SKY_IMAGE = unsafeCSS('../../resources/images/IMG_5371.jpg');
+// const AXO_IMAGE = unsafeCSS('../../assets/images/axolotl.jpg');
+const SKY_IMAGE = unsafeCSS('../../assets/images/IMG_5371.jpg');
 
 export class ThePhilosophersComponents extends LitElement {
   static get properties() {
@@ -103,7 +103,7 @@ export class ThePhilosophersComponents extends LitElement {
           </div>
           <create-blog-post demoCreatePost></create-blog-post>
           <div imageContainer>
-            <philosophers-image-css imgSrc="/resources/images/axolotl.jpg"></philosophers-image-css>
+            <philosophers-image-css imgSrc="/assets/images/axolotl.jpg"></philosophers-image-css>
           </div>
           <div imageContainer><philosophers-image-html></philosophers-image-html></div>
           <infinite-scroller demoScroller maxLoad="20" maxDisplay="20"></infinite-scroller>
