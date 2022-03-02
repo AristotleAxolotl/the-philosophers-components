@@ -32,7 +32,7 @@
     "update:all": "rm -rf ./node_modules/ && rm ./package-lock.json && npm install"
   },
   "dependencies": {
-    "karma": "^5.0.4",
+    "karma": "^6.3.16",
     "lit-element": "2.3.*",
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
