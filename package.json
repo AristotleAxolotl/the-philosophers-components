@@ -32,14 +32,14 @@
     "update:all": "rm -rf ./node_modules/ && rm ./package-lock.json && npm install"
   },
   "dependencies": {
-    "karma": "^5.0.4",
+    "karma": "^5.2.3",
     "lit-element": "2.3.*",
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@open-wc/eslint-config": "2.0.6",
     "@open-wc/prettier-config": "1.1.0",
     "@open-wc/testing": "2.5.16",
-    "@open-wc/testing-karma": "3.3.19",
+    "@open-wc/testing-karma": "4.0.9",
     "chai": "4.2.0",
     "chalk": "4.0.0",
     "concurrently": "5.2.0",
